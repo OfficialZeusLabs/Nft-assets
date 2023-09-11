@@ -10,7 +10,6 @@ class Database {
             dbUrl = process.env.REMOTE_DATABASE_URL;
         }
         mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-        // mongoose.connect(dbUrl);
         const connection = mongoose.connection;
         connection.on('error', () => {
             console.error("Database connection error");
