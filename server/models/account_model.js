@@ -1,8 +1,11 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const AccountSchema = new mongoose.Schema({
-    title: String,
-    description: String,
+    title: {
+        type: String,
+        required: true,
+    },
+    description: { type: String, required: true },
     whitepaper: String,
     goal: String,
     discord_link: String,
@@ -27,4 +30,5 @@ const AccountSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const AccountModel = mongoose.model("Account", AccountSchema);
+
 export default AccountModel;
