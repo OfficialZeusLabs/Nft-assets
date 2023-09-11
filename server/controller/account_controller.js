@@ -4,7 +4,7 @@ import Upload from "../utils/uploads.js";
 
 class AccountController {
     static initialize(app) {
-        app.post(Routes.REGISTER, Upload.imageUpload().single('image'), AccountService.register);
+        app.post(Routes.REGISTER, Upload.imageUpload().array('image'), AccountService.register);
     }
 }
 

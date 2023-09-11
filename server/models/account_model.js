@@ -20,7 +20,7 @@ const AccountSchema = new mongoose.Schema({
         type: String,
         enum: ['nft', 'crypto']
     },
-    mint_date: Number,
+    mint_date: String,
     mint_price: Number,
     mint_supply: String,
     marketing_plan: String,
