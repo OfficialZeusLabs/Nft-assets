@@ -1,4 +1,4 @@
-const emailValidator = require('email-validator');
+import emailValidator from 'email-validator';
 class Preconditions {
     static checkNotNull(object) {
         for (let key in object) {
@@ -14,4 +14,4 @@ class Preconditions {
     }
 }
 
-module.exports = Preconditions; 
+export default Preconditions;
