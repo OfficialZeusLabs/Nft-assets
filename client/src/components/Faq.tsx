@@ -2,25 +2,10 @@ import React, { useState } from "react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { orbitron } from "@/fonts/fonts";
-const fnqInitailData = [
-  {
-    question: "Why NFT Factory?",
-    answer:
-      "CREATE YOUR NFT, Easily create and manage your NFTS in one place",
-    isOpen: false,
-    id: 1,
-  },
-  {
-    question: "What do i stand to gain?",
-    answer:
-      "COLLABORATE WITH CONSUMERS, Engage directly with consumers, let your NFTS forge connections beyond transactions ",
-    isOpen: false,
-    id: 2,
-  },
-  
-];
+import { FAQRelatedQuestions as FAQData } from "@/data/faq";
+
 const FAQ = () => {
-  const [fnqData, setFnqData] = useState(fnqInitailData);
+  const [fnqData, setFnqData] = useState(FAQData);
   const handleToggle = (id:any) => {
     setFnqData((prev) => {
       return prev.map((val) =>
