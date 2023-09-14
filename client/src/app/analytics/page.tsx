@@ -7,8 +7,8 @@ const Analytics: React.FC = () => {
     <div className="flex min-h-screen">
       <SideBar />
       <div className="flex-1 flex-col px-4 py-10">
-        <div className="mx-5">
-          <NavTools title="Analytics" isMenu={true} />
+        <div className="mx-5 text-white">
+          <NavTools title="Analytics"  isMenu={true} />
         </div>
       </div>
     </div>

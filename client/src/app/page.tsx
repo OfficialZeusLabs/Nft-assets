@@ -36,7 +36,7 @@ export default function Home() {
             <div className="flex gap-8">
               <Button 
               as="link"
-              href="/marketplace"
+              href="/register"
                 className={`${orbitron.className} text-xl px-8 py-2 bg-gradient-linear`}
               >
                 Get Started
