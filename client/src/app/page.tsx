@@ -34,13 +34,13 @@ export default function Home() {
               transactions.
             </p>
             <div className="flex gap-8">
-              <Link href="/register">
-              <Button
+              <Button 
+              as="link"
+              href="/marketplace"
                 className={`${orbitron.className} text-xl px-8 py-2 bg-gradient-linear`}
               >
                 Get Started
               </Button>
-              </Link>
               <Image src="/images/wallet.svg" alt="" height={50} width={50} />
             </div>
           </div>
