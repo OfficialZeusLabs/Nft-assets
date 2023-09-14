@@ -5,8 +5,8 @@ import SearchField from "../SearchField";
 
 const SearchCollection: React.FC = () => {
   return (
-    <div className="flex justify-between space-x-4 mx-28 my-20 items-start">
-      <div className="flex flex-col">
+    <div className="flex justify-between max-w-screen-xl mx-auto px-4 space-x-4  my-20 items-start">
+      <div className="flex max-w-screen-xl mx-auto px-4 flex-col">
         <SearchField />
         <h2 className={`${orbitron.className} text-primary text-2xl w-3/5`}>
           Explore thousands of digital assets from trending to curated
@@ -15,8 +15,8 @@ const SearchCollection: React.FC = () => {
       </div>
 
       <div className={`w-2/6 ${orbitron.className}`}>
-        <h2 className="text-3xl mb-4">NFT SPECIALS</h2>
-        <div className={`flex flex-col bg-sidebar  rounded-md`}>
+        <h2 className="text-4xl text-white w-full  mb-8">NFT SPECIALS</h2>
+        <div className={`flex flex-col bg-sidebar w-[300px] rounded-md`}>
           <Image
             src={"/rectangle.png"}
             alt={"nft special"}
@@ -32,7 +32,7 @@ const SearchCollection: React.FC = () => {
                 width={45}
                 alt="nft-special"
               />
-              <h3 className="text-xl">Bake shop NFTs</h3>
+              <h3 className="text-xl text-white">Bake shop NFTs</h3>
               <Image
                 src="/images/badge-check.svg"
                 height={20}
@@ -42,11 +42,11 @@ const SearchCollection: React.FC = () => {
             </div>
 
             <div className={`flex justify-between`}>
-              <div>
+              <div className="text-white">
                 <p>Floor</p>
                 <p>0.05 ETH</p>
               </div>
-              <div>
+              <div className="text-white">
                 <p>Total Volume</p>
                 <p>14.1K ETH</p>
               </div>

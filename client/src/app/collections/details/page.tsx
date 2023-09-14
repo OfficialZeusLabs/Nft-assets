@@ -16,7 +16,7 @@ const Details = () => {
   return (
     <div className={styles.details}>
       <TopNavigation />
-      <div className={styles.about}>
+      <div className={styles.about }>
         <div className={styles.about_top}>
           <div className={styles.image_div}>
             <Image

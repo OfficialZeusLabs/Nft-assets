@@ -40,7 +40,7 @@ const SideBar = () => {
         {navigationLinks.map(({ name, to, icon }) => (
           <Link key={name} href={to} className={`${poppins.className} text-sm`}>
             <div
-              className="flex gap-4 items-center px-4 py-3"
+              className="flex gap-4  text-white items-center px-4 py-3"
               style={{
                 margin: "1.25rem 0",
                 backgroundColor:

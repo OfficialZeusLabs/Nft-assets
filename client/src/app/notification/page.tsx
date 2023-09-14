@@ -10,7 +10,7 @@ const Notification: React.FC = () => {
     <div className="flex min-h-screen">
       <SideBar />
       <div className="flex-1 flex-col px-4 py-10">
-        <div className="mx-5">
+        <div className="mx-5 text-white">
           <NavTools title="Notifications" isMenu={true} />
         </div>
 
@@ -21,6 +21,7 @@ const Notification: React.FC = () => {
 
           {notificationsData.map(
             ({ title, message, duration, profile }, index) => (
+              <div className="text-white">
               <NotificationTile
                 key={index}
                 title={title}
@@ -28,6 +29,7 @@ const Notification: React.FC = () => {
                 time={duration}
                 source={profile}
               />
+              </div>
             ),
           )}
 
