@@ -9,9 +9,14 @@ class FileService {
             api_secret: process.env.CLOUDINARY_API_SECRET,
             secure: true
         })
-        let uploadImage = await cloudinary.uploader.upload(imageFile);
-        let uploadedImage = await uploadImage.secure_url;
-        return uploadedImage;
+        try {
+            let uploadImage = await cloudinary.uploader.upload(imageFile);
+            let uploadedImage = await uploadImage.secure_url;
+            return uploadedImage;
+        }
+        catch (error) {
+            console.error(error);
+        }
     }
 
     static unlinkFileSync(filePath) {
