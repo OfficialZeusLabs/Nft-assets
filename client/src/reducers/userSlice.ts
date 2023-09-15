@@ -11,10 +11,20 @@ const initialState: UserInterface = {
   website: null,
   email: null,
   discordId: null,
+  members: null,
+  twitter: null,
+  linkedin: null,
+  nft_type: null,
+  mint_date: null,
+  mint_price: 0,
+  mint_supply: 0,
+  marketing_plan: null,
+  presale: null,
+  more_info: null,
 };
 
-export const userSlice = createSlice({
-  name: "users",
+export const usersSlice = createSlice({
+  name: "userss",
   initialState,
   reducers: {
     setTitle: (state, action) => {
@@ -41,17 +51,47 @@ export const userSlice = createSlice({
     setWebsite: (state, action) => {
       state.website = action.payload;
     },
+    setMembers: (state, action) => {
+      state.members = action.payload;
+    },
+    setTwitter: (state, action) => {
+      state.twitter = action.payload;
+    },
+    setLinkedin: (state, action) => {
+      state.linkedin = action.payload;
+    },
+    setNftType: (state, action) => {
+      state.nft_type = action.payload;
+    },
+    setMintPrice: (state, action) => {
+      state.mint_price = action.payload;
+    },
+    setMintSupply: (state, action) => {
+      state.mint_supply = action.payload;
+    },
+    setMintDate: (state, action) => {
+      state.mint_date = action.payload;
+    },
+    setMarketingPlan: (state, action) => {
+      state.marketing_plan = action.payload;
+    },
+    setPresale: (state, action) => {
+      state.presale = action.payload;
+    },
+    setMoreInfo: (state, action) => {
+      state.more_info = action.payload;
+    },
   },
 });
 
-export const getTitle = (state: RootState) => state.user.title;
-export const getDescription = (state: RootState) => state.user.description;
-export const getWhitepaper = (state: RootState) => state.user.whitepaper;
-export const getGoalText = (state: RootState) => state.user.goal;
-export const getEmail = (state: RootState) => state.user.email;
-export const getWebsite = (state: RootState) => state.user.website;
-export const getDiscordId = (state: RootState) => state.user.discordId;
-export const getDiscordLink = (state: RootState) => state.user.discordLink;
+export const getTitle = (state: RootState) => state.users.title;
+export const getDescription = (state: RootState) => state.users.description;
+export const getWhitepaper = (state: RootState) => state.users.whitepaper;
+export const getGoalText = (state: RootState) => state.users.goal;
+export const getEmail = (state: RootState) => state.users.email;
+export const getWebsite = (state: RootState) => state.users.website;
+export const getDiscordId = (state: RootState) => state.users.discordId;
+export const getDiscordLink = (state: RootState) => state.users.discordLink;
 
 export const {
   setTitle,
@@ -62,5 +102,15 @@ export const {
   setWebsite,
   setGoalText,
   setDiscordLink,
-} = userSlice.actions;
-export default userSlice.reducer;
+  setLinkedin,
+  setMarketingPlan,
+  setMembers,
+  setMintDate,
+  setMintPrice,
+  setMintSupply,
+  setMoreInfo,
+  setNftType,
+  setPresale,
+  setTwitter,
+} = usersSlice.actions;
+export default usersSlice.reducer;
