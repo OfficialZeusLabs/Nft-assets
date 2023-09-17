@@ -12,16 +12,19 @@ interface NotificationTileProps {
 const NotificationTile: React.FC<NotificationTileProps> = (props) => {
   const { title, message, time, source } = props;
   return (
-    <div className="flex justify-between items-center mb-10 cursor-pointer">
-      <div className="flex gap-4">
-        <Image src={source} height={50} width={50} alt={"profile-image"} />
+    <div className="flex justify-between gap-2 mb-10 cursor-pointer">
+      <div className="flex gap-4 ">
+        <div>
+        <Image src={source} height={60} width={60} alt={"profile-image"} />
+
+        </div>
         <div className="flex flex-col">
-          <h4 className={`${orbitron.className} text-xl`}>{title}</h4>
-          <p className="text-md">{message}</p>
+          <h4 className={`${orbitron.className} text-lg laptop:text-xl`}>{title}</h4>
+          <p className="text-sm laptop:text-md">{message}</p>
         </div>
       </div>
 
-      <p className="text-gray-400">{time}</p>
+      <p className="text-gray-400 text-sm">{time}</p>
     </div>
   );
 };

@@ -54,3 +54,13 @@ select {
 h1 {
   font-family: var(--font-orbitron);
 }
+
+.bg-blur {
+
+  position: fixed;
+  top: 0;
+  background: #1B0A1A;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 20;
+}

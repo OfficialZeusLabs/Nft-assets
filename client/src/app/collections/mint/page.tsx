@@ -5,33 +5,33 @@ import Image from "next/image";
 
 const Mint = () => {
   return (
-    
     <div className={styles.mint}>
       <TopNavigation />
-      <div className="max-w-screen-xl mx-auto ">
-      <div className={styles.mint_details}>
-        <div className={styles.left}>
+      <div className={`mx-auto w-[97%] tablet_l:w-[94%] laptop_l:w-[89%] max-w-[1080px] ${styles.mint_details}`}>
+        <div className={`w-[30%] ${styles.left}`}>
+          {/* <div className='flex '>
+        <div className='w-[40%]'> */}
           <Image
-            src="/images/NFT4.svg"
+            src="/images/nft-2.png"
             alt=""
-            height={400}
-            width={568}
+            height={1000}
+            width={1008}
             // style={{ width: "568px", height: "400px" }}
           />
-          <div>
+          <div className="mt-4">
             <p>
               FANRT Fac NFTS{" "}
               <Image
                 src="/images/badge-check.svg"
                 alt=""
-                height={25}
-                width={25}
+                height={30}
+                width={30}
               />
             </p>
             <span>0.05 eth</span>
           </div>
         </div>
-        <div className={styles.right}>
+        <div className={`w-[50%] ${styles.right}`}>
           <div className={styles.package}>
             <h5>Burger Fac NFTs</h5>
             <p>Package ###</p>
@@ -47,14 +47,13 @@ const Mint = () => {
             </div>
           </div>
           <div className={styles.mint_btn}>
-            <button  className={styles.home_btn}>Mint</button>
+            <button className={styles.home_btn}>Mint</button>
             <p>
               By clicking “Mint” you agree to the Nft Factory. Terms of Service.
               Each transaction will incur non-refundable gas fees.
             </p>
           </div>
         </div>
-      </div>
       </div>
       <Footer />
     </div>

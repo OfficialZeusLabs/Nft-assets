@@ -9,7 +9,7 @@ const Profile: React.FC = () => {
   return (
     <>
       <TopNavigation />
-      <div className={`${orbitron.className}  max-w-screen-xl mx-auto px-4`}>
+      <div className={`${orbitron.className} px-10`}>
         <div
           className="flex flex-col"
           style={{
@@ -27,7 +27,7 @@ const Profile: React.FC = () => {
           <div
             className={`${poppins.className} flex justify-between items-center`}
           >
-            <p className="text-2xl text-white font-light">Username</p>
+            <p className="text-2xl font-light">Username</p>
             <div className="flex flex-row gap-2">
               <Image
                 src="/pen-edit.svg"
@@ -35,7 +35,7 @@ const Profile: React.FC = () => {
                 height={20}
                 width={20}
               />
-              <span className="text-primary max-w-screen-xl mx-auto px-4">Edit Profile</span>
+              <span className="text-primary">Edit Profile</span>
             </div>
           </div>
           <div className="flex gap-4 mt-5">
@@ -52,8 +52,8 @@ const Profile: React.FC = () => {
           </div>
         </div>
         <div className="mt-8 w-3/4">
-          <h2 className="text-2xl text-white mb-4">My Collections</h2>
-          <div className="grid grid-cols-3 gap-6 text-white">
+          <h2 className="text-2xl mb-4">My Collections</h2>
+          <div className="grid grid-cols-3 gap-6">
             <Card
               source={`/rectangle.png`}
               title={"Cake Shop NFTs"}
