@@ -6,7 +6,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import NavAside from "../NavTools";
+<<<<<<< HEAD
 import { AiOutlineMenu } from "react-icons/ai";
+=======
+import { poppins } from "@/fonts/fonts";
+>>>>>>> fc21942704cc203f17ebdaa7fd2fabdfd422c1d2
 
 const TopNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
