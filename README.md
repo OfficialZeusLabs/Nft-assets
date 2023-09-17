@@ -245,7 +245,6 @@ $ npx hardhat coverage --network localhost --show-stack-traces
 # 
 
 ## Useful links
-- [How to add a new bridge](packages/sdk/How-to-add-a-new-bridge.md)
 - [Demo]()
 - [Frontend Deployment]( https://nft-assets-rxzk.vercel.app/)
 - [Figma design](https://www.figma.com/proto/dV2FBUaa7BomJu7JCWjL1Z/Webpage-Redesign?page-id=67%3A823&type=design&node-id=348-3699&viewport=7528%2C-2452%2C0.51&t=6PGceqXUTERPd9EJ-1&scaling=scale-down&starting-point-node-id=348%3A3699&mode=design)
