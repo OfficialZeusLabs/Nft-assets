@@ -19,15 +19,15 @@ const Settings: React.FC = () => {
   return (
     <>
       <TopNavigation />
-      <div className="w-3/5 mx-auto ">
+      <div className="w-3/5 ml-10">
         <div
-          className="flex justify-between items-center flex-wrap "
+          className="flex justify-between items-center flex-wrap"
           style={{
             background:
               "linear-gradient(180deg, rgba(0, 0, 0, 0.47) 0%, rgba(10, 4, 9, 1) 100%)",
           }}
         >
-          <h2 className={`${orbitron.className} text-2xl text-white`}>Edit Profile</h2>
+          <h2 className={`${orbitron.className} text-2xl`}>Edit Profile</h2>
           <div className="flex flex-row items-center w-2/5 gap-2">
             <Image
               src={profile}
@@ -37,7 +37,7 @@ const Settings: React.FC = () => {
               width={150}
             />
             <div>
-              <p className={`${orbitron.className} text-lg font-light text-white`}>
+              <p className={`${orbitron.className} text-lg font-light`}>
                 Edit profile picture
               </p>
               <Image src="/camera.svg" alt="camera" height={20} width={20} />
@@ -79,8 +79,8 @@ const Settings: React.FC = () => {
               height={20}
               priority
             />
-            <span className="text-white">Discord</span>
-            <FontAwesomeIcon icon={faLink} className="text-white" />
+            <span>Discord</span>
+            <FontAwesomeIcon icon={faLink} />
           </div>
 
           <div className="flex items-center gap-2">
@@ -92,14 +92,14 @@ const Settings: React.FC = () => {
               height={20}
               priority
             />
-            <span className="text-white">Twitter</span>
-            <FontAwesomeIcon icon={faLink} className="text-white"  />
+            <span>Twitter</span>
+            <FontAwesomeIcon icon={faLink} />
           </div>
         </div>
 
         <div className="flex justify-end mt-10">
           <Button
-            className="px-14 py-3 text-white"
+            className="px-6 py-3"
             style={{
               border: "2px solid transparent",
               borderImage: "linear-gradient(to right, #702D6C, #FFC72C) 1",

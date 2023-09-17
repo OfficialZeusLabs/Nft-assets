@@ -7,7 +7,7 @@ import Link from "next/link";
 const NSMECollection: React.FC = () => {
   return (
     <div>
-      <div className="text-center mb-8">
+      <div className="text-center mb-8 mt-6">
         <h2 className={`${orbitron.className} text-3xl text-white`}>
           NFTs Collection by NSMEs
         </h2>
@@ -17,8 +17,8 @@ const NSMECollection: React.FC = () => {
         </p>
       </div>
 
-      <div className="w-[64%] mx-auto">
-        <div className={`grid grid-cols-3 text-white gap-6 ${orbitron.className}`}>
+      <div className="w-[85%] tablet:w-full mx-auto">
+        <div className={`grid grid-cols-1 tablet:grid-cols-2 tablet_l:grid-cols-3 text-white gap-6 ${orbitron.className}`}>
           {nsmeCollection.map(({ title, source }) => (
             <CollectionCard title={title} source={source}>
               <div className="flex justify-between">
