@@ -34,7 +34,9 @@ const Footer = () => {
 </div>
 
         <p className="text-white">nftfactory2@gmail.com</p>
+
       </div>
+      <div className="mt-10 w-full bg-[#914d26]  rounded-lg h-[1px]"></div>
     </div>
   );
 };

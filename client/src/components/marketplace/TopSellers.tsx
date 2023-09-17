@@ -4,12 +4,12 @@ import Image from "next/image";
 
 const TopSellers = () => {
   return (
-    <div className={`${orbitron.className} m-28`}>
-      <h2 className="text-2xl text-center">Top Sellers</h2>
+    <div className={`${orbitron.className} m-28  max-w-screen-xl mx-auto px-4`}>
+      <h2 className="text-2xl text-center text-white">Top Sellers</h2>
       <div className="flex justify-center my-8">
         <DateSelection />
       </div>
-      <div className="grid grid-cols-2 gap-x-8">
+      <div className="grid grid-cols-2 text-white gap-x-8">
         {Array(6)
           .fill(null)
           .map((_, index) => (

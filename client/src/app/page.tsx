@@ -4,7 +4,7 @@ import { icon } from "@/assets/images";
 import Button from "@/common/Button";
 import TopNavigation from "@/common/navs/top/TopNavigation";
 import Footer from "@/components/Footer";
-import { orbitron } from "@/fonts/fonts";
+import { orbitron, poppins } from "@/fonts/fonts";
 import Head from "next/head";
 import Link from 'next/link';
 import Image from "next/image";
@@ -19,7 +19,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="overflow-hidden ">
+      <main className={`overflow-hidden ${poppins.className}`}>
         <TopNavigation />
         <div className="max-w-screen-xl mx-auto px-4">
         <section className="flex justify-between items-center mt-10">
@@ -34,13 +34,13 @@ export default function Home() {
               transactions.
             </p>
             <div className="flex gap-8">
-              <Link href="/register">
-              <Button
+              <Button 
+              as="link"
+              href="/register"
                 className={`${orbitron.className} text-xl px-8 py-2 bg-gradient-linear`}
               >
                 Get Started
               </Button>
-              </Link>
               <Image src="/images/wallet.svg" alt="" height={50} width={50} />
             </div>
           </div>

@@ -1,90 +1,68 @@
-const express = require('express');
-const cors =  require('cors'); 
-const { MongoClient } = require("mongodb");
-const bodyParser = require('body-parser');
-require('dotenv').config()
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import express from 'express';
+import http from 'http';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
+dotenv.config();
 
-const app = express()
-app.use(cors())
-app.use(express.json())
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+import IndexController from './controller/index_controller.js';
+import Database from './database/database.js';
 
-async function createPackage(
-    _title, _description, _whitepaper, _goal,
-    _discordlink, _projectwebsite, _discordId,
-    _emailAddress, _members, _twitter, _image,
-    _mintDate, _mintPrice, _mintSupply, _marketing,
-    _presale, _moreInfo
-    ) {
-   
-    const uri = process.env.uri;   
-    const client = new MongoClient(uri);
-    await client.connect();
-    const dbName = "nftFactory";
-    const collectionName = "NFTs";
-    const database = client.db(dbName);
-    const collection = database.collection(collectionName);
+const app = express();
+const server = http.createServer(app);
 
-    const package = {
-        title: _title,
-        description: _description,
-        whitepaper: _whitepaper,
-        goal: _goal,
-        discordlink: _discordlink,
-        projectWebsite: _projectwebsite,
-        discordID: _discordId,
-        emailAddress: _emailAddress,
-        members: _members,
-        twitter: _twitter,
-        linkedin: _linkedin,
-        image: _image,
-        mintDate: _mintDate,
-        mintPrice: _mintPrice,
-        mintSupply: _mintSupply,
-        marketing: _marketing,
-        presale: _presale,
-        moreInfo: _moreInfo,
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+class AppServer {
+    constructor() {
+        this.initializeAllProcesses();
+    }
+
+    async initializeAllProcesses() {
+        await this.initMiddleWare();
+        this.initializeCORS();
+        this.initializeDatabase();
+        this.initializeController();
+    }
+
+    async initializeDatabase() {
+        Database.connectDatabase(app);
+    }
+
+    async initMiddleWare() {
+        app.use('/static', express.static(path.join(__dirname, 'public')));
+        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({ extended: true }));
+    }
+
+    initializeCORS() {
+        var corsOptions = {
+            origin: function (origin, callback) {
+                callback(null, true)
+            }
+        }
+        app.use(cors(corsOptions));
     };
-    try {
-        const insertManyResult = await collection.insertOne(package);
-        console.log(`${package.id} successfully inserted.\n`);
-        await client.close();
-        return true;
-      } catch (err) {
-        console.error(`Something went wrong trying to insert the new documents: ${err}\n`);
-      }
-     
-  // Make sure to call close() on your client to perform cleanup operations
-    await client.close(); 
-}   
 
-app.post("/create", (req, res) => {
-    async function _createPackage() {
-        const {
-            title, description, whitepaper, goal, discordlink, projectWebsite,
-            discordID, emailAddress, members, twitter, linkedin, image,
-            mintDate, mintPrice, mintSupply, marketing, presale, moreInfo
-        } = req.body;
-        const success = await createPackage(
-            title, description, whitepaper, goal, discordlink, projectWebsite,
-            discordID, emailAddress, members, twitter, linkedin, image,
-            mintDate, mintPrice,mintSupply, marketing, presale, moreInfo
-        )
-        if (success) {
-            res.send(success)
-        }else{
-          res.status(400).send("unable to save to database");
-          }
-    }_createPackage()
-})
+    initializeController() {
+        IndexController.initialize(app);
+    }
 
+    initializeApp() {
+        const port = process.env.PORT || 8000;
+        try {
+            server.listen(port, async () => {
+                console.log(`Application connected to port ${port}`);
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+}
 
-
-
-
-const port = 8000
-app.listen(port, ()=>{
-    console.log(`Server is running on port ${port}!.`)
-})
+let appServer = new AppServer();
+appServer.initializeApp(); 
