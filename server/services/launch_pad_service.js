@@ -7,22 +7,24 @@ class LaunchPadService {
     static async createPackage(req, res) {
         const {
             title, description,
-            whitepaper, goal,
-            discord_link, website,
-            discord_id, email,
-            members, twitter,
-            linkedin,
-            nft_type, mint_date,
-            mint_price, mint_supply,
-            marketing_plan,
-            more_info, presale,
-            artwork,
+            category, features,
+            blockchain, business_information,
+            business_type,
+            registration_number,
+            fullname, website,
+            location, role,
+            email, phone, metadata,
+            portofolio, social,
+            achievement,
+            additional_information,
+            artwork
         } = req.body;
 
         const badRequestError = Preconditions.checkNotNull({
             title,
             description,
             email,
+            metadata
         });
         if (badRequestError) {
             return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, badRequestError);
@@ -31,15 +33,23 @@ class LaunchPadService {
             const createPackage = await LaunchPadModel.create({
                 title,
                 description,
-                discord_id,
-                email, website,
-                linkedin, twitter,
-                mint_date, mint_supply,
-                nft_type, mint_price,
-                discord_link, members,
-                whitepaper, goal,
-                marketing_plan, more_info,
-                presale,
+                category,
+                features,
+                blockchain,
+                business_information,
+                business_type,
+                registration_number,
+                fullname,
+                website,
+                location,
+                role,
+                email,
+                phone,
+                metadata,
+                portofolio,
+                social,
+                achievement,
+                additional_information,
                 artwork
             });
             await createPackage.save();

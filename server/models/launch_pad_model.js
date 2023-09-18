@@ -6,26 +6,27 @@ const LaunchPadSchema = new mongoose.Schema({
         required: true,
     },
     description: { type: String, required: true },
-    whitepaper: String,
-    goal: String,
-    discord_link: String,
+    category: String,
+    features: String,
+    blockchain: String,
+    business_informatIon: String,
+    business_type: String,
+    registration_number: String,
+    fullname: String,
     website: String,
-    discord_id: String,
+    location: String,
+    role: String,
     email: String,
-    members: String,
-    twitter: String,
-    linkedin: String,
-    artwork: [String],
-    nft_type: {
+    phone: Number,
+    metadata: {
         type: String,
         enum: ['nft', 'crypto']
     },
-    mint_date: String,
-    mint_price: Number,
-    mint_supply: String,
-    marketing_plan: String,
-    more_info: String,
-    presale: String,
+    portfolio: String,
+    social: String,
+    achievements: String,
+    additional_information: String,
+    artwork: [String]
 }, { timestamps: true });
 
 const LaunchPadModel = mongoose.model("LaunchPad", LaunchPadSchema);
