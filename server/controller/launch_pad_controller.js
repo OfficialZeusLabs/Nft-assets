@@ -4,7 +4,7 @@ import Upload from "../utils/uploads.js";
 
 class LaunchPadController {
     static initialize(app) {
-        app.post(Routes.CREATE_PACKAGE, Upload.imageUpload().array('image'), LaunchPadService.createPackage);
+        app.post(Routes.CREATE_PACKAGE, LaunchPadService.createPackage);
     }
 }
 

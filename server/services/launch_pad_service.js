@@ -16,8 +16,8 @@ class LaunchPadService {
             mint_price, mint_supply,
             marketing_plan,
             more_info, presale,
+            artwork,
         } = req.body;
-        const files = req.files;
 
         const badRequestError = Preconditions.checkNotNull({
             title,
@@ -28,12 +28,6 @@ class LaunchPadService {
             return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, badRequestError);
         };
         try {
-            let images = [];
-            for (let file of files) {
-                let result = await FileService.uploadToCloudinary(file.path);
-                images.push(result);
-                await FileService.unlinkFileSync(file.path);
-            }
             const createPackage = await LaunchPadModel.create({
                 title,
                 description,
@@ -46,14 +40,14 @@ class LaunchPadService {
                 whitepaper, goal,
                 marketing_plan, more_info,
                 presale,
-                artwork: images
+                artwork
             });
             await createPackage.save();
-            return ResponseHandler.sendResponseWithoutData(res, StatusCodes.OK, "Package Registration Successful");
+            return ResponseHandler.sendResponseWithoutData(res, StatusCodes.OK, Strings.PACKAGE_SUCCESSFULLY_CREATED);
         }
         catch (error) {
             console.error(error);
-            return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, "Package Registration failed");
+            return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, Strings.ERROR_RESPONSE);
         }
     }
 }

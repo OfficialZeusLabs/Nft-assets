@@ -18,7 +18,7 @@ class FileService {
                 let uploadImage = await cloudinary.uploader.upload(file.path);
                 let uploadedImage = await uploadImage.secure_url;
                 images.push(uploadedImage);
-                await FileService.unlinkFileSync(file.path);
+                FileService.unlinkFileSync(file.path);
             }
             return ResponseHandler.sendResponseWithData(res, StatusCodes.OK, 'Artworks', images);
         }

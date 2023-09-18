@@ -25,8 +25,7 @@ const LaunchPadSchema = new mongoose.Schema({
     mint_supply: String,
     marketing_plan: String,
     more_info: String,
-    presale: String
-
+    presale: String,
 }, { timestamps: true });
 
 const LaunchPadModel = mongoose.model("LaunchPad", LaunchPadSchema);
