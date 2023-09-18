@@ -4,6 +4,8 @@ import { orbitron } from "@/fonts/fonts";
 import DropdownSelect from "@/common/Dropdown";
 import EditableSection from "@/common/EditableSection";
 import FileUploader from "@/common/FileUploader";
+import { poppins } from "@/fonts/fonts";
+
 
 const ArtworkDetailsForm: React.FC = () => {
   const fileRef = useRef<HTMLInputElement>(null);
@@ -14,40 +16,21 @@ const ArtworkDetailsForm: React.FC = () => {
   return (
     <div>
       <h2 className={`${orbitron.className} text-primary text-2xl mb-5`}>
-        Artwork Details
+        Metadata and Description
       </h2>
-      <FileUploader ref={fileRef} />
       <DropdownSelect
         item={["nft", "crypto"]}
-        title={"NFT Type"}
-        subTitle="Select NFT type"
+        title={"Metadata and Description "}
+        subTitle="Detailed Metadata and Description for the NFT (Title, Description, Tags, Keywords)"
         onChangeHandler={(value: string | number): void => {
           setMintDate(value);
         }}
       />
-      <EditableSection
-        title={"Mint Date"}
-        placeholder={"Placeholder"}
-        onChangeHandler={(value: string): void => {
-          setMintDate(value);
-        }}
-        subTitle="Please provide expected NFT minting date"
-      />
-      <DropdownSelect
-        item={["100", "200", "300"]}
-        title={"Mint Price"}
-        subTitle="Please share your best estimate"
-        onChangeHandler={(value: string | number): void => {
-          setMintPrice(value);
-        }}
-      />
-      <EditableSection
-        title={"Mint Supply"}
-        placeholder={"123456"}
-        onChangeHandler={(value: string): void => {
-          setMintSupply(parseInt(value));
-        }}
-      />
+      <div className={`${poppins.className} mb-5 flex flex-col`}>
+        <h2 className=" block text-white text-sm font-bold mb-2">Upload Image</h2>
+        <p className="text-sm text-gray-700">Upload Images, Videos, or Audio Files for the NFT</p>
+        <FileUploader ref={fileRef} />
+      </div>
     </div>
   );
 };

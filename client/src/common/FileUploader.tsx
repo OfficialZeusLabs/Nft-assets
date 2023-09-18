@@ -13,8 +13,9 @@ const FileUploader = forwardRef(
     };
 
     return (
+      
       <div
-        className="flex flex-col items-center justify-center mb-5"
+        className="flex flex-col text-[14px] text-gray-400 mt-2 items-center justify-center mb-5"
         style={{
           background: "rgba(255, 255, 255, 0.04)",
           height: "7.5rem",
@@ -37,7 +38,7 @@ const FileUploader = forwardRef(
         <div className="mb-2">
           <FontAwesomeIcon
             icon={faPlus}
-            style={{ fontSize: "4rem", fontWeight: 300 }}
+            style={{ fontSize: "3rem", fontWeight: 200 }}
           />
         </div>
         <p className="text-opacity-25">Upload Image</p>

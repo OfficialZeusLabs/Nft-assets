@@ -33,7 +33,7 @@ const DropdownSelect: React.FC<DropdownList> = ({
           value={value}
           placeholder="Select"
           name={title}
-          className="p-3 border rounded-md w-full text-black"
+          className="p-3 border rounded-md w-full text-white"
           style={{ background: "#000" }}
           onChange={(e) => {
             setValue(e.target.value);
@@ -41,7 +41,7 @@ const DropdownSelect: React.FC<DropdownList> = ({
         >
           {item.length > 0 &&
             item.map((x, index) => (
-              <option key={index} value={x} className="bg-black">
+              <option key={index} value={x} className="bg-transparent">
                 {x}
               </option>
             ))}
