@@ -12,32 +12,42 @@ const TeamInformationForm: React.FC = () => {
   return (
     <div>
       <h2 className={`${orbitron.className} text-primary text-2xl mb-5`}>
-        Team Information
+      Contact Information
       </h2>
-      <TextArea
-        title={"Members & their Roles"}
-        placeholder={"Start Typing"}
+      <EditableSection
+        title={"Contact’s Full Name"}
+        placeholder={"FullName"}
         onChangeHandler={(value: string): void => {
           setMembers(value);
         }}
-        subTitle="Please provide the names each team member and their roles"
+        // subTitle="Please provide the names each team member and their roles"
       />
-      <TextArea
-        title={"Twitter"}
-        placeholder={"https:###"}
+      <EditableSection
+        title={"Role/Position"}
+        placeholder={"Role"}
         onChangeHandler={(value: string): void => {
           setTwitterUrl(value);
         }}
-        subTitle="Please provide the twitter link for each team member"
+        subTitle="Contact Person's Position/Role in the Business"
+        // subTitle="Will be linked with launchpad"
       />
-      <TextArea
-        title={"LinkedIn"}
-        placeholder={"https:###"}
+      <EditableSection
+        title={"Email Address"}
+        placeholder={"Launcpad@gmail.com"}
         onChangeHandler={(value: string): void => {
           setLinkedinUrl(value);
         }}
-        subTitle="Please provide the Linkedin link for each team member"
+        // subTitle="Please provide the Linkedin link for each team member"
       />
+      <EditableSection
+        title={"Phone Number"}
+        placeholder={"+234709843792"}
+        onChangeHandler={(value: string): void => {
+          setLinkedinUrl(value);
+        }}
+        // subTitle="Please provide the Linkedin link for each team member"
+      />
+
     </div>
   );
 };

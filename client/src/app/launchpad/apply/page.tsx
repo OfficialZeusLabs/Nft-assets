@@ -2,54 +2,70 @@
 import Button from "@/common/Button";
 import ArtworkDetailsForm from "@/components/Forms/ArtworkDetails";
 import GetStarted from "@/components/Forms/GetStarted";
+import Minting from "@/components/Forms/Social";
+import Onborading from "@/components/Forms/Onborading";
 import {
   SecondSectionForm,
   SectionOneForm,
 } from "@/components/Forms/ProjectDetails";
-import SalesPlanForm from "@/components/Forms/SalesPlan";
+import SalesPlanForm from "@/components/Forms/Minting";
 import TeamInformationForm from "@/components/Forms/TeamInformation";
 import React, { useState } from "react";
+import Social from "@/components/Forms/Social";
 
 const Apply: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleNextPage = () => {
-    if (currentPage < 6) {
+    if (currentPage < 8) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
   };
 
-  const isLastPage = currentPage === 6;
+  const isLastPage = currentPage === 8;
 
   const previewCurrentPage = () => {
     switch (currentPage) {
       case 1:
-        return <GetStarted nextPage={handleNextPage} />;
+        return <Onborading nextPage={handleNextPage} />;
       case 2:
-        return <SectionOneForm />;
+        return <GetStarted nextPage={handleNextPage} />;
       case 3:
-        return <SecondSectionForm />;
+        return <SectionOneForm />;
       case 4:
-        return <TeamInformationForm />;
+        return <SecondSectionForm />;
       case 5:
-        return <ArtworkDetailsForm />;
+        return <TeamInformationForm />;
       case 6:
-        return <SalesPlanForm />;
+        return <ArtworkDetailsForm />;
+      case 7:
+        return <Minting />;
+      case 8:
       default:
+        return <Social />;
         return;
     }
   };
   return (
     <div className="flex flex-col justify-start h-screen mt-10 mb-10">
       <div className="w-[98%] ">{previewCurrentPage()}</div>
-      {currentPage > 1 && (
-        <div className="flex justify-end mt-5">
-          <Button
-            handleClick={handleNextPage}
-            className="bg-gradient-linear px-6 py-3"
-          >
-            {isLastPage ? <p>Submit</p> : <p> Proceed</p>}
-          </Button>
+      {currentPage > 2 && (
+        <div className="w-[98%] flex justify-end mt-5">
+          {isLastPage ? (
+            <Button
+              handleClick={handleNextPage}
+              className="bg-gradient-linear px-6 mb-5 py-3"
+            >
+              <p>Submit</p>
+            </Button>
+          ) : (
+            <Button
+              handleClick={handleNextPage}
+              className="bg-gradient-linear px-6 mb-5 py-3"
+            >
+              <p> Proceed</p>
+            </Button>
+          )}
         </div>
       )}
     </div>

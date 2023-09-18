@@ -22,8 +22,8 @@ const LaunchPad = () => {
         {Open ? (
           <SideBar menuNav={menuNav} />
         ) : (
-          <div className="absolute top-11 cursor-pointer" onClick={menuNav}>
-            <AiOutlineMenu className="h-6 w-6 text-white items-center" />
+          <div className="absolute text-white top-11 cursor-pointer" onClick={menuNav}>
+            <AiOutlineMenu className="h-6 text-white w-6 items-center" />
           </div>
         )}
       </div>

@@ -2,6 +2,7 @@
 import { orbitron } from "@/fonts/fonts";
 import EditableSection from "@/common/EditableSection";
 import { useState } from "react";
+import TextArea from "@/common/TextArea";
 
 export const SectionOneForm = () => {
   const [title, setTitle] = useState<string>("");
@@ -12,7 +13,7 @@ export const SectionOneForm = () => {
   return (
     <div className="my-10">
       <h2 className={`${orbitron.className} text-primary text-2xl mb-5`}>
-        Project Details
+        Project/Service Details
       </h2>
       <EditableSection
         title={"Project Title"}
@@ -24,7 +25,7 @@ export const SectionOneForm = () => {
           setTitle(value);
         }}
       />
-      <EditableSection
+       <TextArea
         title={"Project Description"}
         placeholder={"Description"}
         onChangeHandler={(value: string): void => {
@@ -33,10 +34,11 @@ export const SectionOneForm = () => {
           }
           setDescription(value);
         }}
-        subTitle="Share your project's Pitch, Concept, Utility & Major partners involved."
+        subTitle="Brief Description of the Product/Service to be Minted as NFT"
       />
+     
       <EditableSection
-        title={"Whitepaper"}
+        title={"Product Category"}
         placeholder={"Start typing"}
         onChangeHandler={(value: string): void => {
           if (!value) {
@@ -44,10 +46,10 @@ export const SectionOneForm = () => {
           }
           setWhitePaperText(value);
         }}
-        subTitle="Will be attached to launchpad"
+        subTitle="Category (e.g Fashion, Food, Art, Digital Collectibles, Music, Digital Goods, Handyman)"
       />
       <EditableSection
-        title={"Goal"}
+        title={"Unique Features or Selling Points"}
         placeholder={"Start typing"}
         onChangeHandler={(value: string): void => {
           if (!value) {
@@ -55,6 +57,17 @@ export const SectionOneForm = () => {
           }
           setGoalText(value);
         }}
+      />
+      <EditableSection
+        title={"Blockchain"}
+        placeholder={"Ethereum"}
+        onChangeHandler={(value: string): void => {
+          if (!value) {
+            value = " ";
+          }
+          setWhitePaperText(value);
+        }}
+        subTitle="Preferred Blockchain for Minting (Ethereum, Binance Smart Chain, etc.)"
       />
     </div>
   );
@@ -69,40 +82,48 @@ export const SecondSectionForm = () => {
   return (
     <div>
       <h2 className={`${orbitron.className} text-primary text-2xl mb-5`}>
-        Project Details
+      Business Information
       </h2>
       <EditableSection
-        title={"Discord Link"}
-        placeholder={"https:###"}
+        title={"Business Information"}
+        placeholder={"Start typing"}
         onChangeHandler={(value: string): void => {
           setDiscordLink(value);
         }}
-        subTitle="Will be linked with launchpad"
+        // subTitle="Will be linked with launchpad"
       />
       <EditableSection
-        title={"Project Website"}
+        title={"Business Type"}
         placeholder={"https:###"}
         onChangeHandler={(value: string): void => {
           setWebsite(value);
         }}
-        subTitle="Will be linked with launchpad"
+        subTitle="Business Type (e.g., Small Business, Microenterprise, Startup)"
       />
       <EditableSection
-        title={"Discord ID"}
-        placeholder={"UserID:###"}
+        title={"Business Registration Number"}
+        placeholder={"BS1120589"}
         onChangeHandler={(value: string): void => {
           setDiscordID(value);
         }}
-        subTitle="Please provide discord ID of main contact"
+        subTitle="(if applicable)"
       />
 
       <EditableSection
-        title={"Email Address"}
-        placeholder={"launchpad@mail.com"}
+        title={" Business Website"}
+        placeholder={"https:###"}
         onChangeHandler={(value: string): void => {
           setEmail(value);
         }}
-        subTitle="Please provide Email address of main contact"
+        subTitle="(if available)"
+      />
+      <EditableSection
+        title={"Business Location"}
+        placeholder={"Lagos, Nigeria"}
+        onChangeHandler={(value: string): void => {
+          setEmail(value);
+        }}
+        subTitle="(Address, City, Country)"
       />
     </div>
   );
