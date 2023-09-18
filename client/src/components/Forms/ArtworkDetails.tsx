@@ -1,15 +1,20 @@
 "use client";
-import React, { useState, useRef } from "react";
-import { orbitron } from "@/fonts/fonts";
 import DropdownSelect from "@/common/Dropdown";
 import EditableSection from "@/common/EditableSection";
 import FileUploader from "@/common/FileUploader";
+import { orbitron } from "@/fonts/fonts";
+import React, { useRef } from "react";
+import {
+  setMintDate,
+  setMintSupply,
+  setNftType,
+  setMintPrice,
+} from "@/reducers/userSlice";
+import { useDispatch } from "react-redux";
 
 const ArtworkDetailsForm: React.FC = () => {
   const fileRef = useRef<HTMLInputElement>(null);
-  const [mintDate, setMintDate] = useState<string | number>("");
-  const [mintSupply, setMintSupply] = useState<number>(0);
-  const [mintPrice, setMintPrice] = useState<number | string>(0);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -22,14 +27,20 @@ const ArtworkDetailsForm: React.FC = () => {
         title={"NFT Type"}
         subTitle="Select NFT type"
         onChangeHandler={(value: string | number): void => {
-          setMintDate(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setMintDate(value));
         }}
       />
       <EditableSection
         title={"Mint Date"}
         placeholder={"Placeholder"}
         onChangeHandler={(value: string): void => {
-          setMintDate(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setMintDate(value));
         }}
         subTitle="Please provide expected NFT minting date"
       />
@@ -38,14 +49,14 @@ const ArtworkDetailsForm: React.FC = () => {
         title={"Mint Price"}
         subTitle="Please share your best estimate"
         onChangeHandler={(value: string | number): void => {
-          setMintPrice(value);
+          dispatch(setMintPrice(value));
         }}
       />
       <EditableSection
         title={"Mint Supply"}
         placeholder={"123456"}
         onChangeHandler={(value: string): void => {
-          setMintSupply(parseInt(value));
+          dispatch(setMintSupply(parseInt(value)));
         }}
       />
     </div>

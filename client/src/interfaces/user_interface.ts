@@ -8,8 +8,8 @@ export interface UserInterface {
   email: string | null;
   discordId: string | null;
   members: string | null;
-  twitter: string | null;
-  linkedin: string | null;
+  twitter_url: string | null;
+  linkedin_url: string | null;
   nft_type: string | null;
   mint_date: string | null;
   mint_price: number;

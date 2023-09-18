@@ -33,7 +33,7 @@ const TopNavigation = () => {
         </div>
         {navItems.map(({ name, link }) => (
           <Link href={link} key={name}>
-            <div style={{ color: 'white' }}>{name}</div>
+            <div style={{ color: "white" }}>{name}</div>
           </Link>
         ))}
       </div>

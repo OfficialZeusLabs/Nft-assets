@@ -271,8 +271,6 @@
 
 .details {
   overflow: hidden;
- 
- 
 }
 
 .about_top {
@@ -280,7 +278,6 @@
   margin-top: 60px;
   display: flex;
   gap: 52px;
-  
 }
 
 .image_div {
@@ -408,7 +405,7 @@
   font-weight: 400;
   font-size: 24px;
   line-height: 120%;
-margin-top: 15px;
+  margin-top: 15px;
   text-align: center;
 }
 

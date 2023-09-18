@@ -11,7 +11,7 @@ const LaunchPad = () => {
       <SideBar />
       <div className="flex-1 flex-col px-4 py-10">
         <div className="mx-5 text-white">
-          <NavTools title="Launchpad"  isMenu={true} />
+          <NavTools title="Launchpad" isMenu={true} />
         </div>
         <Apply />
       </div>

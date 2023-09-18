@@ -27,7 +27,7 @@ const Details = () => {
               //   style={{ width: '568px', height: '400px' }}
             />
             <p className="text-white flex">
-            FANRT Fac NFTS{" "}
+              FANRT Fac NFTS{" "}
               <Image
                 src="/images/badge-check.svg"
                 alt=""
@@ -37,19 +37,23 @@ const Details = () => {
             </p>
           </div>
           <div className="text-white max-w-screen-xl mx-auto px-4">
-  <h4 className= {`${orbitron.className} text-xl font-bold mb-4`}>About Collection</h4>
-  <div className="w-3/4" >
-    <p className="mb-4" >
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium est quia illo nisi, cumque laborum vero quae maxime ratione nulla veniam, perferendis recusandae. Temporibus, minus sunt nobis asperiores qui iure.
-    </p>
-  </div>
-  <ul className="list-disc ml-6 mb-4">
-    <li>Benefit of Feature</li>
-    <li>Benefit of Feature</li>
-    <li>Benefit of Feature</li>
-  </ul>
-</div>
-
+            <h4 className={`${orbitron.className} text-xl font-bold mb-4`}>
+              About Collection
+            </h4>
+            <div className="w-3/4">
+              <p className="mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Laudantium est quia illo nisi, cumque laborum vero quae maxime
+                ratione nulla veniam, perferendis recusandae. Temporibus, minus
+                sunt nobis asperiores qui iure.
+              </p>
+            </div>
+            <ul className="list-disc ml-6 mb-4">
+              <li>Benefit of Feature</li>
+              <li>Benefit of Feature</li>
+              <li>Benefit of Feature</li>
+            </ul>
+          </div>
         </div>
         <div className={styles.about_bottom}>
           <p>Product/Package type</p>
@@ -69,7 +73,7 @@ const Details = () => {
         </div>
       </div>
       <div className="mt-20">
-      <Footer />
+        <Footer />
       </div>
     </div>
   );

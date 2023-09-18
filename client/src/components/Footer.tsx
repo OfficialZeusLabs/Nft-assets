@@ -1,6 +1,6 @@
 import Logo from "@/common/Logo";
 import { BsDiscord, BsTwitter } from "react-icons/bs";
-import {SiOpensea} from "react-icons/si"
+import { SiOpensea } from "react-icons/si";
 const Footer = () => {
   return (
     <div
@@ -19,22 +19,21 @@ const Footer = () => {
       <div className="mt-2 max-w-screen-xl mx-auto px-4">
         <h5 className="text-md text-primary">Socials</h5>
         <div className="mt-2 flex gap-3">
-  <div className="flex items-center">
-    <BsDiscord color="white" size={24} />
-    <span className="text-white ml-4">Discord</span>
-  </div>
-  <div className="flex items-center">
-    <SiOpensea color="white" size={24} />
-    <span className="text-white ml-4">Open sea</span>
-  </div>
-  <div className="flex items-center">
-    <BsTwitter color="white" size={24} />
-    <span className="text-white ml-4">Twitter</span>
-  </div>
-</div>
+          <div className="flex items-center">
+            <BsDiscord color="white" size={24} />
+            <span className="text-white ml-4">Discord</span>
+          </div>
+          <div className="flex items-center">
+            <SiOpensea color="white" size={24} />
+            <span className="text-white ml-4">Open sea</span>
+          </div>
+          <div className="flex items-center">
+            <BsTwitter color="white" size={24} />
+            <span className="text-white ml-4">Twitter</span>
+          </div>
+        </div>
 
         <p className="text-white">nftfactory2@gmail.com</p>
-
       </div>
       <div className="mt-10 w-full bg-[#914d26]  rounded-lg h-[1px]"></div>
     </div>

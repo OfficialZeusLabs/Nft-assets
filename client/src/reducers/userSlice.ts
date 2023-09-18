@@ -12,8 +12,8 @@ const initialState: UserInterface = {
   email: null,
   discordId: null,
   members: null,
-  twitter: null,
-  linkedin: null,
+  twitter_url: null,
+  linkedin_url: null,
   nft_type: null,
   mint_date: null,
   mint_price: 0,
@@ -54,11 +54,11 @@ export const usersSlice = createSlice({
     setMembers: (state, action) => {
       state.members = action.payload;
     },
-    setTwitter: (state, action) => {
-      state.twitter = action.payload;
+    setTwitterUrl: (state, action) => {
+      state.twitter_url = action.payload;
     },
-    setLinkedin: (state, action) => {
-      state.linkedin = action.payload;
+    setLinkedinUrl: (state, action) => {
+      state.linkedin_url = action.payload;
     },
     setNftType: (state, action) => {
       state.nft_type = action.payload;
@@ -92,7 +92,17 @@ export const getEmail = (state: RootState) => state.users.email;
 export const getWebsite = (state: RootState) => state.users.website;
 export const getDiscordId = (state: RootState) => state.users.discordId;
 export const getDiscordLink = (state: RootState) => state.users.discordLink;
-
+export const getLinkedinUrl = (state: RootState) => state.users.linkedin_url;
+export const getTwitterUrl = (state: RootState) => state.users.twitter_url;
+export const getMarketingPlan = (state: RootState) =>
+  state.users.marketing_plan;
+export const getMembers = (state: RootState) => state.users.members;
+export const getMintDate = (state: RootState) => state.users.mint_date;
+export const getMintSupply = (state: RootState) => state.users.mint_supply;
+export const getMintPrice = (state: RootState) => state.users.mint_price;
+export const getMoreInfo = (state: RootState) => state.users.more_info;
+export const getPreSale = (state: RootState) => state.users.presale;
+export const getNftType = (state: RootState) => state.users.nft_type;
 export const {
   setTitle,
   setDescription,
@@ -102,7 +112,7 @@ export const {
   setWebsite,
   setGoalText,
   setDiscordLink,
-  setLinkedin,
+  setLinkedinUrl,
   setMarketingPlan,
   setMembers,
   setMintDate,
@@ -111,6 +121,6 @@ export const {
   setMoreInfo,
   setNftType,
   setPresale,
-  setTwitter,
+  setTwitterUrl,
 } = usersSlice.actions;
 export default usersSlice.reducer;

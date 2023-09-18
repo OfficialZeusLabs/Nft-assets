@@ -42,7 +42,7 @@ const EditableSection: React.FC<Props> = (props) => {
       <h3 className={`block text-white text-sm font-bold mb-2`}>{title}</h3>
       {subTitle && <p className="text-sm text-gray-700">{subTitle}</p>}
       <input
-        className="shadow appearance-none rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+        className="shadow appearance-none rounded w-full py-4 px-3 text-white leading-tight focus:outline-none focus:shadow-outline mb-3"
         id={type}
         type={type ?? "text"}
         placeholder={placeholder}

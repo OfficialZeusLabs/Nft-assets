@@ -1,13 +1,20 @@
 "use client";
-import { orbitron } from "@/fonts/fonts";
 import EditableSection from "@/common/EditableSection";
-import { useState } from "react";
+import { orbitron } from "@/fonts/fonts";
+import {
+  setDescription,
+  setDiscordId,
+  setDiscordLink,
+  setEmail,
+  setGoalText,
+  setTitle,
+  setWebsite,
+  setWhitepaper,
+} from "@/reducers/userSlice";
+import { useDispatch } from "react-redux";
 
 export const SectionOneForm = () => {
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [whitePaperText, setWhitePaperText] = useState<string>("");
-  const [goalText, setGoalText] = useState<string>("");
+  const dispatch = useDispatch();
 
   return (
     <div className="my-10">
@@ -21,7 +28,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          setTitle(value);
+          dispatch(setTitle(value));
         }}
       />
       <EditableSection
@@ -31,7 +38,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          setDescription(value);
+          dispatch(setDescription(value));
         }}
         subTitle="Share your project's Pitch, Concept, Utility & Major partners involved."
       />
@@ -42,7 +49,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          setWhitePaperText(value);
+          dispatch(setWhitepaper(value));
         }}
         subTitle="Will be attached to launchpad"
       />
@@ -53,7 +60,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          setGoalText(value);
+          dispatch(setGoalText(value));
         }}
       />
     </div>
@@ -61,10 +68,7 @@ export const SectionOneForm = () => {
 };
 
 export const SecondSectionForm = () => {
-  const [discordLink, setDiscordLink] = useState<string>("");
-  const [website, setWebsite] = useState<string>("");
-  const [discordID, setDiscordID] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -75,7 +79,10 @@ export const SecondSectionForm = () => {
         title={"Discord Link"}
         placeholder={"https:###"}
         onChangeHandler={(value: string): void => {
-          setDiscordLink(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setDiscordLink(value));
         }}
         subTitle="Will be linked with launchpad"
       />
@@ -83,7 +90,10 @@ export const SecondSectionForm = () => {
         title={"Project Website"}
         placeholder={"https:###"}
         onChangeHandler={(value: string): void => {
-          setWebsite(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setWebsite(value));
         }}
         subTitle="Will be linked with launchpad"
       />
@@ -91,7 +101,10 @@ export const SecondSectionForm = () => {
         title={"Discord ID"}
         placeholder={"UserID:###"}
         onChangeHandler={(value: string): void => {
-          setDiscordID(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setDiscordId(value));
         }}
         subTitle="Please provide discord ID of main contact"
       />
@@ -100,7 +113,10 @@ export const SecondSectionForm = () => {
         title={"Email Address"}
         placeholder={"launchpad@mail.com"}
         onChangeHandler={(value: string): void => {
-          setEmail(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setEmail(value));
         }}
         subTitle="Please provide Email address of main contact"
       />

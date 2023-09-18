@@ -6,12 +6,12 @@ import { FAQRelatedQuestions as FAQData } from "@/data/faq";
 
 const FAQ = () => {
   const [fnqData, setFnqData] = useState(FAQData);
-  const handleToggle = (id:any) => {
+  const handleToggle = (id: any) => {
     setFnqData((prev) => {
       return prev.map((val) =>
         val.id === id
           ? { ...val, isOpen: !val.isOpen }
-          : { ...val, isOpen: false }
+          : { ...val, isOpen: false },
       );
     });
   };
@@ -21,11 +21,10 @@ const FAQ = () => {
       whileInView={{ opacity: 1 }}
       className="flex  flex-col   flex-wrap mt-[32px] px-3 sm:px-6 "
     >
-     
       <div className="mt-[24px] w-full  ">
-      <h3 className={`${orbitron.className} text-primary mb-4 text-2xl`}>
-            FAQ
-          </h3>
+        <h3 className={`${orbitron.className} text-primary mb-4 text-2xl`}>
+          FAQ
+        </h3>
         {fnqData.length > 0 &&
           fnqData.map(({ question, answer, id, isOpen }) => (
             <motion.div
@@ -34,7 +33,6 @@ const FAQ = () => {
               key={id}
               className="mt-9"
             >
-                
               <div
                 onClick={() => handleToggle(id)}
                 className=" w-full  cursor-pointer  flex justify-between items-center"

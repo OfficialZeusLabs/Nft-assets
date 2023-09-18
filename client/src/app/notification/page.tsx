@@ -22,13 +22,13 @@ const Notification: React.FC = () => {
           {notificationsData.map(
             ({ title, message, duration, profile }, index) => (
               <div className="text-white">
-              <NotificationTile
-                key={index}
-                title={title}
-                message={message}
-                time={duration}
-                source={profile}
-              />
+                <NotificationTile
+                  key={index}
+                  title={title}
+                  message={message}
+                  time={duration}
+                  source={profile}
+                />
               </div>
             ),
           )}

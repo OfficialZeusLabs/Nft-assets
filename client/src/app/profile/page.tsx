@@ -35,7 +35,9 @@ const Profile: React.FC = () => {
                 height={20}
                 width={20}
               />
-              <span className="text-primary max-w-screen-xl mx-auto px-4">Edit Profile</span>
+              <span className="text-primary max-w-screen-xl mx-auto px-4">
+                Edit Profile
+              </span>
             </div>
           </div>
           <div className="flex gap-4 mt-5">

@@ -27,7 +27,9 @@ const Settings: React.FC = () => {
               "linear-gradient(180deg, rgba(0, 0, 0, 0.47) 0%, rgba(10, 4, 9, 1) 100%)",
           }}
         >
-          <h2 className={`${orbitron.className} text-2xl text-white`}>Edit Profile</h2>
+          <h2 className={`${orbitron.className} text-2xl text-white`}>
+            Edit Profile
+          </h2>
           <div className="flex flex-row items-center w-2/5 gap-2">
             <Image
               src={profile}
@@ -37,7 +39,9 @@ const Settings: React.FC = () => {
               width={150}
             />
             <div>
-              <p className={`${orbitron.className} text-lg font-light text-white`}>
+              <p
+                className={`${orbitron.className} text-lg font-light text-white`}
+              >
                 Edit profile picture
               </p>
               <Image src="/camera.svg" alt="camera" height={20} width={20} />
@@ -93,7 +97,7 @@ const Settings: React.FC = () => {
               priority
             />
             <span className="text-white">Twitter</span>
-            <FontAwesomeIcon icon={faLink} className="text-white"  />
+            <FontAwesomeIcon icon={faLink} className="text-white" />
           </div>
         </div>
 
