@@ -18,6 +18,7 @@ export const SectionOneForm = () => {
         title={"Project Title"}
         placeholder={"Title"}
         onChangeHandler={(value: string): void => {
+          console.log(value);
           if (!value) {
             value = " ";
           }
@@ -43,7 +44,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setProject({ ...project, whitepaper: value }));
+          dispatch(setProject({ ...project, category: value }));
         }}
         subTitle="Category (e.g Fashion, Food, Art, Digital Collectibles, Music, Digital Goods, Handyman)"
       />
@@ -54,7 +55,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setProject({ ...project, goal: value }));
+          dispatch(setProject({ ...project, features: value }));
         }}
       />
       <EditableSection
@@ -64,18 +65,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          setWhitePaperText(value);
-        }}
-        subTitle="Preferred Blockchain for Minting (Ethereum, Binance Smart Chain, etc.)"
-      />
-      <EditableSection
-        title={"Blockchain"}
-        placeholder={"Ethereum"}
-        onChangeHandler={(value: string): void => {
-          if (!value) {
-            value = " ";
-          }
-          setWhitePaperText(value);
+          dispatch(setProject({ ...project, blockchain: value }));
         }}
         subTitle="Preferred Blockchain for Minting (Ethereum, Binance Smart Chain, etc.)"
       />
@@ -99,9 +89,8 @@ export const SecondSectionForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setProject({ ...project, discord_link: value }));
+          dispatch(setProject({ ...project, business_information: value }));
         }}
-        // subTitle="Will be linked with launchpad"
       />
       <EditableSection
         title={"Business Type"}
@@ -110,7 +99,7 @@ export const SecondSectionForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setProject({ ...project, website: value }));
+          dispatch(setProject({ ...project, business_type: value }));
         }}
         subTitle="Business Type (e.g., Small Business, Microenterprise, Startup)"
       />
@@ -121,7 +110,7 @@ export const SecondSectionForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setProject({ ...project, discord_id: value }));
+          dispatch(setProject({ ...project, registration_number: value }));
         }}
         subTitle="(if applicable)"
       />
@@ -133,7 +122,7 @@ export const SecondSectionForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setProject({ ...project, email: value }));
+          dispatch(setProject({ ...project, website: value }));
         }}
         subTitle="(if available)"
       />
@@ -144,7 +133,7 @@ export const SecondSectionForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setProject({ ...project, email: value }));
+          dispatch(setProject({ ...project, location: value }));
         }}
         subTitle="(Address, City, Country)"
       />

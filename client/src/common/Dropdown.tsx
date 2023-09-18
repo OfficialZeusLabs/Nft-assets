@@ -39,11 +39,7 @@ const DropdownSelect: React.FC<DropdownList> = ({
         >
           {item.length > 0 &&
             item.map((x, index) => (
-<<<<<<< HEAD
-              <option key={index} value={x} className="bg-black text-white">
-=======
               <option key={index} value={x} className="bg-transparent">
->>>>>>> 2101910e81ed05a02b695dff210c24eda39fa702
                 {x}
               </option>
             ))}

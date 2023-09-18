@@ -22,8 +22,9 @@ import {
   getSales,
   getArtworks,
   getTeam,
+  getSocial
 } from "@/reducers/userSlice";
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";  
 
 const Apply: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -32,19 +33,21 @@ const Apply: React.FC = () => {
   const sales = useSelector(getSales);
   const team = useSelector(getTeam);
   const artworks = useSelector(getArtworks);
+  const socials = useSelector(getSocial);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleNextPage = () => {
-    if (currentPage < 8) {
+    if (currentPage < 7) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
-    if (currentPage >= 6) {
+    if (currentPage >= 7) {
       const requestBody = {
         ...project,
         ...team,
         ...sales,
         ...artworks,
+        ...socials,
       };
       setLoading(true);
       axios
@@ -62,7 +65,7 @@ const Apply: React.FC = () => {
         });
     }
   };
-  const isLastPage = currentPage === 6;
+  const isLastPage = currentPage === 7;
 
   const previewCurrentPage = () => {
     switch (currentPage) {
@@ -79,8 +82,6 @@ const Apply: React.FC = () => {
       case 6:
         return <ArtworkDetailsForm />;
       case 7:
-        return <Minting />;
-      case 8:
         return <Social />;
       default: 
         return;
