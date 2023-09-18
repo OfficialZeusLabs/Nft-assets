@@ -15,18 +15,18 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ClipLoader } from "react-spinners";
 import {
-  getProject, 
-  getSales, 
-  getArtworks, 
-  getTeam
+  getProject,
+  getSales,
+  getArtworks,
+  getTeam,
 } from "@/reducers/userSlice";
 import { useSelector } from "react-redux";
 
 const Apply: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const project = useSelector(getProject); 
-  const sales = useSelector(getSales); 
+  const project = useSelector(getProject);
+  const sales = useSelector(getSales);
   const team = useSelector(getTeam);
   const artworks = useSelector(getArtworks);
 
@@ -37,27 +37,26 @@ const Apply: React.FC = () => {
       setCurrentPage((prevPage) => prevPage + 1);
     }
     if (currentPage >= 6) {
-      
       const requestBody = {
-        ...project, 
-        ...team, 
-        ...sales, 
-        ...artworks
-      }
+        ...project,
+        ...team,
+        ...sales,
+        ...artworks,
+      };
       setLoading(true);
       axios
-      .post(Endpoints.LAUNCHPAD_CREATE_PACKAGE, requestBody)
-      .then((response) => {
-        setLoading(false);
-        let message = response?.data?.message;
-        toast.success(message, {theme: 'colored'});
-        router.push('/marketplace', {scroll: false});
-      })
-      .catch((error) => {
-        let message = error?.response?.data?.error;
-        toast.error(message, {theme: 'colored'});
-        setLoading(false);
-      });
+        .post(Endpoints.LAUNCHPAD_CREATE_PACKAGE, requestBody)
+        .then((response) => {
+          setLoading(false);
+          let message = response?.data?.message;
+          toast.success(message, { theme: "colored" });
+          router.push("/marketplace", { scroll: false });
+        })
+        .catch((error) => {
+          let message = error?.response?.data?.error;
+          toast.error(message, { theme: "colored" });
+          setLoading(false);
+        });
     }
   };
   const isLastPage = currentPage === 6;
@@ -89,10 +88,15 @@ const Apply: React.FC = () => {
             handleClick={handleNextPage}
             className="bg-gradient-linear px-6 py-3"
           >
-            {isLastPage ? 
-            loading ?  <ClipLoader color="text-white"/> : 
-            <p>Submit</p>
-            : <p> Proceed</p>}
+            {isLastPage ? (
+              loading ? (
+                <ClipLoader color="text-white" />
+              ) : (
+                <p>Submit</p>
+              )
+            ) : (
+              <p> Proceed</p>
+            )}
           </Button>
         </div>
       )}

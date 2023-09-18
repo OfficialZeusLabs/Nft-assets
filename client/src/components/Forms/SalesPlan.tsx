@@ -1,9 +1,6 @@
 import EditableSection from "@/common/EditableSection";
 import { orbitron } from "@/fonts/fonts";
-import {
-  setSales, 
-  getSales
-} from "@/reducers/userSlice";
+import { setSales, getSales } from "@/reducers/userSlice";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -22,7 +19,7 @@ const SalesPlanForm: React.FC = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setSales({...sales, marketing_plan: value}));
+          dispatch(setSales({ ...sales, marketing_plan: value }));
         }}
         subTitle="Please provide information on project marketing plan"
       />
@@ -34,7 +31,7 @@ const SalesPlanForm: React.FC = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setSales({...sales, presale: value}));
+          dispatch(setSales({ ...sales, presale: value }));
         }}
         subTitle="This is a tool that allows you to sell prior to mint to help the supporter get access to the project"
       />
@@ -47,7 +44,7 @@ const SalesPlanForm: React.FC = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setSales({...sales, more_info: value}));
+          dispatch(setSales({ ...sales, more_info: value }));
         }}
         subTitle="Please provide any additional information"
       />

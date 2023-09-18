@@ -1,10 +1,7 @@
 "use client";
 import TextArea from "@/common/TextArea";
 import { orbitron } from "@/fonts/fonts";
-import {
-  setTeam, 
-  getTeam
-} from "@/reducers/userSlice";
+import { setTeam, getTeam } from "@/reducers/userSlice";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,7 +20,7 @@ const TeamInformationForm: React.FC = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setTeam({...team, members: value}));
+          dispatch(setTeam({ ...team, members: value }));
         }}
         subTitle="Please provide the names each team member and their roles"
       />
@@ -34,7 +31,7 @@ const TeamInformationForm: React.FC = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setTeam({...team, twitter: value}));
+          dispatch(setTeam({ ...team, twitter: value }));
         }}
         subTitle="Please provide the twitter link for each team member"
       />
@@ -45,7 +42,7 @@ const TeamInformationForm: React.FC = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setTeam({...team, linkedin: value}));
+          dispatch(setTeam({ ...team, linkedin: value }));
         }}
         subTitle="Please provide the Linkedin link for each team member"
       />
