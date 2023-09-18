@@ -41,9 +41,9 @@ const SideBar: React.FC<SideBarProps> = ({ menuNav }) => {
       >
         <div className="px-1 flex gap-3 laptop:gap-5 ">
           <div className="cursor-pointer" onClick={menuNav}>
-            <AiOutlineMenu  className="h-6 w-6 text-white items-center" />
+            <AiOutlineMenu className="h-6 w-6 text-white items-center" />
           </div>
-          
+
           <Logo height={30} />
         </div>
         <div className="flex flex-col py-10">

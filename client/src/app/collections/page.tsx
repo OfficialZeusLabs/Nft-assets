@@ -19,7 +19,7 @@ const collections: React.FC = () => {
         <NSMECollection />
         <TopSellers />
       </div>
-        <Footer />
+      <Footer />
     </>
   );
 };

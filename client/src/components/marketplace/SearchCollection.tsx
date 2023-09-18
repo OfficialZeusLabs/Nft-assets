@@ -8,7 +8,9 @@ const SearchCollection: React.FC = () => {
     <div className=" flex mt-28 flex-col tablet_l:flex-row gap-y-10 mx-auto my-20 justify-between">
       <div className="flex w-full flex-col">
         <SearchField />
-        <h2 className={`${orbitron.className} text-primary text-2xl w-[80%] max-w-[400px]`}>
+        <h2
+          className={`${orbitron.className} text-primary text-2xl w-[80%] max-w-[400px]`}
+        >
           Explore thousands of digital assets from trending to curated
           collections
         </h2>
@@ -16,7 +18,9 @@ const SearchCollection: React.FC = () => {
 
       <div className={`w-fit mx-auto tablet_l:ml-auto ${orbitron.className}`}>
         <h2 className="text-2xl text-white w-full  mb-8">NFT SPECIALS</h2>
-        <div className={`flex flex-col bg-sidebar w-full tablet-l:w-[300px] rounded-md`}>
+        <div
+          className={`flex flex-col bg-sidebar w-full tablet-l:w-[300px] rounded-md`}
+        >
           <Image
             src={"/rectangle.png"}
             alt={"nft special"}

@@ -18,7 +18,9 @@ const NSMECollection: React.FC = () => {
       </div>
 
       <div className="w-[85%] tablet:w-full mx-auto">
-        <div className={`grid grid-cols-1 tablet:grid-cols-2 tablet_l:grid-cols-3 text-white gap-6 ${orbitron.className}`}>
+        <div
+          className={`grid grid-cols-1 tablet:grid-cols-2 tablet_l:grid-cols-3 text-white gap-6 ${orbitron.className}`}
+        >
           {nsmeCollection.map(({ title, source }) => (
             <CollectionCard title={title} source={source}>
               <div className="flex justify-between">

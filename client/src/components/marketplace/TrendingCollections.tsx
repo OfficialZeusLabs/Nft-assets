@@ -15,7 +15,9 @@ const TrendingCollection = () => {
         </p>
       </div>
       <div className="w-[85%] tablet:w-full mx-auto mt-6">
-        <div className={`grid grid-cols-1 tablet:grid-cols-2 tablet_l:grid-cols-3 text-white gap-14 ${orbitron.className}`}>
+        <div
+          className={`grid grid-cols-1 tablet:grid-cols-2 tablet_l:grid-cols-3 text-white gap-14 ${orbitron.className}`}
+        >
           {trendingCollection.map(({ title, source }) => (
             <CollectionCard title={title} source={source}>
               <div className="flex justify-between">

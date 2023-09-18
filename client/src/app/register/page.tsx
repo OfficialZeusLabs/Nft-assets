@@ -6,8 +6,8 @@ import Endpoints from "@/http/endpoints";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { ClipLoader } from 'react-spinners';
-import { toast } from 'react-toastify';
+import { ClipLoader } from "react-spinners";
+import { toast } from "react-toastify";
 import { orbitron, poppins } from "../../fonts/fonts";
 
 const Register = () => {
@@ -27,20 +27,20 @@ const Register = () => {
 
   const handleSubmit = (e: React.SyntheticEvent<EventTarget>): void => {
     e.preventDefault();
-    setLoading(true); 
+    setLoading(true);
     axios
-    .post(Endpoints.REGISTER, formData)
-    .then((response) => {
-      setLoading(false);
-      let message = response?.data?.message;
-      toast.success(message, {theme: 'colored'});
-      router.push('/launchpad', {scroll: false});
-    })
-    .catch((error) => {
-      let message = error?.response?.data?.error;
-      toast.error(message, {theme: 'colored'});
-      setLoading(false);
-    });
+      .post(Endpoints.REGISTER, formData)
+      .then((response) => {
+        setLoading(false);
+        let message = response?.data?.message;
+        toast.success(message, { theme: "colored" });
+        router.push("/launchpad", { scroll: false });
+      })
+      .catch((error) => {
+        let message = error?.response?.data?.error;
+        toast.error(message, { theme: "colored" });
+        setLoading(false);
+      });
   };
 
   return (
@@ -78,7 +78,7 @@ const Register = () => {
               className="bg-gradient-linear outline-none w-full p-3 mt-5 rounded-md"
               style={orbitron.style}
             >
-              {loading ? <ClipLoader color="text-white"/> : "Connect Wallet"}
+              {loading ? <ClipLoader color="text-white" /> : "Connect Wallet"}
             </button>
           </form>
         </div>

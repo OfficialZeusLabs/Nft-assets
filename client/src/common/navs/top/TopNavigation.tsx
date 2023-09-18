@@ -51,36 +51,45 @@ const TopNavigation = () => {
         <div className="hidden tablet_l:flex px-4 gap-8  items-center">
           <NavAside />
         </div>
-        <div className="tablet_l:hidden text-white flex cursor-pointer" onClick={menuNav}>
+        <div
+          className="tablet_l:hidden text-white flex cursor-pointer"
+          onClick={menuNav}
+        >
           <AiOutlineMenu className="tablet_l:hidden text-white flex h-7 w-7 items-center" />
         </div>
       </div>
-      
-      {isOpen && 
 
-      <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      className="absolute z-10 tablet_l:hidden flex  top-0 w-full bg-black h-[100dvh]">
-        <div className="mx-auto w-[95%]">
-        <div className="mx-auto w-[96%] mt-5 text-white  cursor-pointer" onClick={menuNav}>
-          <AiOutlineMenu className="tablet_l:hidden ml-auto flex h-7 w-7 items-center" />
-        </div>
-          <div className="flex  text-white flex-col gap-6 mt-12">
-            {navItems.map(({ name, link, id }) => (
-              <Link href={link} key={id} className=" ">
-                <p style={{ color: "white" }} className="text-center text-2xl text-[#FFC72C] hover:text-white">
-                  {name}
-                </p>
-              </Link>
-            ))}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="absolute z-10 tablet_l:hidden flex  top-0 w-full bg-black h-[100dvh]"
+        >
+          <div className="mx-auto w-[95%]">
+            <div
+              className="mx-auto w-[96%] mt-5 text-white  cursor-pointer"
+              onClick={menuNav}
+            >
+              <AiOutlineMenu className="tablet_l:hidden ml-auto flex h-7 w-7 items-center" />
+            </div>
+            <div className="flex  text-white flex-col gap-6 mt-12">
+              {navItems.map(({ name, link, id }) => (
+                <Link href={link} key={id} className=" ">
+                  <p
+                    style={{ color: "white" }}
+                    className="text-center text-2xl text-[#FFC72C] hover:text-white"
+                  >
+                    {name}
+                  </p>
+                </Link>
+              ))}
+            </div>
+            <div className="mx-auto justify-center mt-10 flex px-4 gap-8  items-center">
+              <NavAside />
+            </div>
           </div>
-          <div className="mx-auto justify-center mt-10 flex px-4 gap-8  items-center">
-            <NavAside />
-          </div>
-        </div>
-      </motion.div>
-      }
+        </motion.div>
+      )}
     </div>
   );
 };

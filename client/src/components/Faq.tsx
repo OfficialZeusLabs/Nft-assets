@@ -5,8 +5,7 @@ import { orbitron } from "@/fonts/fonts";
 const fnqInitailData = [
   {
     question: "Why NFT Factory?",
-    answer:
-      "CREATE YOUR NFT, Easily create and manage your NFTS in one place",
+    answer: "CREATE YOUR NFT, Easily create and manage your NFTS in one place",
     isOpen: false,
     id: 1,
   },
@@ -17,12 +16,11 @@ const fnqInitailData = [
     isOpen: false,
     id: 2,
   },
-  
 ];
 
 const FAQ = () => {
   const [fnqData, setFnqData] = useState(fnqInitailData);
-  const handleToggle = (id:any) => {
+  const handleToggle = (id: any) => {
     setFnqData((prev) => {
       return prev.map((val) =>
         val.id === id
@@ -30,7 +28,7 @@ const FAQ = () => {
           : { ...val, isOpen: false },
       );
     });
-} 
+  };
 
   return (
     <motion.div

@@ -8,8 +8,13 @@ import {
 } from "@/components/Forms/ProjectDetails";
 import SalesPlanForm from "@/components/Forms/SalesPlan";
 import TeamInformationForm from "@/components/Forms/TeamInformation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { UserInterface } from "@/interfaces/user_interface";
+import Endpoints from "@/http/endpoints";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { ClipLoader } from "react-spinners";
 import {
   getTitle,
   getDescription,
@@ -33,28 +38,12 @@ import {
 import { useSelector } from "react-redux";
 
 const Apply: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const title = useSelector(getTitle);
   const description = useSelector(getDescription);
   const email = useSelector(getEmail);
-  //   title: {
-  // description: { type: String, required: true },
-  // whitepaper: String,
-  // goal: String,
-  // discord_link: String,
-  // website: String,
-  // discord_id: String,
-  // email: String,
-  // members: String,
-  // twitter: String,
-  // linkedin: String,
-  // artwork: [String],
-  // nft_type: {
-  // mint_date: String,
-  // mint_price: Number,
-  // mint_supply: String,
-  // marketing_plan: String,
-  // more_info: String,
-  // presale: String
+
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleNextPage = () => {
@@ -65,12 +54,25 @@ const Apply: React.FC = () => {
       console.log("submitting file");
       const requestBody = {
         title,
-        description,
-        email,
-      };
+        description, 
+        email
+      }
+      setLoading(true);
+      axios
+      .post(Endpoints.LAUNCHPAD_CREATE_PACKAGE, requestBody)
+      .then((response) => {
+        setLoading(false);
+        let message = response?.data?.message;
+        toast.success(message, {theme: 'colored'});
+        router.push('/marketplace', {scroll: false});
+      })
+      .catch((error) => {
+        let message = error?.response?.data?.error;
+        toast.error(message, {theme: 'colored'});
+        setLoading(false);
+      });
     }
   };
-
   const isLastPage = currentPage === 6;
 
   const previewCurrentPage = () => {
@@ -100,11 +102,13 @@ const Apply: React.FC = () => {
             handleClick={handleNextPage}
             className="bg-gradient-linear px-6 py-3"
           >
-            {isLastPage ? <p>Submit</p> : <p> Proceed</p>}
+            {isLastPage ? 
+            loading ?  <ClipLoader color="text-white"/> : 
+            <p>Submit</p>
+            : <p> Proceed</p>}
           </Button>
         </div>
       )}
-      {/* </form> */}
     </div>
   );
 };
