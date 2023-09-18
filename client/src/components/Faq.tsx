@@ -19,9 +19,8 @@ const fnqInitailData = [
   },
   
 ];
+
 const FAQ = () => {
-  const [fnqData, setFnqData] = useState(FAQData);
-  const handleToggle = (id: any) => {
   const [fnqData, setFnqData] = useState(fnqInitailData);
   const handleToggle = (id:any) => {
     setFnqData((prev) => {
@@ -31,7 +30,8 @@ const FAQ = () => {
           : { ...val, isOpen: false },
       );
     });
-  };
+} 
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
