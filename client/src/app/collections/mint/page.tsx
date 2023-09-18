@@ -7,9 +7,7 @@ const Mint = () => {
   return (
     <div className={styles.mint}>
       <TopNavigation />
-      <div
-        className={`mx-auto w-[97%] tablet_l:w-[94%] laptop_l:w-[89%] max-w-[1080px] ${styles.mint_details}`}
-      >
+      <div className={`mx-auto w-[97%] tablet_l:w-[94%] laptop_l:w-[89%] max-w-[1280px] ${styles.mint_details}`}>
         <div className={`w-[30%] ${styles.left}`}>
           {/* <div className='flex '>
         <div className='w-[40%]'> */}

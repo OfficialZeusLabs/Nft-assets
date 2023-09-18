@@ -40,8 +40,8 @@ const SideBar: React.FC<SideBarProps> = ({ menuNav }) => {
         }}
       >
         <div className="px-1 flex gap-3 laptop:gap-5 ">
-          <div className="cursor-pointer" onClick={menuNav}>
-            <AiOutlineMenu className="h-6 w-6 text-white items-center" />
+          <div className="cursor-pointer text-white" onClick={menuNav}>
+            <AiOutlineMenu  className="h-6 text-white w-6 items-center" />
           </div>
 
           <Logo height={30} />

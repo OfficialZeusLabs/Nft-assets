@@ -6,6 +6,8 @@ import { orbitron } from "@/fonts/fonts";
 import React, { useRef } from "react";
 import { setArtworks, getArtworks } from "@/reducers/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { poppins } from "@/fonts/fonts";
+
 
 const ArtworkDetailsForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,13 +16,13 @@ const ArtworkDetailsForm: React.FC = () => {
   return (
     <div>
       <h2 className={`${orbitron.className} text-primary text-2xl mb-5`}>
-        Artwork Details
+        Metadata and Description
       </h2>
       <FileUploader />
       <DropdownSelect
         item={["nft", "crypto"]}
-        title={"NFT Type"}
-        subTitle="Select NFT type"
+        title={"Metadata and Description "}
+        subTitle="Detailed Metadata and Description for the NFT (Title, Description, Tags, Keywords)"
         onChangeHandler={(value: string | number): void => {
           if (!value) {
             value = " ";
@@ -28,32 +30,11 @@ const ArtworkDetailsForm: React.FC = () => {
           dispatch(setArtworks({ ...artworks, nft_type: value }));
         }}
       />
-      <EditableSection
-        title={"Mint Date"}
-        placeholder={"Placeholder"}
-        onChangeHandler={(value: string): void => {
-          if (!value) {
-            value = " ";
-          }
-          dispatch(setArtworks({ ...artworks, mint_date: value }));
-        }}
-        subTitle="Please provide expected NFT minting date"
-      />
-      <DropdownSelect
-        item={["100", "200", "300"]}
-        title={"Mint Price"}
-        subTitle="Please share your best estimate"
-        onChangeHandler={(value: string | number): void => {
-          dispatch(setArtworks({ ...artworks, mint_price: value }));
-        }}
-      />
-      <EditableSection
-        title={"Mint Supply"}
-        placeholder={"123456"}
-        onChangeHandler={(value: string): void => {
-          dispatch(setArtworks({ ...artworks, mint_supply: parseInt(value) }));
-        }}
-      />
+      <div className={`${poppins.className} mb-5 flex flex-col`}>
+        <h2 className=" block text-white text-sm font-bold mb-2">Upload Image</h2>
+        <p className="text-sm text-gray-700">Upload Images, Videos, or Audio Files for the NFT</p>
+        <FileUploader ref={fileRef} />
+      </div>
     </div>
   );
 };

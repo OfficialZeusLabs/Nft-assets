@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div
       style={{
-        display: "flex",
+        // display: "flex",
         background:
           "linear-gradient(134deg, rgba(255, 199, 44, 0.16) 0%, rgba(255, 199, 44, 0.00) 100%)",
       }}
@@ -56,7 +56,7 @@ const Footer = () => {
               Memberships
             </Link>
           </div>
-          <div className="flex text-white flex-col gap-1">
+          <div className="flex flex-col gap-1">
             <Link href="/" className="text-primary text-[20px]">
               My Account
             </Link>
@@ -79,7 +79,7 @@ const Footer = () => {
               Settings
             </Link>
           </div>
-          <div className="flex text-white flex-col gap-1">
+          <div className="flex flex-col gap-1">
             <Link href="/" className="text-primary text-[20px]">
               Resources
             </Link>
@@ -123,6 +123,11 @@ const Footer = () => {
             </Link>
           </div>
         </div>
+      </div>
+      <div className="h-[1px] bg-[#FE7947] my-8 " />
+      <div className="text-white">
+        <p className="text-center text-lg tracking-[1px]">Privacy Policy-Terms of Service</p>
+        <p className="text-center text-sm mt-1 tracking-[1px] ">© Copyright 2023</p>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import Image from "next/image";
 const TopSellers = () => {
   return (
     <div className={`${orbitron.className} my-28`}>
-      <h2 className="text-2xl text-center">Top Sellers</h2>
+      <h2 className="text-2xl text-white text-center">Top Sellers</h2>
       <div className="flex justify-center my-8">
         <DateSelection />
       </div>
@@ -31,8 +31,8 @@ const TopSellers = () => {
               />
 
               <div className="w-full">
-                <div className=" flex flex-row  text-white space-x-2">
-                  <h3>Shoe Fac NFTs</h3>
+                <div className=" flex flex-row space-x-2">
+                  <h3 className="text-white">Shoe Fac NFTs</h3>
                   <Image
                     src="/outline-badge.svg"
                     alt="badge"
