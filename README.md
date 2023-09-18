@@ -70,7 +70,7 @@ NFT Factory is a groundbreaking project by Zeus Labs aimed at democratizing acce
 To setup the repo, first fork the Nft-assets Repo, then clone the forked repository to create a copy on the local machine.
 </p>
 
-    $ git clone https://github.com/ayathon/PrismVox.io
+    $ git clone https://github.com/BukiOffor/Nft-assets
 
 <p align="justify">
 Change directory to the cloned repo and set the original PrismVox.io repository as the "upstream" and your forked repository as the "origin" using gitbash.
