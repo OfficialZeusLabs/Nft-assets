@@ -10,39 +10,25 @@ import SalesPlanForm from "@/components/Forms/SalesPlan";
 import TeamInformationForm from "@/components/Forms/TeamInformation";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { UserInterface } from "@/interfaces/user_interface";
 import Endpoints from "@/http/endpoints";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ClipLoader } from "react-spinners";
 import {
-  getTitle,
-  getDescription,
-  getDiscordId,
-  getDiscordLink,
-  getGoalText,
-  getEmail,
-  getLinkedinUrl,
-  getMarketingPlan,
-  getMintDate,
-  getMembers,
-  getMintPrice,
-  getMintSupply,
-  getMoreInfo,
-  getNftType,
-  getPreSale,
-  getTwitterUrl,
-  getWebsite,
-  getWhitepaper,
+  getProject, 
+  getSales, 
+  getArtworks, 
+  getTeam
 } from "@/reducers/userSlice";
 import { useSelector } from "react-redux";
 
 const Apply: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const title = useSelector(getTitle);
-  const description = useSelector(getDescription);
-  const email = useSelector(getEmail);
+  const project = useSelector(getProject); 
+  const sales = useSelector(getSales); 
+  const team = useSelector(getTeam);
+  const artworks = useSelector(getArtworks);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -51,11 +37,12 @@ const Apply: React.FC = () => {
       setCurrentPage((prevPage) => prevPage + 1);
     }
     if (currentPage >= 6) {
-      console.log("submitting file");
+      
       const requestBody = {
-        title,
-        description, 
-        email
+        ...project, 
+        ...team, 
+        ...sales, 
+        ...artworks
       }
       setLoading(true);
       axios

@@ -5,16 +5,15 @@ import FileUploader from "@/common/FileUploader";
 import { orbitron } from "@/fonts/fonts";
 import React, { useRef } from "react";
 import {
-  setMintDate,
-  setMintSupply,
-  setNftType,
-  setMintPrice,
+  setArtworks, 
+  getArtworks
 } from "@/reducers/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ArtworkDetailsForm: React.FC = () => {
   const fileRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
+  const artworks = useSelector(getArtworks);
 
   return (
     <div>
@@ -30,7 +29,7 @@ const ArtworkDetailsForm: React.FC = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setMintDate(value));
+          dispatch(setArtworks({...artworks, nft_type: value}));
         }}
       />
       <EditableSection
@@ -40,7 +39,7 @@ const ArtworkDetailsForm: React.FC = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setMintDate(value));
+          dispatch(setArtworks({...artworks, mint_date: value}));
         }}
         subTitle="Please provide expected NFT minting date"
       />
@@ -49,14 +48,14 @@ const ArtworkDetailsForm: React.FC = () => {
         title={"Mint Price"}
         subTitle="Please share your best estimate"
         onChangeHandler={(value: string | number): void => {
-          dispatch(setMintPrice(value));
+          dispatch(setArtworks({...artworks, mint_price: value}));
         }}
       />
       <EditableSection
         title={"Mint Supply"}
         placeholder={"123456"}
         onChangeHandler={(value: string): void => {
-          dispatch(setMintSupply(parseInt(value)));
+          dispatch(setArtworks({...artworks, mint_supply: parseInt(value)}));
         }}
       />
     </div>

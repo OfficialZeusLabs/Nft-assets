@@ -2,19 +2,14 @@
 import EditableSection from "@/common/EditableSection";
 import { orbitron } from "@/fonts/fonts";
 import {
-  setDescription,
-  setDiscordId,
-  setDiscordLink,
-  setEmail,
-  setGoalText,
-  setTitle,
-  setWebsite,
-  setWhitepaper,
+  setProject, 
+  getProject
 } from "@/reducers/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const SectionOneForm = () => {
   const dispatch = useDispatch();
+  const project = useSelector(getProject);
 
   return (
     <div className="my-10">
@@ -28,7 +23,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setTitle(value));
+          dispatch(setProject({...project, title: value}));
         }}
       />
       <EditableSection
@@ -38,7 +33,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setDescription(value));
+          dispatch(setProject({...project, description: value}));
         }}
         subTitle="Share your project's Pitch, Concept, Utility & Major partners involved."
       />
@@ -49,7 +44,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setWhitepaper(value));
+          dispatch(setProject({...project, whitepaper: value}));
         }}
         subTitle="Will be attached to launchpad"
       />
@@ -60,7 +55,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setGoalText(value));
+          dispatch(setProject({...project, goal: value}));
         }}
       />
     </div>
@@ -69,6 +64,7 @@ export const SectionOneForm = () => {
 
 export const SecondSectionForm = () => {
   const dispatch = useDispatch();
+  const project = useSelector(getProject);
 
   return (
     <div>
@@ -82,7 +78,7 @@ export const SecondSectionForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setDiscordLink(value));
+          dispatch(setProject({...project, discord_link: value}));
         }}
         subTitle="Will be linked with launchpad"
       />
@@ -93,7 +89,7 @@ export const SecondSectionForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setWebsite(value));
+          dispatch(setProject({...project, website: value}));
         }}
         subTitle="Will be linked with launchpad"
       />
@@ -104,7 +100,7 @@ export const SecondSectionForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setDiscordId(value));
+          dispatch(setProject({...project, discord_id: value}));
         }}
         subTitle="Please provide discord ID of main contact"
       />
@@ -116,7 +112,7 @@ export const SecondSectionForm = () => {
           if (!value) {
             value = " ";
           }
-          dispatch(setEmail(value));
+          dispatch(setProject({...project, email: value}));
         }}
         subTitle="Please provide Email address of main contact"
       />

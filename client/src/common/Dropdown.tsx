@@ -39,7 +39,7 @@ const DropdownSelect: React.FC<DropdownList> = ({
         >
           {item.length > 0 &&
             item.map((x, index) => (
-              <option key={index} value={x} className="bg-black">
+              <option key={index} value={x} className="bg-black text-white">
                 {x}
               </option>
             ))}
