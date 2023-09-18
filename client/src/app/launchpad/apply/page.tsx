@@ -93,10 +93,9 @@ const Apply: React.FC = () => {
   };
   return (
     <div className="flex flex-col justify-start h-screen mt-10 mb-10">
-      {/* <form encType="multipart/form-data" onSubmit={handleSubmit}> */}
-      <div className="w-4/5">{previewCurrentPage()}</div>
+      <div className="w-[98%] ">{previewCurrentPage()}</div>
       {currentPage > 1 && (
-        <div className="flex justify-end w-4/5 mt-5">
+        <div className="flex justify-end mt-5">
           <Button
             handleClick={handleNextPage}
             className="bg-gradient-linear px-6 py-3"

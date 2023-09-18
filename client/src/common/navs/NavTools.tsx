@@ -13,7 +13,7 @@ interface NavToolsProps {
 }
 
 const NavTools: React.FC<NavToolsProps> = (props) => {
-  const [buttonText, setButtonText] = useState("Wallet Connect");
+  const [buttonText, setButtonText] = useState("Connect Wallet");
   const { open } = useWeb3Modal();
   const { title, isMenu = false } = props;
   const { address, isConnected } = getAccount();
@@ -24,16 +24,16 @@ const NavTools: React.FC<NavToolsProps> = (props) => {
       const short = `${address.slice(0, 5)}...${address.slice(-4)}`;
       setButtonText(short);
     } else {
-      setButtonText("Wallet Connect");
+      setButtonText("Connect Wallet");
     }
   }, [isConnected, address]);
 
   return (
     <>
       {isMenu ? (
-        <div className={`flex justify-between ${poppins.className}`}>
-          <h2 className={`${orbitron.className} text-2xl`}>{title}</h2>
-          <div className="flex flex-row gap-4 items-center">
+        <div className="w-[90%] mx-auto flex justify-between">
+          <h2 className={`${orbitron.className} text-2xl text-white`}>{title}</h2>
+          <div className="flex flex-row gap-3 items-center">
             <button
               className="bg-gradient-linear rounded-md px-3 py-2 text-sm"
               onClick={async () => {
@@ -54,7 +54,7 @@ const NavTools: React.FC<NavToolsProps> = (props) => {
       ) : (
         <>
           <button
-            className="bg-gradient-linear rounded-md px-3 py-2 text-sm"
+            className="bg-gradient-linear rounded-md px-3 py-2 text-md"
             onClick={async () => {
               await open();
             }}

@@ -2,11 +2,28 @@ import React, { useState } from "react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { orbitron } from "@/fonts/fonts";
-import { FAQRelatedQuestions as FAQData } from "@/data/faq";
-
+const fnqInitailData = [
+  {
+    question: "Why NFT Factory?",
+    answer:
+      "CREATE YOUR NFT, Easily create and manage your NFTS in one place",
+    isOpen: false,
+    id: 1,
+  },
+  {
+    question: "What do i stand to gain?",
+    answer:
+      "COLLABORATE WITH CONSUMERS, Engage directly with consumers, let your NFTS forge connections beyond transactions ",
+    isOpen: false,
+    id: 2,
+  },
+  
+];
 const FAQ = () => {
   const [fnqData, setFnqData] = useState(FAQData);
   const handleToggle = (id: any) => {
+  const [fnqData, setFnqData] = useState(fnqInitailData);
+  const handleToggle = (id:any) => {
     setFnqData((prev) => {
       return prev.map((val) =>
         val.id === id
@@ -19,7 +36,7 @@ const FAQ = () => {
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      className="flex  flex-col   flex-wrap mt-[32px] px-3 sm:px-6 "
+      className="flex  flex-col   flex-wrap mt-[32px] "
     >
       <div className="mt-[24px] w-full  ">
         <h3 className={`${orbitron.className} text-primary mb-4 text-2xl`}>

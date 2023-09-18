@@ -305,7 +305,6 @@
   color: #ffffff;
   width: 216px;
   height: 30.18px;
-  max-width: 1240px;
 }
 
 .nft_details p {
@@ -360,7 +359,6 @@
   font-size: 20px;
   line-height: 120%;
   color: #ffffff;
-  margin-top: 30px;
 }
 
 .about_bottom div {
@@ -405,7 +403,7 @@
   font-weight: 400;
   font-size: 24px;
   line-height: 120%;
-  margin-top: 15px;
+
   text-align: center;
 }
 
@@ -413,11 +411,14 @@
 
 .mint {
   overflow: hidden;
+  padding: 4px;
 }
 
 .mint_details {
   display: flex;
-  gap: 240px;
+  justify-content: space-between;
+  gap: 160px;
+  /* background-color: green; */
   margin-left: 80.81px;
 }
 
@@ -439,7 +440,7 @@
   font-family: "Orbitron";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 120%;
   gap: 16px;
 }
@@ -450,7 +451,7 @@
   font-family: "Orbitron";
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 120%;
   color: #dcdcdc;
   text-transform: uppercase;
@@ -464,7 +465,7 @@
   );
   backdrop-filter: blur(22px);
   border-radius: 16px;
-  width: 430px;
+  width: 420px;
   height: 522px;
   border-radius: 16px;
   margin-top: 63px;
