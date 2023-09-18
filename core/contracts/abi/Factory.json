@@ -1,0 +1,71 @@
+{
+  "address": "0x40bFcf955c51590c74FbEDa99692349895b20c55",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "Name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "Symbol",
+          "type": "string"
+        },
+        {
+          "internalType": "string[]",
+          "name": "_URIs",
+          "type": "string[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "_mintFee",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "deploy",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "Name",
+          "type": "string"
+        }
+      ],
+      "name": "Deploy",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "marketplace",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+}
