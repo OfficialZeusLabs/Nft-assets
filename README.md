@@ -250,9 +250,9 @@ $ npx hardhat coverage --network localhost --show-stack-traces
 
 
 ## Demo video
-
+<p align="center" width="100%">
 https://github.com/BukiOffor/Nft-assets/assets/58889001/f8eb776e-df15-4eab-aca5-a535430c4e54
-
+</p>
 
 
 - [Frontend Deployment]( https://nft-assets-rxzk.vercel.app/)
