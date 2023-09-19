@@ -145,38 +145,9 @@ $ npm install --save-dev "@nomiclabs/hardhat-waffle" "ethereum-waffle" "chai" "@
   <img src="https://github.com/BukiOffor/Nft-assets/assets/58889001/9668a40f-73d2-4fd5-8adf-91059880b69e" alt="gnosis key"/>
 </p>
 
-#
-> ### Setup Hardhat.config
 
 
-Below is the setup for the hardhat.config.json
 
-<p align="center" width="100%">
-  <img src="https://drive.google.com/uc?export=view&id=1-vWH8_zI8DTzvnRM4gcwX2HWsHuCd0O0" alt="hardhat"/>
-</p>
-
-#
-> ## Create the SmartContract
-  - First write the Smartcontract codes within the contracts folder.
-  - The next step involves the compilation, deployment and verification of the contract on the testnet.
-
-> ### Compile
-- To compile the smartcontract before deployment:
-```
-$ npx hardhat compile
-```
-#
-> ### Deploy
-- To deploy the smartcontract:
-```
-$ npx hardhat run scripts/deploy.js --network gnosischain
-```
-#
-> ### Verify
-- To verify the smartcontract:
-```
-$ npx hardhat verify  --network gnosischain
-```
 
 #
 > ## Setup the Frontend
