@@ -1,7 +1,9 @@
 import Providers from "@/providers/walletconnect";
 import type { Metadata } from "next";
-import { poppins } from "../fonts/fonts";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import Layout from "./layout/page";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers />
-      <body className={`${poppins.className}`}>{children}</body>
+      <Layout children={children} />
+      <ToastContainer />
     </html>
   );
 }

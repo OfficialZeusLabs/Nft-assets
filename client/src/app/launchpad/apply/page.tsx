@@ -10,19 +10,62 @@ import {
 } from "@/components/Forms/ProjectDetails";
 import SalesPlanForm from "@/components/Forms/Minting";
 import TeamInformationForm from "@/components/Forms/TeamInformation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Social from "@/components/Forms/Social";
+import { toast } from "react-toastify";
+import Endpoints from "@/http/endpoints";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { ClipLoader } from "react-spinners";
+import {
+  getProject,
+  getSales,
+  getArtworks,
+  getTeam,
+  getSocial
+} from "@/reducers/userSlice";
+import { useSelector } from "react-redux";  
 
 const Apply: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const project = useSelector(getProject);
+  const sales = useSelector(getSales);
+  const team = useSelector(getTeam);
+  const artworks = useSelector(getArtworks);
+  const socials = useSelector(getSocial);
+
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleNextPage = () => {
-    if (currentPage < 8) {
+    if (currentPage < 7) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
+    if (currentPage >= 7) {
+      const requestBody = {
+        ...project,
+        ...team,
+        ...sales,
+        ...artworks,
+        ...socials,
+      };
+      setLoading(true);
+      axios
+        .post(Endpoints.LAUNCHPAD_CREATE_PACKAGE, requestBody)
+        .then((response) => {
+          setLoading(false);
+          let message = response?.data?.message;
+          toast.success(message, { theme: "colored" });
+          router.push("/marketplace", { scroll: false });
+        })
+        .catch((error) => {
+          let message = error?.response?.data?.error;
+          toast.error(message, { theme: "colored" });
+          setLoading(false);
+        });
+    }
   };
-
-  const isLastPage = currentPage === 8;
+  const isLastPage = currentPage === 7;
 
   const previewCurrentPage = () => {
     switch (currentPage) {
@@ -39,10 +82,8 @@ const Apply: React.FC = () => {
       case 6:
         return <ArtworkDetailsForm />;
       case 7:
-        return <Minting />;
-      case 8:
-      default:
         return <Social />;
+      default: 
         return;
     }
   };

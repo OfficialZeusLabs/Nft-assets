@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
 import { orbitron } from "@/fonts/fonts";
-import Image from 'next/image';
-
+import Image from "next/image";
 
 const ColletionHeader = () => {
   return (
@@ -20,19 +19,21 @@ const ColletionHeader = () => {
           src='/collection.png'
           width={1200}
           height={1000}
-          alt=''
+          alt=""
         />
-      <div className="z-10 text-center my-auto">
-        <h2 className={`${orbitron.className} text-3xl text-[#FFC72C]`}>
-          Browse Collections
-        </h2>
-        <p className="mt-3 text-white w-[90%] tablet_l:w-[85%] laptop_l:w-[80%] max-w-[900px] mx-auto text-center">
-          Browse through a diverse range of collections from our clients. Discover stunning artworks, limited editions, and rare collectibles. Each NFT holds a story waiting to be unveiled.
-        </p>
-      </div>
+        <div className="z-10 text-center my-auto">
+          <h2 className={`${orbitron.className} text-3xl text-[#FFC72C]`}>
+            Browse Collections
+          </h2>
+          <p className="mt-3 text-white w-[90%] tablet_l:w-[85%] laptop_l:w-[80%] max-w-[900px] mx-auto text-center">
+            Browse through a diverse range of collections from our clients.
+            Discover stunning artworks, limited editions, and rare collectibles.
+            Each NFT holds a story waiting to be unveiled.
+          </p>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ColletionHeader
+export default ColletionHeader;

@@ -8,7 +8,9 @@ const SearchCollection: React.FC = () => {
     <div className=" flex mt-28 flex-col tablet_l:flex-row gap-y-10 my-20 justify-between">
       <div className="flex w-full tablet_l:w-[50%] flex-col">
         <SearchField />
-        <h2 className={`${orbitron.className} text-primary text-2xl w-[80%] max-w-[400px]`}>
+        <h2
+          className={`${orbitron.className} text-primary text-2xl w-[80%] max-w-[400px]`}
+        >
           Explore thousands of digital assets from trending to curated
           collections
         </h2>

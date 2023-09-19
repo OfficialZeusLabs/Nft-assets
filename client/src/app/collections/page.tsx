@@ -24,7 +24,7 @@ const collections: React.FC = () => {
         <TopSellers />
         <MarketTrend />
       </div>
-        <Footer />
+      <Footer />
     </>
   );
 };
