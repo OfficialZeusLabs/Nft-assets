@@ -22,6 +22,8 @@ const LaunchPadSchema = new mongoose.Schema({
         type: String,
         enum: ['nft', 'crypto']
     },
+    price: Number,
+    supply: Number,
     portfolio: String,
     social: String,
     achievements: String,

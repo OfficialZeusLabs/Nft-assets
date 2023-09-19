@@ -2,7 +2,6 @@ import Preconditions from "../utils/preconditions.js";
 import ResponseHandler from "../utils/response_handler.js"
 import { StatusCodes } from 'http-status-codes';
 import Strings from "../lang/strings.js";
-
 class LaunchPadService {
     static async createPackage(req, res) {
         const {
@@ -17,7 +16,8 @@ class LaunchPadService {
             portofolio, social,
             achievement,
             additional_information,
-            artwork
+            artwork, supply,
+            price
         } = req.body;
 
         const badRequestError = Preconditions.checkNotNull({
@@ -50,7 +50,8 @@ class LaunchPadService {
                 social,
                 achievement,
                 additional_information,
-                artwork
+                artwork, supply,
+                price
             });
             await createPackage.save();
             return ResponseHandler.sendResponseWithoutData(res, StatusCodes.OK, Strings.PACKAGE_SUCCESSFULLY_CREATED);
