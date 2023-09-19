@@ -31,7 +31,7 @@
 #
 > ## Overview
 <p align="justify">
-NFT Factory is a groundbreaking project by Zeus Labs aimed at democratizing access to financial assets by tokenizing real-world assets seamlessly on the Celo blockchain. This repository contains the Minimum Viable Product (MVP) of the NFT Factory, providing the foundation for creating and managing NFTs representing real-world assets.
+NFT Factory is a groundbreaking project by Zeus Labs aimed at democratizing access to financial assets by tokenizing real-world assets seamlessly on the Gnosis blockchain. This repository contains the Minimum Viable Product (MVP) of the NFT Factory, providing the foundation for creating and managing NFTs representing real-world assets.
 </p>
 
 
@@ -249,11 +249,11 @@ $ npx hardhat coverage --network localhost --show-stack-traces
 ## View attribution files here
 
 
-## Demo video
+## Explainer video (User POV)
 
 https://github.com/BukiOffor/Nft-assets/assets/58889001/f8eb776e-df15-4eab-aca5-a535430c4e54
 
-
+## Demo Video (Clients POV)
 
 - [Frontend Deployment]( https://nft-assets-rxzk.vercel.app/)
 - [Figma design](https://www.figma.com/proto/dV2FBUaa7BomJu7JCWjL1Z/Webpage-Redesign?page-id=67%3A823&type=design&node-id=348-3699&viewport=7528%2C-2452%2C0.51&t=6PGceqXUTERPd9EJ-1&scaling=scale-down&starting-point-node-id=348%3A3699&mode=design)
