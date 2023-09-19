@@ -245,7 +245,16 @@ $ npx hardhat coverage --network localhost --show-stack-traces
 # 
 
 ## Useful links
-- [Demo]()
+
+## View attribution files here
+
+
+## Demo video
+
+https://github.com/BukiOffor/Nft-assets/assets/58889001/f8eb776e-df15-4eab-aca5-a535430c4e54
+
+
+
 - [Frontend Deployment]( https://nft-assets-rxzk.vercel.app/)
 - [Figma design](https://www.figma.com/proto/dV2FBUaa7BomJu7JCWjL1Z/Webpage-Redesign?page-id=67%3A823&type=design&node-id=348-3699&viewport=7528%2C-2452%2C0.51&t=6PGceqXUTERPd9EJ-1&scaling=scale-down&starting-point-node-id=348%3A3699&mode=design)
 
@@ -272,5 +281,5 @@ Before adding a pull request, please note:
 
 All **`suggestions`** are welcome!
 #
-> ##### README Created by `Enebeli Emmanuel` for NFT-FACTORY
+> ##### README Created by `Enebeli Emmanuel` for Zeus Labs
 
