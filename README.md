@@ -107,29 +107,6 @@ $ npm install --save-dev "@nomiclabs/hardhat-waffle" "ethereum-waffle" "chai" "@
 > ### Env Setup
  Next create a `.env` file by using the sample.env. Retrieve your information from the relevant sites and input the information where needed in the `.env` file.
 
-`To retrieve your metamask private key.`
-- Open your account details by clicking on the three dots on the metamask extension on your chrome browser
-- Click on export private key
-- Verify your password
-- Copy your private key and place it in the .env file
-
-<p align="center" width="100%">
-  <img src="https://drive.google.com/uc?export=view&id=1oDl0IbicD7LhNOcYUbGzBYTJdduWim1t" alt="metamask"/>
-</p>
-
-#
-`To retrieve your alchemy key.`
-- Login to your account on [alchemy](https://www.alchemy.com/)
-- Once you're redirected to your [dashboard](https://dashboard.alchemyapi.io/), click on create app.
-- Fill in the relevant details especially the chain and network
-- Once the app has been created, click on view key.
-- Copy the HTTP and place it in the .env file.
-
-<p align="center" width="100%">
-  <img src="https://drive.google.com/uc?export=view&id=1vPvT5LJRJy6B8hSi_3mPo16wC4u6MnEK" alt="alchemy"/>
-  
-</p>
-
 #
 `To retrieve your gnosis key.`
 - Login to [gnosisscan](https://gnosisscan.io/) and hover over the dropdown arrow for your profile on the navbar.
@@ -140,10 +117,6 @@ $ npm install --save-dev "@nomiclabs/hardhat-waffle" "ethereum-waffle" "chai" "@
 <p align="center" width="100%">
   <img src="https://github.com/BukiOffor/Nft-assets/assets/58889001/9668a40f-73d2-4fd5-8adf-91059880b69e" alt="gnosis key"/>
 </p>
-
-
-
-
 
 #
 > ## Setup the Frontend
