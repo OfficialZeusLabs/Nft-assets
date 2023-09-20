@@ -182,6 +182,7 @@ $ npx hardhat coverage --network localhost --show-stack-traces
 
 ## View attribution files here
 
+https://docs.google.com/document/d/1TXCMG2I1hF8gLAJNjz69bioiZXOVwK0crSlhXWqMDvw/edit?usp=sharing
 
 ## Explainer video (User POV)
 
