@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { useWeb3Modal } from "@web3modal/react";
 import { getAccount } from "@wagmi/core";
 import { orbitron } from "@/fonts/fonts";
-import { poppins } from "@/fonts/fonts";
 
 interface NavToolsProps {
   title?: string;
@@ -31,10 +30,8 @@ const NavTools: React.FC<NavToolsProps> = (props) => {
   return (
     <>
       {isMenu ? (
-        <div className="w-[90%] mx-auto flex justify-between">
-          <h2 className={`${orbitron.className} text-2xl text-white`}>
-            {title}
-          </h2>
+        <div className="w-[95%] mx-auto flex justify-between">
+          <h2 className={`${orbitron.className} text-2xl text-white`}>{title}</h2>
           <div className="flex flex-row gap-3 items-center">
             <button
               className="bg-gradient-linear rounded-md px-3 py-2 text-sm"

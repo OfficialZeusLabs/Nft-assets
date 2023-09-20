@@ -5,8 +5,8 @@ import { BsArrowDownShort, BsArrowUpShort } from 'react-icons/bs'
 
 const MarketTrend = () => {
   return (
-    <div className=' my-28'>
-      <div className="mx-auto w-[95%] laptop_l:w-[920px]">
+    <div className='text-white my-24'>
+      <div className="mx-auto w-full">
         <h2 className={`${orbitron.className} text-2xl mb-3`}>Market Trend</h2>
         <div className="border-[1px] flex flex-wrap gap-6 justify-between px-5 py-4 border-[#FFC72C] rounded-lg">
           <div className="flex justify-between w-full tablet_l:w-[47%]">

@@ -22,9 +22,12 @@ const collections: React.FC = () => {
         <TrendingCollection />
         <NSMECollection />
         <TopSellers />
+        <div className="mx-auto w-[95%] laptop_l:w-[920px]">
         <MarketTrend />
+
+        </div>
       </div>
-      <Footer />
+        <Footer />
     </>
   );
 };
