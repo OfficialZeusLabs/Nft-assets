@@ -61,9 +61,9 @@ const ProfileSideBar: React.FC<ProfileSideBarProps> = ({ menuNav }) => {
       >
         <div 
              onClick={menuNav}
-            className="absolute right-0 top-16 cursor-pointer"
+            className="absolute right-0  text-white top-16 cursor-pointer"
         >
-            <AiOutlineMenu  className="h-6 w-6 items-center" />
+            <AiOutlineMenu  className="h-6 w-6 text-white items-center" />
         </div>
         <div className="flex flex-col">
           {navigationLinks.map(({ name, to, icon }) => (
