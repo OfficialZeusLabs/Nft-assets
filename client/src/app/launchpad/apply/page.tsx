@@ -11,6 +11,12 @@ import {
 import SalesPlanForm from "@/components/Forms/Minting";
 import TeamInformationForm from "@/components/Forms/TeamInformation";
 import React, { useState, useEffect } from "react";
+import { useDebounce } from "use-debounce";
+import {
+  usePrepareContractWrite,
+  useContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
 import Social from "@/components/Forms/Social";
 import { toast } from "react-toastify";
 import Endpoints from "@/http/endpoints";
@@ -22,9 +28,10 @@ import {
   getSales,
   getArtworks,
   getTeam,
-  getSocial
+  getSocial,
 } from "@/reducers/userSlice";
-import { useSelector } from "react-redux";  
+import { useSelector } from "react-redux";
+import { Factory } from "../../../../constants";
 
 const Apply: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -36,12 +43,63 @@ const Apply: React.FC = () => {
   const socials = useSelector(getSocial);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const debouncedTitle = useDebounce(project?.title, 500);
+  const debouncedPrice = useDebounce(artworks?.price, 500);
+  console.log(
+    typeof debouncedPrice === "string" ? parseInt(String(debouncedPrice)) : 0
+  );
+
+  const {
+    config,
+    error: prepareError,
+    isError: isPrepareError,
+  } = usePrepareContractWrite({
+    address: Factory.address,
+    abi: Factory.abi,
+    functionName: "deploy",
+    args: [
+      debouncedTitle,
+      typeof debouncedTitle === "string"
+        ? String(debouncedTitle).substring(0, 3).toUpperCase()
+        : null,
+      // This should be the metadata, but since they can't specify details of each NFT, we use existing
+      [
+        "https://bafybeibnsjbky2l2iphqw4rix5frpae3sceexoqmzseb6wt7wj3ntu2k6a.ipfs.dweb.link/1.json",
+        "https://bafybeibnsjbky2l2iphqw4rix5frpae3sceexoqmzseb6wt7wj3ntu2k6a.ipfs.dweb.link/2.json",
+        "https://bafybeibnsjbky2l2iphqw4rix5frpae3sceexoqmzseb6wt7wj3ntu2k6a.ipfs.dweb.link/3.json",
+      ],
+      // They should be able to set the prices for the various NFTs, but for now, one for all
+      [
+        typeof debouncedPrice === "string"
+          ? parseInt(String(debouncedPrice))
+          : 0,
+        typeof debouncedPrice === "string"
+          ? parseInt(String(debouncedPrice))
+          : 0,
+        typeof debouncedPrice === "string"
+          ? parseInt(String(debouncedPrice))
+          : 0,
+      ],
+    ],
+  });
+  const { data, error, isError, write } = useContractWrite(config);
+
+  const { isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  });
 
   const handleNextPage = () => {
     if (currentPage < 7) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
     if (currentPage >= 7) {
+      setLoading(true);
+      write?.();
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
       const requestBody = {
         ...project,
         ...team,
@@ -49,7 +107,6 @@ const Apply: React.FC = () => {
         ...artworks,
         ...socials,
       };
-      setLoading(true);
       axios
         .post(Endpoints.LAUNCHPAD_CREATE_PACKAGE, requestBody)
         .then((response) => {
@@ -63,8 +120,12 @@ const Apply: React.FC = () => {
           toast.error(message, { theme: "colored" });
           setLoading(false);
         });
+    } else if (isPrepareError || isError) {
+      toast.error(prepareError?.message || error?.message, {
+        theme: "colored",
+      });
     }
-  };
+  }, [isSuccess, isError, isPrepareError]);
   const isLastPage = currentPage === 7;
 
   const previewCurrentPage = () => {
@@ -83,7 +144,7 @@ const Apply: React.FC = () => {
         return <ArtworkDetailsForm />;
       case 7:
         return <Social />;
-      default: 
+      default:
         return;
     }
   };

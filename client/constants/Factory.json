@@ -1,5 +1,5 @@
 {
-  "address": "0x40bFcf955c51590c74FbEDa99692349895b20c55",
+  "address": "0x6B8F1720ed04C36Ca9685551aCc00932BaC4f8ff",
   "abi": [
     {
       "inputs": [
@@ -47,6 +47,19 @@
       ],
       "name": "Deploy",
       "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getMarketPlaces",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
     },
     {
       "inputs": [

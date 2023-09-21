@@ -3,7 +3,13 @@ import { orbitron } from "@/fonts/fonts";
 import CollectionCard from "../CollectionCard";
 import Link from "next/link";
 
-const TrendingCollection = () => {
+type Props = {
+  collections: any[];
+  owners: any[];
+};
+
+const TrendingCollection = ({ collections, owners }: Props) => {
+  console.log(collections, owners);
   return (
     <div className="mx-auto">
       <div className="text-center mb-8">

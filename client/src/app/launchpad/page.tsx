@@ -8,6 +8,8 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Apply from "./apply/page";
 import NavTools from "@/common/navs/NavTools";
 import { AiOutlineMenu } from "react-icons/ai";
+import { WagmiConfig } from "wagmi";
+import { wagmiConfig } from "@/providers/walletconnect";
 
 const LaunchPad = () => {
   const [Open, setOpen] = useState(true);
@@ -33,7 +35,10 @@ const LaunchPad = () => {
         {Open ? (
           <SideBar menuNav={menuNav} />
         ) : (
-          <div className="absolute text-white top-11 cursor-pointer" onClick={menuNav}>
+          <div
+            className="absolute text-white top-11 cursor-pointer"
+            onClick={menuNav}
+          >
             <AiOutlineMenu className="h-6 text-white w-6 items-center" />
           </div>
         )}
@@ -46,7 +51,10 @@ const LaunchPad = () => {
         }
       >
         <NavTools title="Launchpad" isMenu={true} />
-        <Apply />
+
+        <WagmiConfig config={wagmiConfig}>
+          <Apply />
+        </WagmiConfig>
       </div>
     </div>
   );

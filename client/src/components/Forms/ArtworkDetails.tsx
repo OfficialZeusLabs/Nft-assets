@@ -1,12 +1,11 @@
 "use client";
+import React from "react";
 import DropdownSelect from "@/common/Dropdown";
 import FileUploader from "@/common/FileUploader";
 import { orbitron, poppins } from "@/fonts/fonts";
 import { getArtworks, setArtworks } from "@/reducers/userSlice";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EditableSection from "@/common/EditableSection";
-
 
 const ArtworkDetailsForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,7 +28,7 @@ const ArtworkDetailsForm: React.FC = () => {
         title={"Mint Price"}
         placeholder={"2000"}
         onChangeHandler={(value: string): void => {
-          dispatch(setArtworks({...artworks, price: value}));
+          dispatch(setArtworks({ ...artworks, price: value }));
         }}
         subTitle="Enter mint price"
       />
@@ -37,13 +36,17 @@ const ArtworkDetailsForm: React.FC = () => {
         title={"Mint Supply"}
         placeholder={"325"}
         onChangeHandler={(value: string): void => {
-          dispatch(setArtworks({...artworks, supply: value}));
+          dispatch(setArtworks({ ...artworks, supply: value }));
         }}
         subTitle="Enter mint supply"
       />
       <div className={`${poppins.className} mb-5 flex flex-col`}>
-        <h2 className=" block text-white text-sm font-bold mb-2">Upload Image</h2>
-        <p className="text-sm text-gray-700">Upload Images, Videos, or Audio Files for the NFT</p>
+        <h2 className=" block text-white text-sm font-bold mb-2">
+          Upload Image
+        </h2>
+        <p className="text-sm text-gray-700">
+          Upload Images, Videos, or Audio Files for the NFT
+        </p>
         <FileUploader />
       </div>
     </div>

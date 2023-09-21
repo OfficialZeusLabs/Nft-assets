@@ -4,7 +4,12 @@ import CollectionCard from "../CollectionCard";
 import { nsmeCollection } from "@/data/collection";
 import Link from "next/link";
 
-const NSMECollection: React.FC = () => {
+type Props = {
+  collections: any[];
+  owners: any[];
+};
+
+const NSMECollection = ({ collections, owners }: Props) => {
   return (
     <div>
       <div className="text-center mb-8 mt-6">
