@@ -39,7 +39,12 @@ NFT Factory is a groundbreaking project by Zeus Labs aimed at democratizing acce
 - Deployment on Gnosis chain for the purpose of this hackhathon.
 
 
-> plss for who is working on the smartcontract, plsss add all the core features of the smart contract here 
+- data base for storage purpose
+- Nsme create the nfts
+- end users can mint
+- end user can list
+- end users can redeem their nft
+- market place for end users
 
 
 `Test Coverage`
