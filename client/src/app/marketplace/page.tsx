@@ -44,7 +44,7 @@ const MarketPlace: React.FC = () => {
         <NSMECollection collections={collections} owners={owners} />
         <TopSellers />
       </div>
-      <Footer />
+        <Footer />
     </>
   );
 };

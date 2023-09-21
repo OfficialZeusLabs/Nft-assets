@@ -51,8 +51,8 @@ const TopNavigation = () => {
         <div className="hidden tablet_l:flex px-4 gap-8  items-center">
           <NavAside />
         </div>
-        <div className="tablet_l:hidden flex text-white cursor-pointer" onClick={menuNav}>
-          <AiOutlineMenu className="tablet_l:hidden flex h-7 w-7 items-center text-white" />
+        <div className="tablet_l:hidden flex cursor-pointer" onClick={menuNav}>
+          <AiOutlineMenu className="tablet_l:hidden flex h-7 w-7 items-center" />
         </div>
       </div>
       
@@ -63,8 +63,8 @@ const TopNavigation = () => {
       whileInView={{ opacity: 1 }}
       className="absolute z-10 tablet_l:hidden flex  top-0 w-full bg-black h-[100dvh]">
         <div className="mx-auto w-[95%]">
-        <div className="mx-auto w-[96%] mt-5  cursor-pointer text-whiet" onClick={menuNav}>
-          <AiOutlineMenu className="tablet_l:hidden ml-auto flex text-white h-7 w-7 items-center" />
+        <div className="mx-auto w-[96%] mt-5  cursor-pointer" onClick={menuNav}>
+          <AiOutlineMenu className="tablet_l:hidden ml-auto flex h-7 w-7 items-center" />
         </div>
           <div className="flex flex-col gap-6 mt-12">
             {navItems.map(({ name, link, id }) => (
