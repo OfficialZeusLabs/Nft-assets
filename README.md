@@ -190,7 +190,7 @@ https://github.com/BukiOffor/Nft-assets/assets/58889001/f8eb776e-df15-4eab-aca5-
 
 ## Demo Video (Clients POV)
 
-- [Frontend Deployment]( https://nft-assets-rxzk.vercel.app/)
+- [Frontend Deployment](https://nft-assets-c8r6.vercel.app/)
 - [Figma design](https://www.figma.com/proto/dV2FBUaa7BomJu7JCWjL1Z/Webpage-Redesign?page-id=67%3A823&type=design&node-id=348-3699&viewport=7528%2C-2452%2C0.51&t=6PGceqXUTERPd9EJ-1&scaling=scale-down&starting-point-node-id=348%3A3699&mode=design)
 
 
