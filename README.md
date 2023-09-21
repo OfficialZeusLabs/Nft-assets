@@ -180,14 +180,15 @@ $ npx hardhat coverage --network localhost --show-stack-traces
 #
 > ## Factory Contract Address/ Available 2 transaction hash 
 
-- https://gnosis-chiado.blockscout.com/address/0x6B8F1720ed04C36Ca9685551aCc00932BaC4f8ff
+- https://gnosis-chiado.blockscout.com/address/0x950384443e2455E93010BeeC53Fd24e3aaD04C67
 
 Tx:
 
-- 0x4f60fbb2a2d0c0162c7357ea0fd67492577168690e170d24aeb1fe60fd3afd0c
+-
+0xaa92f1f2580e1ef9d9c1678f7014f1ff36ac859db278d3de27057be68f5559a9
 
 
-- 0x289fe2781066b37e1e211065281f0671dd72e115da9237e7f10b6829b58071d3
+- 0x1b804915df7d23312735b67895daa26c550fbe63f46f2926ebf38c56bef2fd6f
 
 the transaction hashes
 
