@@ -173,9 +173,11 @@ $ npx hardhat coverage --network localhost --show-stack-traces
 ```
 
 #
-> ## Factory Contract Address
+> ## Factory Contract Address/ Available 2 transaction hash 
 
--https://gnosisscan.io//address/
+-https://gnosisscan.io//address/0x40bFcf955c51590c74FbEDa99692349895b20c55
+- 
+
 # 
 
 ## Useful links
