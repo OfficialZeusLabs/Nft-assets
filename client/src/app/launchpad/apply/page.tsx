@@ -25,7 +25,6 @@ import ConfirmSubmit from "@/components/Forms/ConfirmSubmit";
 import Succes from "@/components/Forms/Succes";
 import SalesPlanForm from "@/components/Forms/Minting";
 
-
 import Social from "@/components/Forms/Social";
 import { toast } from "react-toastify";
 import Endpoints from "@/http/endpoints";
@@ -37,9 +36,9 @@ import {
   getSales,
   getArtworks,
   getTeam,
-  getSocial
+  getSocial,
 } from "@/reducers/userSlice";
-import { useSelector } from "react-redux";  
+import { useSelector } from "react-redux";
 const Apply: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -85,7 +84,6 @@ const Apply: React.FC = () => {
         });
     }
   };
-  
 
   /**
    * Function to toggle the confirmation state.
@@ -104,7 +102,6 @@ const Apply: React.FC = () => {
    *
    * @returns {JSX.Element} - The JSX element representing the current page of the form.
    */
-  
 
   const previewCurrentPage = () => {
     switch (currentPage) {
@@ -122,13 +119,13 @@ const Apply: React.FC = () => {
         return <ArtworkDetailsForm />;
       case 7:
         return <Social />;
-      default: 
+      default:
         return;
     }
   };
   return (
     <div className="flex flex-col justify-start h-screen mt-10 mb-10 text-white">
-      <div className="w-[98%] ">{ previewCurrentPage()}</div>
+      <div className="w-[98%] ">{previewCurrentPage()}</div>
       {currentPage > 2 && currentPage < 9 && (
         <div className="w-[98%] flex justify-end mt-5">
           {isLastPage ? (

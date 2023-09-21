@@ -16,7 +16,6 @@ const CollectionCard: React.FC<CollectionCardProps> = (props) => {
         borderRadius: "0.5rem",
         border: "1px solid #FFC72C",
       }}
-      
     >
       <div>
         <Image
