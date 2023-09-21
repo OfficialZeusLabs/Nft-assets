@@ -11,6 +11,7 @@ import { readFactoryContract, readSimpleCollectibleContract } from "@/utils";
 const MarketPlace: React.FC = () => {
   const [collections, setCollections] = useState<any[]>([]);
   const [owners, setOwners] = useState<any[]>([]);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     readFactoryContract("getMarketPlaces").then((res) => {
@@ -22,12 +23,16 @@ const MarketPlace: React.FC = () => {
             ...existingCollections,
             ...data,
           ]);
-          data.forEach((index: any) => {
-            console.log(index);
-            readSimpleCollectibleContract(address, "getOwners", [
-              parseInt(index),
-            ]).then((owners) => {
-              setOwners(owners);
+          readSimpleCollectibleContract(address, "name").then((name) => {
+            console.log(name);
+            setName(String(name[0]));
+            data.forEach((index: any) => {
+              console.log(index);
+              readSimpleCollectibleContract(address, "getOwners", [
+                parseInt(index),
+              ]).then((owners) => {
+                setOwners(owners);
+              });
             });
           });
         });
@@ -44,7 +49,7 @@ const MarketPlace: React.FC = () => {
         <NSMECollection collections={collections} owners={owners} />
         <TopSellers />
       </div>
-        <Footer />
+      <Footer />
     </>
   );
 };
