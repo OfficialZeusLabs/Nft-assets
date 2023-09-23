@@ -39,7 +39,12 @@ NFT Factory is a groundbreaking project by Zeus Labs aimed at democratizing acce
 - Deployment on Gnosis chain for the purpose of this hackhathon.
 
 
-> plss for who is working on the smartcontract, plsss add all the core features of the smart contract here 
+- data base for storage purpose
+- Nsme create the nfts
+- end users can mint
+- end user can list
+- end users can redeem their nft
+- market place for end users
 
 
 `Test Coverage`
@@ -173,9 +178,21 @@ $ npx hardhat coverage --network localhost --show-stack-traces
 ```
 
 #
-> ## Factory Contract Address
+> ## Factory Contract Address/ Available 2 transaction hash 
 
--https://gnosisscan.io//address/
+- https://gnosis-chiado.blockscout.com/address/0x950384443e2455E93010BeeC53Fd24e3aaD04C67
+
+Tx:
+
+-
+0xaa92f1f2580e1ef9d9c1678f7014f1ff36ac859db278d3de27057be68f5559a9
+
+
+- 0x1b804915df7d23312735b67895daa26c550fbe63f46f2926ebf38c56bef2fd6f
+
+the transaction hashes
+
+
 # 
 
 ## Useful links
@@ -190,7 +207,7 @@ https://github.com/BukiOffor/Nft-assets/assets/58889001/f8eb776e-df15-4eab-aca5-
 
 ## Demo Video (Clients POV)
 
-- [Frontend Deployment]( https://nft-assets-rxzk.vercel.app/)
+- [Frontend Deployment](https://nft-assets-c8r6.vercel.app/)
 - [Figma design](https://www.figma.com/proto/dV2FBUaa7BomJu7JCWjL1Z/Webpage-Redesign?page-id=67%3A823&type=design&node-id=348-3699&viewport=7528%2C-2452%2C0.51&t=6PGceqXUTERPd9EJ-1&scaling=scale-down&starting-point-node-id=348%3A3699&mode=design)
 
 
