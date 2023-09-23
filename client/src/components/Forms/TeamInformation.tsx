@@ -12,7 +12,7 @@ const TeamInformationForm: React.FC = () => {
   return (
     <div>
       <h2 className={`${orbitron.className} text-primary text-2xl mb-5`}>
-      Contact Information
+        Contact Information
       </h2>
       <EditableSection
         title={"Contact’s Full Name"}
@@ -52,7 +52,6 @@ const TeamInformationForm: React.FC = () => {
           dispatch(setTeam({ ...team, phone: value }));
         }}
       />
-
     </div>
   );
 };

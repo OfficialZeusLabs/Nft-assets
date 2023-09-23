@@ -7,33 +7,51 @@ import Footer from "@/components/Footer";
 import NSMECollection from "@/components/marketplace/NSMECollection";
 import TopSellers from "@/components/marketplace/TopSellers";
 import { readFactoryContract, readSimpleCollectibleContract } from "@/utils";
+import axios from "axios";
 
 const MarketPlace: React.FC = () => {
   const [collections, setCollections] = useState<any[]>([]);
   const [owners, setOwners] = useState<any[]>([]);
-  const [name, setName] = useState("");
+  const [images, setImages] = useState<string[]>([]);
+  const [names, setNames] = useState<string[]>([]);
 
   useEffect(() => {
+    console.log("jjj");
     readFactoryContract("getMarketPlaces").then((res) => {
       console.log(res);
       res.forEach((address: any) => {
+        console.log(address);
         readSimpleCollectibleContract(address, "getData").then((data) => {
           console.log(data);
-          setCollections((existingCollections) => [
-            ...existingCollections,
-            ...data,
-          ]);
+          data &&
+            typeof data !== "string" &&
+            setCollections((existingCollections) => [
+              ...existingCollections,
+              ...data,
+            ]);
           readSimpleCollectibleContract(address, "name").then((name) => {
             console.log(name);
-            setName(String(name[0]));
-            data.forEach((index: any) => {
-              console.log(index);
-              readSimpleCollectibleContract(address, "getOwners", [
-                parseInt(index),
-              ]).then((owners) => {
-                setOwners(owners);
+            name &&
+              setNames((existingNames) => [...existingNames, String(name)]);
+            data &&
+              typeof data === "object" &&
+              data.forEach((response: any) => {
+                console.log(response, response.uri);
+                axios.get(response.uri).then((axiosResponse) => {
+                  console.log(axiosResponse);
+                  setImages((existingImages) => [
+                    ...existingImages,
+                    axiosResponse.data.imageUrl,
+                  ]);
+                });
+                readSimpleCollectibleContract(address, "getOwners", [
+                  parseFloat(response.index),
+                ]).then((owners) => {
+                  owners && typeof owners !== "string"
+                    ? setOwners(owners)
+                    : setOwners([]);
+                });
               });
-            });
           });
         });
       });
@@ -45,8 +63,18 @@ const MarketPlace: React.FC = () => {
       <TopNavigation />
       <div className="mx-auto w-[97%] tablet_l:w-[94%] laptop_l:w-[89%] max-w-[1280px]">
         <SearchCollection />
-        <TrendingCollection collections={collections} owners={owners} />
-        <NSMECollection collections={collections} owners={owners} />
+        <TrendingCollection
+          collections={collections}
+          owners={owners}
+          names={names}
+          images={images}
+        />
+        <NSMECollection
+          collections={collections}
+          owners={owners}
+          names={names}
+          images={images}
+        />
         <TopSellers />
       </div>
       <Footer />

@@ -1,16 +1,27 @@
 "use client";
-import { Provider } from "react-redux";
+import Providers, { wagmiConfig } from "@/providers/walletconnect";
 import store from "@/store";
-import { poppins } from "@/fonts/fonts";
+import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
 import { WagmiConfig } from "wagmi";
-import { wagmiConfig } from "@/providers/walletconnect";
+import { poppins } from "../fonts/fonts";
+import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <Provider store={store}>
-      <WagmiConfig config={wagmiConfig}>
-        <body className={`${poppins.className}`}>{children}</body>
-      </WagmiConfig>
-    </Provider>
+    <WagmiConfig config={wagmiConfig}>
+      <html lang="en">
+        <Providers />
+        <Provider store={store}>
+          <body className={`${poppins.className}`}>{children}</body>
+        </Provider>
+        <ToastContainer />
+      </html>
+    </WagmiConfig>
   );
 }

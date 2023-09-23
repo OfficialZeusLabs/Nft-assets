@@ -1,5 +1,6 @@
 import { readContract as readContractData } from "@wagmi/core";
 import { Factory, SimpleCollectible } from "../../constants";
+import { error } from "console";
 
 export const readFactoryContract = async (
   functionName: string,
@@ -10,6 +11,7 @@ export const readFactoryContract = async (
     abi: Factory.abi,
     functionName,
     args,
+    chainId: 10200,
   });
 
   return data;
@@ -20,14 +22,22 @@ export const readSimpleCollectibleContract = async (
   functionName: string,
   args: any[] = []
 ) => {
-  const data = await readContractData({
-    address,
-    abi: SimpleCollectible.abi,
-    functionName,
-    args,
-  });
+  try {
+    console.log(address, functionName, args, "kkk");
+    const data = await readContractData({
+      address,
+      abi: SimpleCollectible.abi,
+      functionName,
+      args,
+      chainId: 10200,
+    });
+    console.log(data, "lll");
 
-  return data;
+    return functionName === "name" ? String(data).split(",")[0] : data;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 };
 
 export const getNFTDetails = async () => {};

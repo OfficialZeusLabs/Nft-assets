@@ -31,7 +31,6 @@ import ConfirmSubmit from "@/components/Forms/ConfirmSubmit";
 import Succes from "@/components/Forms/Succes";
 import SalesPlanForm from "@/components/Forms/Minting";
 
-
 import Social from "@/components/Forms/Social";
 import { toast } from "react-toastify";
 import Endpoints from "@/http/endpoints";
@@ -47,6 +46,7 @@ import {
 } from "@/reducers/userSlice";
 import { useSelector } from "react-redux";
 import { Factory } from "../../../../constants";
+import { parseEther } from "viem";
 
 const Apply: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -61,9 +61,6 @@ const Apply: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const debouncedTitle = useDebounce(project?.title, 500);
   const debouncedPrice = useDebounce(artworks?.price, 500);
-  console.log(
-    typeof debouncedPrice === "string" ? parseInt(String(debouncedPrice)) : 0
-  );
 
   const {
     config,
@@ -75,7 +72,7 @@ const Apply: React.FC = () => {
     functionName: "deploy",
     args: [
       debouncedTitle,
-      typeof debouncedTitle === "string"
+      debouncedTitle[0] === "string"
         ? String(debouncedTitle).substring(0, 3).toUpperCase()
         : null,
       // This should be the metadata, but since they can't specify details of each NFT, we use existing
@@ -86,14 +83,14 @@ const Apply: React.FC = () => {
       ],
       // They should be able to set the prices for the various NFTs, but for now, one for all
       [
-        typeof debouncedPrice === "string"
-          ? parseInt(String(debouncedPrice))
+        debouncedPrice[0]
+          ? parseEther(String(parseFloat(debouncedPrice[0]) / 100))
           : 0,
-        typeof debouncedPrice === "string"
-          ? parseInt(String(debouncedPrice))
+        debouncedPrice[0]
+          ? parseEther(String(parseFloat(debouncedPrice[0]) / 100))
           : 0,
-        typeof debouncedPrice === "string"
-          ? parseInt(String(debouncedPrice))
+        debouncedPrice[0]
+          ? parseEther(String(parseFloat(debouncedPrice[0]) / 100))
           : 0,
       ],
     ],
@@ -147,8 +144,6 @@ const Apply: React.FC = () => {
       });
     }
   }, [isSuccess, isError, isPrepareError]);
-  
-  
 
   /**
    * Function to toggle the confirmation state.
@@ -189,7 +184,7 @@ const Apply: React.FC = () => {
   };
   return (
     <div className="flex flex-col justify-start h-screen mt-10 mb-10 text-white">
-      <div className="w-[98%] ">{ previewCurrentPage()}</div>
+      <div className="w-[98%] ">{previewCurrentPage()}</div>
       {currentPage > 2 && currentPage < 9 && (
         <div className="w-[98%] flex justify-end mt-5">
           {isLastPage ? (
