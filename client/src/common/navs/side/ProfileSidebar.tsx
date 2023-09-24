@@ -5,11 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiOutlineMenu } from "react-icons/ai";
-import { CgProfile } from 'react-icons/cg'
-import { BsCollection } from 'react-icons/bs'
-import { FiHelpCircle } from 'react-icons/fi'
-import { BiWorld } from 'react-icons/bi'
-import { IoMdNotifications } from 'react-icons/io'
+import { CgProfile } from "react-icons/cg";
+import { BsCollection } from "react-icons/bs";
+import { FiHelpCircle } from "react-icons/fi";
+import { BiWorld } from "react-icons/bi";
+import { IoMdNotifications } from "react-icons/io";
 
 interface ProfileSideBarProps {
   menuNav: () => void; // Define the prop type for menuNav
@@ -21,34 +21,34 @@ const ProfileSideBar: React.FC<ProfileSideBarProps> = ({ menuNav }) => {
   const navigationLinks = [
     {
       name: "Profile",
-      icon: <CgProfile size={25}/>,
+      icon: <CgProfile size={25} />,
       to: "#",
     },
     {
       name: "My Collections",
-      icon: <BsCollection size={25}/>,
+      icon: <BsCollection size={25} />,
       to: "#",
     },
     {
       name: "Notifications",
-      icon: <IoMdNotifications size={25}/>,
+      icon: <IoMdNotifications size={25} />,
       to: "#",
     },
     {
-        name: "Settings",
-        icon: <IoMdNotifications size={25}/>,
-        to: "#",
-      },
-      {
-        name: "Help Center",
-        icon: <FiHelpCircle size={25}/>,
-        to: "#",
-      },
-      {
-        name: "Language",
-        icon: <BiWorld size={25}/>,
-        to: "#",
-      },
+      name: "Settings",
+      icon: <IoMdNotifications size={25} />,
+      to: "#",
+    },
+    {
+      name: "Help Center",
+      icon: <FiHelpCircle size={25} />,
+      to: "#",
+    },
+    {
+      name: "Language",
+      icon: <BiWorld size={25} />,
+      to: "#",
+    },
   ];
   return (
     <div>
@@ -59,11 +59,11 @@ const ProfileSideBar: React.FC<ProfileSideBarProps> = ({ menuNav }) => {
           // width: "15%",
         }}
       >
-        <div 
-             onClick={menuNav}
-            className="absolute right-0  text-white top-16 cursor-pointer"
+        <div
+          onClick={menuNav}
+          className="absolute right-0  text-white top-16 cursor-pointer"
         >
-            <AiOutlineMenu  className="h-6 w-6 text-white items-center" />
+          <AiOutlineMenu className="h-6 w-6 text-white items-center" />
         </div>
         <div className="flex flex-col">
           {navigationLinks.map(({ name, to, icon }) => (
@@ -81,7 +81,7 @@ const ProfileSideBar: React.FC<ProfileSideBarProps> = ({ menuNav }) => {
                   borderRight: to === pathName ? "4px solid #FFC72C" : "none",
                 }}
               >
-               {icon}
+                {icon}
                 <p>{name}</p>
               </div>
             </Link>

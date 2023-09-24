@@ -88,7 +88,9 @@ const FileUploader = () => {
       ) : (
         <ClipLoader color="#105BC9" size={15} />
       )}
-      <p className="text-opacity-25 p-6">{artwork ? "Change" : "Upload"} Artwork</p>
+      <p className="text-opacity-25 p-6">
+        {artwork ? "Change" : "Upload"} Artwork
+      </p>
     </div>
   );
 };
