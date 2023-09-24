@@ -30,7 +30,11 @@ const collections: React.FC = () => {
         owners={owners}
         names={names}
         images={images} />
-        <NSMECollection />
+        <NSMECollection
+         collections={collections}
+         owners={owners}
+         names={names}
+         images={images} />
         <TopSellers />
         <div className="mx-auto w-[95%] laptop_l:w-[920px]">
           <MarketTrend />
