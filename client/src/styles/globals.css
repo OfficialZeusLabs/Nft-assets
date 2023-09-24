@@ -13,9 +13,10 @@ body {
 
 .overview_b {
   border-radius: 8px;
-  border: 2px solid linear-gradient(90deg, #130712, #ffc72c);
+  border: 2px solid linear-gradient(90deg, #130712, #FFC72C);
   /* background: linear-gradient(90deg, #130712, #FFC72C); */
   /* background-clip: text; */
   /* -webkit-background-clip: text; */
   /* color: transparent; */
+  
 }

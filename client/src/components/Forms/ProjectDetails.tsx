@@ -25,7 +25,7 @@ export const SectionOneForm = () => {
           dispatch(setProject({ ...project, title: value }));
         }}
       />
-      <TextArea
+       <TextArea
         title={"Project Description"}
         placeholder={"Description"}
         onChangeHandler={(value: string): void => {
@@ -36,7 +36,7 @@ export const SectionOneForm = () => {
         }}
         subTitle="Brief Description of the Product/Service to be Minted as NFT"
       />
-
+     
       <EditableSection
         title={"Product Category"}
         placeholder={"Start typing"}
@@ -80,7 +80,7 @@ export const SecondSectionForm = () => {
   return (
     <div>
       <h2 className={`${orbitron.className} text-primary text-2xl mb-5`}>
-        Business Information
+      Business Information
       </h2>
       <EditableSection
         title={"Business Information"}

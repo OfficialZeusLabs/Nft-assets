@@ -32,12 +32,8 @@ const Mint = () => {
   return (
     <div className={styles.mint}>
       <TopNavigation />
-      <div
-        className={`flex-col laptop:flex-row mx-auto mt-20 w-[97%] tablet_l:w-[94%] laptop_l:w-[89%] max-w-[1280px] ${styles.mint_details}`}
-      >
-        <div
-          className={`w-[80%] mx-auto laptop:mx-0 laptop:w-[30%] ${styles.left}`}
-        >
+      <div className={`flex-col laptop:flex-row mx-auto mt-20 w-[97%] tablet_l:w-[94%] laptop_l:w-[89%] max-w-[1280px] ${styles.mint_details}`}>
+        <div className={`w-[80%] mx-auto laptop:mx-0 laptop:w-[30%] ${styles.left}`}>
           {/* <div className='flex '>
         <div className='w-[40%]'> */}
           <Image
@@ -76,9 +72,9 @@ const Mint = () => {
             </div>
           </div>
           <div className={styles.mint_btn}>
-            <button onClick={toggleConfirmation} className={styles.home_btn}>
-              Mint
-            </button>
+            <button
+            onClick={toggleConfirmation}
+            className={styles.home_btn}>Mint</button>
             <p>
               By clicking “Mint” you agree to the Nft Factory. Terms of Service.
               Each transaction will incur non-refundable gas fees.
@@ -86,7 +82,9 @@ const Mint = () => {
           </div>
         </div>
       </div>
-      {confirm && <Transproces cancel={toggleConfirmation} />}
+      {confirm && (
+        <Transproces cancel={toggleConfirmation} />
+      )}
       <Footer />
     </div>
   );

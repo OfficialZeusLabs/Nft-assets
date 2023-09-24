@@ -32,12 +32,7 @@ const Succes: React.FC<GetStartedProps> = ({ cancel }) => {
           Email/Phone Number].
         </p>
         <div className="flex justify-center my-10">
-          <Link
-            className="bg-gradient-linear px-6 mb-5 py-3 rounded-md"
-            href="/marketplace"
-          >
-            Marketplace
-          </Link>
+            <Link className="bg-gradient-linear px-6 mb-5 py-3 rounded-md" href='/marketplace'>Marketplace</Link>
         </div>
       </div>
     </>

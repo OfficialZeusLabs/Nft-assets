@@ -21,10 +21,12 @@ const ConfirmSubmit: React.FC<GetStartedProps> = ({ cancel, nextPage }) => {
     setSubcom(!subcom);
   };
 
+
   const submitsucces = () => {
-    nextPage();
+    nextPage()
     setSubcom(!subcom);
   };
+
 
   return (
     <>

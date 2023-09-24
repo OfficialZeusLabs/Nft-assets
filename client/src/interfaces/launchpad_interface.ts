@@ -1,11 +1,7 @@
 export interface LaunchPadInterface {
-  project: {
-    title: string | null;
-  } | null;
+  project: object | null;
   team: object | null;
-  artworks: {
-    price: string | null;
-  } | null;
+  artworks: object | null;
   sales: object | null;
   social: object | null;
 }

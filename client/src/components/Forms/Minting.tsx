@@ -59,6 +59,8 @@ const Minting: React.FC = () => {
         }}
         // subTitle="Royalty Percentage for the Creator/Owner (if applicable)"
       />
+
+    
     </div>
   );
 };

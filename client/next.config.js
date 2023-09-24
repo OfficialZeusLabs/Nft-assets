@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["res.cloudinary.com", "ipfs.io"],
+    domains: ["res.cloudinary.com"],
   },
 };
 module.exports = nextConfig;

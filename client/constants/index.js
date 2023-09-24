@@ -1,7 +1,5 @@
-const Factory = require("./Factory.json");
-const SimpleCollectible = require("./SimpleCollectible.json");
+const abi = require("./abi.json");
 
 module.exports = {
-  Factory,
-  SimpleCollectible,
+  abi,
 };

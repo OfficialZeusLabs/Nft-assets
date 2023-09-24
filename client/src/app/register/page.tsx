@@ -53,11 +53,7 @@ const Register = () => {
           >
             Register
           </h3>
-          <form
-            onSubmit={handleSubmit}
-            className={`${poppins.className} mt-5`}
-            method="POST"
-          >
+          <form onSubmit={handleSubmit} className={`${poppins.className} mt-5`} method="POST">
             <label className="text-md">Brand name:</label>
             <input
               className="shadow appearance-none rounded w-full py-4 px-3 text-white leading-tight focus:outline-none focus:shadow-outline mb-3"
