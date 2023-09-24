@@ -1,3 +1,5 @@
+"use client";
+
 import TopNavigation from "@/common/navs/top/TopNavigation";
 
 import React, { useState, useEffect } from "react";
