@@ -114,7 +114,7 @@ contract SimpleCollectible is ERC721 {
 	function redeem(uint256 _tokenId, uint256 uriIndex) external {
 		address caller = ownerOf(_tokenId);
 		if (caller != msg.sender) {
-			revert("Transaction failed for some reason");
+			revert("You are not the token Owner");
 		}
 
 		_burn(_tokenId);
