@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TopNavigation from "@/common/navs/top/TopNavigation";
 import Footer from "@/components/Footer";
 import ConfirmSubmit from "@/components/Forms/ConfirmSubmit";
@@ -8,9 +8,12 @@ import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 import { Transproces } from "@/components/Transproces";
 
+
+
 const Mint = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [confirm, setConfirm] = useState<boolean>(false);
+
 
   /**
    * Function to navigate to the next page of the application form.
@@ -29,6 +32,12 @@ const Mint = () => {
   const toggleConfirmation = () => {
     setConfirm(!confirm);
   };
+  const _toggleConfirmation = () => {
+    setConfirm(!confirm);
+  };
+
+
+  
   return (
     <div className={styles.mint}>
       <TopNavigation />
@@ -75,15 +84,27 @@ const Mint = () => {
               <p>0.05 eth</p>
             </div>
           </div>
-          <div className={styles.mint_btn}>
+          {/** Mint Button */}
+          <div id="mint" className={styles.mint_btn}>
             <button onClick={toggleConfirmation} className={styles.home_btn}>
               Mint
             </button>
             <p>
-              By clicking “Mint” you agree to the Nft Factory. Terms of Service.
+              By clicking Mint you agree to the Nft Factory. Terms of Service.
               Each transaction will incur non-refundable gas fees.
             </p>
           </div>
+          {/** Redeem Button */}
+          <div id = "redeem" className={styles.mint_btn}>
+            <button onClick={_toggleConfirmation} className={styles.home_btn}>
+              Redeem
+            </button>
+            <p>
+              By clicking Redeem you agree to the Nft Factory. Terms of Service.
+              Each transaction will incur non-refundable gas fees.
+            </p>
+          </div>
+{/** ------------------------------------------------------------------------------------------- */}
         </div>
       </div>
       {confirm && <Transproces cancel={toggleConfirmation} />}
