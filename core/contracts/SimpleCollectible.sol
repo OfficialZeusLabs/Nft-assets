@@ -22,6 +22,8 @@ contract SimpleCollectible is ERC721 {
 	mapping(uint256 => string) tokenURIs;
 	mapping(uint256 => address[]) owners;
 	mapping(address => uint256) redeemed;
+	mapping(address => uint256[]) TokenMappings;
+	
 	struct Data {
 		uint256 index;
 		string uri;
@@ -85,6 +87,7 @@ contract SimpleCollectible is ERC721 {
 			revert("Transaction failed for some reason");
 		}
 
+		TokenMappings[msg.sender].push(tokenID);
 		_tokenIds.increment();
 		owners[_uriIndex].push(msg.sender);
 		emit collectibleCreated(recipient, _uriIndex, tokenID);
@@ -162,5 +165,12 @@ contract SimpleCollectible is ERC721 {
 
 	function getOwners(uint256 index) external view returns (address[] memory) {
 		return owners[index];
+	}
+
+	function getTokenData(address owner) external view returns (uint256[]memory){
+		return TokenMappings[owner];
+	}
+	function getRedemmed(address owner)external view returns (uint256 amount){
+		amount = redeemed[owner];
 	}
 }
