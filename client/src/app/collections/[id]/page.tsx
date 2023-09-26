@@ -148,7 +148,10 @@ const Details = () => {
         confirmations: 1,
         hash,
       })
-    console.log("data is ",data);
+    if (data.status == "success") {
+      toast.success("NFT Redeemed successfully")
+      }
+    console.log("data is ", data);
     
 
     
