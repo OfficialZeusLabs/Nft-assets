@@ -47,7 +47,7 @@ const Profile: React.FC = () => {
                     console.log(axiosResponse);
                     setImages((existingImages) => [
                       ...existingImages,
-                      axiosResponse.data.imageUrl,
+                      axiosResponse.data.image,
                     ]);
                   });
                 });

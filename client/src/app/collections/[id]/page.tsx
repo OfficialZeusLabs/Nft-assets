@@ -61,7 +61,7 @@ const Details = () => {
               data &&
                 axios.get(data[params].uri).then((axiosResponse) => {
                   console.log(axiosResponse);
-                  setImage(axiosResponse.data.imageUrl);
+                  setImage(axiosResponse.data.image);
                   readSimpleCollectibleContract(address, "getOwners", [
                     parseFloat(data[params].index),
                   ]).then((owners) => {
@@ -126,7 +126,7 @@ const Details = () => {
 
   async function getbalance() {
     const balance = await readSimpleCollectibleContract(
-      "0xCd922Fe5fdbFE76916d08d72ed8c4C4F33F960e6",
+      "0x9a5CfF1ca498D7f01c14d288F794f0d1093Fd3C1",
       "balanceOf",
       [address]
     );
@@ -145,33 +145,33 @@ const Details = () => {
   };
 
   async function getTokenId(tokenId: number) {
-    console.log("entering get Token id")
+    console.log("entering get Token id");
     const owner = await readSimpleCollectibleContract(
-      "0xCd922Fe5fdbFE76916d08d72ed8c4C4F33F960e6",
+      "0x9a5CfF1ca498D7f01c14d288F794f0d1093Fd3C1",
       "ownerOf",
       [tokenId]
     );
     return owner;
   }
   async function prepareCancel() {
-    console.log("entering perapare cancel")
-    for (let i = 0; i < 100; i++){
-      console.log(i)
-      if (address == await getTokenId(i)) {
-        console.log(`found ${i}`)
-        return i
+    console.log("entering perapare cancel");
+    for (let i = 0; i < 100; i++) {
+      console.log(i);
+      if (address == (await getTokenId(i))) {
+        console.log(`found ${i}`);
+        return i;
       }
     }
   }
   async function _prepareCancel() {
     const tokens = await readSimpleCollectibleContract(
-      "0xCd922Fe5fdbFE76916d08d72ed8c4C4F33F960e6",
+      //"0xCd922Fe5fdbFE76916d08d72ed8c4C4F33F960e6",
+      "0x9a5CfF1ca498D7f01c14d288F794f0d1093Fd3C1",
       "getTokenData",
       [address]
     );
     return tokens![0];
   }
-  
 
   const Redeem = async () => {
     const progress = toast.success(
@@ -185,7 +185,7 @@ const Details = () => {
     const tokenId = await prepareCancel();
     //const tokenId = await _prepareCancel();
     const request = await prepareWriteContract({
-      address: "0xCd922Fe5fdbFE76916d08d72ed8c4C4F33F960e6",
+      address: "0x9a5CfF1ca498D7f01c14d288F794f0d1093Fd3C1",
       abi: SimpleCollectible.abi,
       functionName: "redeem",
       args: [tokenId, params],
