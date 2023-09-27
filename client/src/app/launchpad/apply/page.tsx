@@ -77,9 +77,9 @@ const Apply: React.FC = () => {
         : null,
       // This should be the metadata, but since they can't specify details of each NFT, we use existing
       [
-        "https://bafybeibnsjbky2l2iphqw4rix5frpae3sceexoqmzseb6wt7wj3ntu2k6a.ipfs.dweb.link/1.json",
-        "https://bafybeibnsjbky2l2iphqw4rix5frpae3sceexoqmzseb6wt7wj3ntu2k6a.ipfs.dweb.link/2.json",
-        "https://bafybeibnsjbky2l2iphqw4rix5frpae3sceexoqmzseb6wt7wj3ntu2k6a.ipfs.dweb.link/3.json",
+        "https://bafybeib4eyyxb5j2mugwzr4fmr2vd2wyqb4hrsj5w42xyb7frdcae5nusa.ipfs.dweb.link/1.json",
+        "https://bafybeifzlqzt7jdzrfdr44sxbcpiuya6tf3dic3ghikhktlyogr3qfxkze.ipfs.dweb.link/2.json",
+        "https://bafybeieamp53yjixpvq6h26zf5qmycohspmec2hjky5ufucslunivjrbc4.ipfs.dweb.link/3.json",
       ],
       // They should be able to set the prices for the various NFTs, but for now, one for all
       [

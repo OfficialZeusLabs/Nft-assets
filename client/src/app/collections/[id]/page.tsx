@@ -7,8 +7,12 @@ import styles from "@/styles/Home.module.css";
 import { orbitron } from "@/fonts/fonts";
 import { poppins } from "@/fonts/fonts";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { prepareWriteContract, writeContract, waitForTransaction } from '@wagmi/core'
+import { usePathname, useRouter } from "next/navigation";
+import {
+  prepareWriteContract,
+  writeContract,
+  waitForTransaction,
+} from "@wagmi/core";
 
 import {
   usePrepareContractWrite,
@@ -23,9 +27,9 @@ import { toast } from "react-toastify";
 import { parseEther } from "viem";
 
 const Details = () => {
-  const { isConnected ,address } = useAccount();
+  const { isConnected, address } = useAccount();
   const pathName = usePathname();
-  // const router = useRouter();
+  const router = useRouter();
   const params = parseFloat(pathName.charAt(pathName.length - 1));
   const [collection, setCollection] = useState({ mintFee: 0 });
   const [owners, setOwners] = useState<any[]>([]);
@@ -93,28 +97,30 @@ const Details = () => {
   useEffect(() => {
     console.log(String(collection.mintFee * 100), collection.mintFee);
     if (isSuccess) {
+      toast.dismiss();
       toast.success("Minted Successfully", { theme: "colored" });
-     //setIsRedeemed(true);
+      router.push("");
+      //setIsRedeemed(true);
     } else if ((isPrepareError || isError) && collection.mintFee) {
       toast.error(prepareError?.message || error?.message, {
         theme: "colored",
       });
     }
   }, [isSuccess, isError, isPrepareError]);
-  
+
   useEffect(() => {
     async function updateUI() {
       if (isConnected) {
         //@ts-ignore
         const balance = await getbalance();
-        console.log("balance is ", balance)
+        console.log("balance is ", balance);
         //@ts-ignore
         if (parseInt(balance) > 0) {
-          setIsRedeemed(true)
+          setIsRedeemed(true);
         }
       }
     }
-      updateUI();   
+    updateUI();
   }, [isConnected]);
 
   async function getbalance() {
@@ -122,39 +128,47 @@ const Details = () => {
       "0xCd922Fe5fdbFE76916d08d72ed8c4C4F33F960e6",
       "balanceOf",
       [address]
-    )
+    );
     return balance;
   }
 
   const Mint = () => {
-    console.log(isRedeemed);
-    !isRedeemed && write?.();
+    if (!isRedeemed) {
+      toast.success("Transaction in progress, confirm in wallet", {
+        autoClose: false,
+      });
+      write?.();
+    }
     // router.push("/collections/mint");
   };
 
-  const Redeem = async() => {
+  const Redeem = async () => {
+    const progress = toast.success(
+      "Transaction in progress, confirm in wallet",
+      {
+        autoClose: false,
+      }
+    );
     // write?.();
     // router.push("/collections/mint");
     const request = await prepareWriteContract({
       //@ts-ignore
       address: "0xCd922Fe5fdbFE76916d08d72ed8c4C4F33F960e6",
       abi: SimpleCollectible.abi,
-      functionName: 'redeem',
-      args: [0,params]
-    })
-    console.log('value is ', request)
-      const { hash } = await writeContract(request)
-      const data = await waitForTransaction({
-        confirmations: 1,
-        hash,
-      })
+      functionName: "redeem",
+      args: [0, params],
+    });
+    console.log("value is ", request);
+    const { hash } = await writeContract(request);
+    const data = await waitForTransaction({
+      confirmations: 1,
+      hash,
+    });
     if (data.status == "success") {
-      toast.success("NFT Redeemed successfully")
-      }
+      toast.dismiss(progress);
+      toast.success("NFT Redeemed successfully");
+    }
     console.log("data is ", data);
-    
-
-    
   };
 
   return (
