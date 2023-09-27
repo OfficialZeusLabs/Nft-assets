@@ -35,8 +35,8 @@ const Details = () => {
   const [owners, setOwners] = useState<any[]>([]);
   const [image, setImage] = useState("");
   const [cAddress, setAddress] = useState<`0x${string}`>(
-    //"0x950384443e2455E93010BeeC53Fd24e3aaD04C67"
-    "0x74327bBA4Afbbdb553652989E6a2d7D6B9bf31A0"
+    "0x950384443e2455E93010BeeC53Fd24e3aaD04C67"
+    //"0x74327bBA4Afbbdb553652989E6a2d7D6B9bf31A0"
   );
   const [name, setName] = useState("");
   const [isRedeemed, setIsRedeemed] = useState(false);
