@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { orbitron, poppins } from "@/fonts/fonts";
 import Image from "next/image";
 import React from "react";
@@ -10,13 +10,53 @@ import Card from "@/common/card";
 import SideBar from "@/common/navs/side/SideNavigation";
 import { AiOutlineMenu } from "react-icons/ai";
 import ProfileSideBar from "@/common/navs/side/ProfileSidebar";
+import { readFactoryContract, readSimpleCollectibleContract } from "@/utils";
+import { useAccount } from "wagmi";
+import axios from "axios";
 
 const Profile: React.FC = () => {
+  const { address } = useAccount();
   const [Open, setOpen] = useState(true);
+  const [name, setName] = useState("");
+  const [mintFee, setMintFee] = useState<number[]>([]);
+  const [images, setImages] = useState<string[]>([]);
 
   const menuNav = () => {
     setOpen(!Open);
   };
+
+  useEffect(() => {
+    readFactoryContract("getMarketPlaces").then((res) => {
+      console.log(res);
+      res.forEach((contractAddress: any) => {
+        readSimpleCollectibleContract(contractAddress, "getData", [
+          address,
+        ]).then((data) => {
+          readSimpleCollectibleContract(contractAddress, "name").then(
+            (name) => {
+              name && setName(String(name));
+              data &&
+                typeof data === "object" &&
+                data.forEach((response: any, i) => {
+                  console.log(response, response.uri);
+                  setMintFee((existingCollections) => [
+                    ...existingCollections,
+                    parseFloat(response.mintFee) / 10 ** 18,
+                  ]);
+                  axios.get(response.uri).then((axiosResponse) => {
+                    console.log(axiosResponse);
+                    setImages((existingImages) => [
+                      ...existingImages,
+                      axiosResponse.data.imageUrl,
+                    ]);
+                  });
+                });
+            }
+          );
+        });
+      });
+    });
+  }, []);
 
   return (
     <>
@@ -94,45 +134,31 @@ const Profile: React.FC = () => {
           </div>
           <div className="mt-8 w-3/4">
             <h2 className="text-2xl mb-4">My Collections</h2>
-            <p className="text-primary mt-3 mb-2">Unredeemed NFTs (6)</p>
+            <p className="text-primary mt-3 mb-2">
+              Unredeemed NFTs ({mintFee.length})
+            </p>
             <div className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-6">
-              <Card
-                source={`/rectangle.png`}
-                title={"Cake Shop NFTs"}
-                price={"0.05 ETH"}
-              />
-
-              {[
-                "Pie NFTs",
-                "Sweet slice NFTs",
-                "Burger Fac NFTs",
-                "Pasteries NFTs",
-                "Cake Fac NFTs",
-              ].map((title, index) => (
+              {mintFee.map((fee, i) => (
                 <Card
-                  key={index}
-                  source={`/rectangle.png`}
-                  title={title}
-                  price={"0.05 ETH"}
+                  key={i}
+                  source={images[i]}
+                  title={name}
+                  price={`${fee} ETH`}
                 />
               ))}
             </div>
           </div>
           <div className="mt-14 w-3/4">
-            <p className="text-primary mt-3 mb-2">Redeemed Nfts (5)</p>
+            <p className="text-primary mt-3 mb-2">
+              Redeemed Nfts ({mintFee.length})
+            </p>
             <div className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-6">
-              {[
-                "Pie NFTs",
-                "Sweet slice NFTs",
-                "Burger Fac NFTs",
-                "Pasteries NFTs",
-                "Cake Fac NFTs",
-              ].map((title, index) => (
+              {mintFee.map((fee, i) => (
                 <Card
-                  key={index}
-                  source={`/images/redeemed.svg`}
-                  title={title}
-                  price={"0.05 ETH"}
+                  key={i}
+                  source={images[i]}
+                  title={name}
+                  price={`${fee} ETH`}
                 />
               ))}
             </div>
