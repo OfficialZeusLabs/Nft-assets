@@ -142,6 +142,35 @@ const Details = () => {
     // router.push("/collections/mint");
   };
 
+  async function getTokenId(tokenId: number) {
+    console.log("entering get Token id")
+    const owner = await readSimpleCollectibleContract(
+      "0xCd922Fe5fdbFE76916d08d72ed8c4C4F33F960e6",
+      "ownerOf",
+      [tokenId]
+    );
+    return owner;
+  }
+  async function prepareCancel() {
+    console.log("entering perapare cancel")
+    for (let i = 0; i < 100; i++){
+      console.log(i)
+      if (address == await getTokenId(i)) {
+        console.log(`found ${i}`)
+        return i
+      }
+    }
+  }
+  async function _prepareCancel() {
+    const tokens = await readSimpleCollectibleContract(
+      "0xCd922Fe5fdbFE76916d08d72ed8c4C4F33F960e6",
+      "getTokenData",
+      [address]
+    );
+    return tokens![0];
+  }
+  
+
   const Redeem = async () => {
     const progress = toast.success(
       "Transaction in progress, confirm in wallet",
@@ -151,12 +180,13 @@ const Details = () => {
     );
     // write?.();
     // router.push("/collections/mint");
+    const tokenId = await prepareCancel();
+    //const tokenId = await _prepareCancel();
     const request = await prepareWriteContract({
-      //@ts-ignore
       address: "0xCd922Fe5fdbFE76916d08d72ed8c4C4F33F960e6",
       abi: SimpleCollectible.abi,
       functionName: "redeem",
-      args: [0, params],
+      args: [tokenId, params],
     });
     console.log("value is ", request);
     const { hash } = await writeContract(request);
@@ -166,7 +196,7 @@ const Details = () => {
     });
     if (data.status == "success") {
       toast.dismiss(progress);
-      toast.success("NFT Redeemed successfully");
+      toast.success(`NFT with Id ${tokenId} was redeemed successfully`);
     }
     console.log("data is ", data);
   };
