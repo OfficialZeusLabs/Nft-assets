@@ -21,7 +21,7 @@ contract SimpleCollectible is ERC721 {
 	event Withdrawn(uint256 amount);
 
 	mapping(uint256 => string) tokenURIs;
-	mapping(uint256 => address[]) owners;
+	mapping(uint256  => address[] ) owners;
 	mapping(address => uint256) redeemed;
 	mapping(address => uint256[]) TokenMappings;
 	mapping(address => Escrowed[] )escrow;
@@ -32,8 +32,9 @@ contract SimpleCollectible is ERC721 {
 		uint256 mintFee;
 	}
 	struct Escrowed{
-		uint256 index;
+		uint256 uriIndex;
 		uint256 tokenId;
+		int256 index;
 	}
 
 	/**
@@ -123,9 +124,9 @@ contract SimpleCollectible is ERC721 {
 			revert("You are not the token Owner");
 		}
 
-		escrow[msg.sender].push(Escrowed(uriIndex,_tokenId));
-		allEscrows.push(Escrowed(uriIndex,_tokenId));
-		transfer(tokenId, address(this));
+		escrow[msg.sender].push(Escrowed(uriIndex,_tokenId,int(allEscrows.length)));
+		allEscrows.push(Escrowed(uriIndex,_tokenId,int(allEscrows.length)));
+		_transfer(msg.sender, address(this),_tokenId);
 
 
 		//_burn(_tokenId);
@@ -146,11 +147,12 @@ contract SimpleCollectible is ERC721 {
 
 	function cancelRedeem()public{}
 
-	function _redeem() internal {
-		
-		
+	function _redeem(uint256 _tokenId, uint256 uriIndex, int256 escrowIndex) internal {	
+		address caller = ownerOf(_tokenId);
 		_burn(_tokenId);
 		address[] storage allOwners = owners[uriIndex];
+		
+		//delete owner from the list of owners
 		for (uint256 i = 0; i < allOwners.length; i++) {
 			if (allOwners[i] == msg.sender) {
 				allOwners[i] = allOwners[allOwners.length - 1];
@@ -158,9 +160,19 @@ contract SimpleCollectible is ERC721 {
 				break;
 			}
 		}
+		//delete marked escrow from the escrow list
+		for (uint256 i = 0; i < allEscrows.length; i++) {
+			if (allEscrows[i].index == escrowIndex) {
+				allEscrows[i] = allEscrows[allEscrows.length - 1];
+				allEscrows.pop();
+				break;
+			}
+		}
+		//OR
+		//allEscrows[uint(escrowIndex)] = Escrowed(0,0,-1); //cheaper way to delete escrows
+		
 		redeemed[msg.sender]++;
 		redeemers.push(msg.sender);
-
 		emit Redeemed(_tokenId, caller);
 	}
 
@@ -200,10 +212,10 @@ contract SimpleCollectible is ERC721 {
 		return owners[index];
 	}
 
-	function getTokenData(address owner) external view returns (uint256[]memory){
-		return TokenMappings[owner];
+	function getTokenData(address _owner) external view returns (uint256[]memory){
+		return TokenMappings[_owner];
 	}
-	function getRedemmed(address owner)external view returns (uint256 amount){
-		amount = redeemed[owner];
+	function getRedemmed(address _owner)external view returns (uint256 amount){
+		amount = redeemed[_owner];
 	}
 }

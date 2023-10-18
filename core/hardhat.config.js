@@ -13,7 +13,7 @@ config();
 /** @type import('hardhat/config').HardhatUserConfig */
 const SEPOLIA_ACCOUNT = process.env.SEPOLIA_ACCOUNT;
 const SEPOLIA_URL = process.env.SEPOLIA_URL;
-const MAINNET_RPC_URL = process.env.MAINNET_RPC_URL 
+const MAINNET_RPC_URL = process.env.SEPOLIA_URL 
 module.exports = {
 	defaultNetwork: "hardhat",
 	solidity: {
