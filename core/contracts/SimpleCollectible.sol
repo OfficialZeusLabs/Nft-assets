@@ -8,6 +8,7 @@ contract SimpleCollectible is ERC721 {
 	Counters.Counter private _tokenIds;
 
 	address[] redeemers;
+	Escrowed[] allEscrows;
 	Data[] URIS;
 	address private owner;
 
@@ -23,11 +24,16 @@ contract SimpleCollectible is ERC721 {
 	mapping(uint256 => address[]) owners;
 	mapping(address => uint256) redeemed;
 	mapping(address => uint256[]) TokenMappings;
+	mapping(address => Escrowed[] )escrow;
 	
 	struct Data {
 		uint256 index;
 		string uri;
 		uint256 mintFee;
+	}
+	struct Escrowed{
+		uint256 index;
+		uint256 tokenId;
 	}
 
 	/**
@@ -117,8 +123,33 @@ contract SimpleCollectible is ERC721 {
 			revert("You are not the token Owner");
 		}
 
-		_burn(_tokenId);
+		escrow[msg.sender].push(Escrowed(uriIndex,_tokenId));
+		allEscrows.push(Escrowed(uriIndex,_tokenId));
+		transfer(tokenId, address(this));
 
+
+		//_burn(_tokenId);
+
+		// address[] storage allOwners = owners[uriIndex];
+		// for (uint256 i = 0; i < allOwners.length; i++) {
+		// 	if (allOwners[i] == msg.sender) {
+		// 		allOwners[i] = allOwners[allOwners.length - 1];
+		// 		allOwners.pop();
+		// 		break;
+		// 	}
+		// }
+		// redeemed[msg.sender]++;
+		// redeemers.push(msg.sender);
+
+		// emit Redeemed(_tokenId, caller);
+	}
+
+	function cancelRedeem()public{}
+
+	function _redeem() internal {
+		
+		
+		_burn(_tokenId);
 		address[] storage allOwners = owners[uriIndex];
 		for (uint256 i = 0; i < allOwners.length; i++) {
 			if (allOwners[i] == msg.sender) {
@@ -132,6 +163,8 @@ contract SimpleCollectible is ERC721 {
 
 		emit Redeemed(_tokenId, caller);
 	}
+
+	function ackRedeem()public{}
 
 	function adjustMintFee(
 		uint256 index,
