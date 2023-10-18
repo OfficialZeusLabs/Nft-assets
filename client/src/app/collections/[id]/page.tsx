@@ -182,8 +182,8 @@ const Details = () => {
     );
     // write?.();
     // router.push("/collections/mint");
-    const tokenId = await prepareCancel();
-    //const tokenId = await _prepareCancel();
+    //const tokenId = await prepareCancel();
+    const tokenId = await _prepareCancel();
     const request = await prepareWriteContract({
       address: "0x9a5CfF1ca498D7f01c14d288F794f0d1093Fd3C1",
       abi: SimpleCollectible.abi,
