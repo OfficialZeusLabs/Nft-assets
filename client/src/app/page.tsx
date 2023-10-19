@@ -1,14 +1,12 @@
 "use client";
-import { useState } from "react";
-import { icon } from "@/assets/images";
 import Button from "@/common/Button";
 import TopNavigation from "@/common/navs/top/TopNavigation";
+import FAQ from "@/components/Faq";
 import Footer from "@/components/Footer";
 import { orbitron } from "@/fonts/fonts";
 import Head from "next/head";
-import Link from "next/link";
 import Image from "next/image";
-import FAQ from "@/components/Faq";
+import Link from "next/link";
 
 export default function Home() {
   return (
