@@ -3,13 +3,17 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
+error ThisAssetHasAlreadyBeenRedeemed();
+error NotOwnerOfAsset();
+
 contract SimpleCollectible is ERC721 {
 	using Counters for Counters.Counter;
 	Counters.Counter private _tokenIds;
 
-	address[] redeemers;
+	address[] redeemers; //  --necessary?
 	Escrowed[] allEscrows;
 	Data[] URIS;
+
 	address private owner;
 
 	event collectibleCreated(
@@ -20,18 +24,19 @@ contract SimpleCollectible is ERC721 {
 	event Redeemed(uint256 tokenId, address caller);
 	event Withdrawn(uint256 amount);
 
-	mapping(uint256 => string) tokenURIs;
-	mapping(uint256  => address[] ) owners;
-	mapping(address => uint256) redeemed;
-	mapping(address => uint256[]) TokenMappings;
-	mapping(address => Escrowed[] )escrow;
-	
+	mapping(uint256 => string) tokenURIs; // maps the tokenIds to there URI strings
+	mapping(uint256 => address[]) owners; // maps a tokenURI to there address of owners
+	mapping(address => uint256) redeemed; // number of redeemed assets for an address  ---necessary?
+	mapping(address => uint256[]) TokenMappings; // maps users and their tokens
+	mapping(address => Escrowed[]) escrow; //map users and there possible escrowed assets
+	mapping(address => Escrowed[]) f_redeemed; //maps users and there consumed nfts
+
 	struct Data {
 		uint256 index;
 		string uri;
 		uint256 mintFee;
 	}
-	struct Escrowed{
+	struct Escrowed {
 		uint256 uriIndex;
 		uint256 tokenId;
 		int256 index;
@@ -108,7 +113,6 @@ contract SimpleCollectible is ERC721 {
 		Data memory IndexUri = URIS[_uriIndex];
 		string memory _uri = IndexUri.uri;
 		tokenURIs[tokenId] = _uri;
-
 		return true;
 	}
 
@@ -123,35 +127,43 @@ contract SimpleCollectible is ERC721 {
 		if (caller != msg.sender) {
 			revert("You are not the token Owner");
 		}
-
-		escrow[msg.sender].push(Escrowed(uriIndex,_tokenId,int(allEscrows.length)));
-		allEscrows.push(Escrowed(uriIndex,_tokenId,int(allEscrows.length)));
-		_transfer(msg.sender, address(this),_tokenId);
-
-
-		//_burn(_tokenId);
-
-		// address[] storage allOwners = owners[uriIndex];
-		// for (uint256 i = 0; i < allOwners.length; i++) {
-		// 	if (allOwners[i] == msg.sender) {
-		// 		allOwners[i] = allOwners[allOwners.length - 1];
-		// 		allOwners.pop();
-		// 		break;
-		// 	}
-		// }
-		// redeemed[msg.sender]++;
-		// redeemers.push(msg.sender);
-
-		// emit Redeemed(_tokenId, caller);
+		escrow[msg.sender].push(
+			Escrowed(uriIndex, _tokenId, int(allEscrows.length))
+		);
+		allEscrows.push(Escrowed(uriIndex, _tokenId, int(allEscrows.length)));
+		_transfer(msg.sender, address(this), _tokenId);
 	}
 
-	function cancelRedeem()public{}
+	//transfer the tokens back to there owners
+	// if we use the cheaper cancel, then we should check for the index
+	// to make sure that the asset has not already be redeemed
+	function cancelRedeem(uint256 _tokenId) public {
+		Escrowed[] memory assets = escrow[msg.sender];
+		for (uint256 i = 0; i < assets.length; i++){ 
+			if(assets[i].tokenId == _tokenId){
+				if (address(this) == ownerOf(_tokenId)){
+					escrow[msg.sender][i] = Escrowed(assets[i].uriIndex, _tokenId, -1);
+					_transfer(address(this),msg.sender, _tokenId);
+					return; //this leads to a premature function exit but our goal would have been achieved
+				} else {
+					revert ThisAssetHasAlreadyBeenRedeemed();
+				}
+			} else {
+				revert NotOwnerOfAsset();
+			}
+		}
+		
+	}
 
-	function _redeem(uint256 _tokenId, uint256 uriIndex, int256 escrowIndex) internal {	
+	function _redeem(
+		uint256 _tokenId,
+		uint256 uriIndex,
+		int256 escrowIndex
+	) internal {
 		address caller = ownerOf(_tokenId);
 		_burn(_tokenId);
 		address[] storage allOwners = owners[uriIndex];
-		
+
 		//delete owner from the list of owners
 		for (uint256 i = 0; i < allOwners.length; i++) {
 			if (allOwners[i] == msg.sender) {
@@ -170,13 +182,21 @@ contract SimpleCollectible is ERC721 {
 		}
 		//OR
 		//allEscrows[uint(escrowIndex)] = Escrowed(0,0,-1); //cheaper way to delete escrows
-		
-		redeemed[msg.sender]++;
-		redeemers.push(msg.sender);
+
+		f_redeemed[caller].push(Escrowed(uriIndex, _tokenId, escrowIndex)); //is this neccesary
+		redeemed[msg.sender]++; //is this neccssary
+		redeemers.push(msg.sender); //is this neccessary
 		emit Redeemed(_tokenId, caller);
 	}
 
-	function ackRedeem()public{}
+	//only owner of the the contract can call this
+	function ackRedeem(
+		uint256 _tokenId,
+		uint256 uriIndex,
+		int256 escrowIndex
+	) public onlyOwner {
+		_redeem(_tokenId, uriIndex, escrowIndex);
+	}
 
 	function adjustMintFee(
 		uint256 index,
@@ -212,10 +232,15 @@ contract SimpleCollectible is ERC721 {
 		return owners[index];
 	}
 
-	function getTokenData(address _owner) external view returns (uint256[]memory){
+	function getTokenData(
+		address _owner
+	) external view returns (uint256[] memory) {
 		return TokenMappings[_owner];
 	}
-	function getRedemmed(address _owner)external view returns (uint256 amount){
+
+	function getRedemmed(
+		address _owner
+	) external view returns (uint256 amount) {
 		amount = redeemed[_owner];
 	}
 }
