@@ -15,7 +15,7 @@ import { useAccount } from "wagmi";
 import axios from "axios";
 
 const Profile: React.FC = () => {
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
   const [Open, setOpen] = useState(true);
   const [name, setName] = useState("");
   const [mintFee, setMintFee] = useState<number[]>([]);
