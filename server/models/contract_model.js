@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ContractSchema = new mongoose.Schema({
     owner_id: String,
