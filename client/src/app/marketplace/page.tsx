@@ -8,6 +8,7 @@ import NSMECollection from "@/components/marketplace/NSMECollection";
 import TopSellers from "@/components/marketplace/TopSellers";
 import { readFactoryContract, readSimpleCollectibleContract } from "@/utils";
 import axios from "axios";
+import ProjectCollection from "@/components/marketplace/ProjectCollection";
 
 const MarketPlace: React.FC = () => {
   const [collections, setCollections] = useState<any[]>([]);
@@ -75,6 +76,7 @@ const MarketPlace: React.FC = () => {
           names={names}
           images={images}
         />
+        <ProjectCollection />
         <TopSellers />
       </div>
       <Footer />
