@@ -42,7 +42,7 @@ const ProjectCollection = () => {
         <div
           className={`grid grid-cols-1 tablet:grid-cols-2 tablet_l:grid-cols-3 text-white gap-6 ${orbitron.className}`}
         >
-          {projects?.length &&
+          {projects?.length > 0 &&
             projects?.slice(0, 6).map((item) => (
               <CollectionCard title={item?.title} source={item?.artwork[0]}>
                 <div className="flex justify-between">
