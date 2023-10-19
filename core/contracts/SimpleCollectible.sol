@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 error ThisAssetHasAlreadyBeenRedeemed();
 error NotOwnerOfAsset();
+error InsuffucientMintFee();
 
 contract SimpleCollectible is ERC721 {
 	using Counters for Counters.Counter;
@@ -88,9 +89,7 @@ contract SimpleCollectible is ERC721 {
 		Data memory IndexUri = URIS[_uriIndex];
 		uint256 amount = IndexUri.mintFee;
 		if (msg.value < (amount * 1e18)) {
-			revert(
-				"Transaction failed because the amount is less than the mint fee"
-			);
+			revert InsuffucientMintFee();
 		}
 
 		uint256 tokenID = _tokenIds.current();
