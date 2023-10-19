@@ -6,6 +6,9 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 error ThisAssetHasAlreadyBeenRedeemed();
 error NotOwnerOfAsset();
 error InsuffucientMintFee();
+error NotOwnerOfContract();
+error MismatchedConstructArgs();
+error TokenUriCouldNotBeCreatedForSomeReason();
 
 contract SimpleCollectible is ERC721 {
 	using Counters for Counters.Counter;
@@ -63,7 +66,7 @@ contract SimpleCollectible is ERC721 {
 	) ERC721(Name, Symbol) {
 		owner = _owner;
 		if (_URIs.length != _mintFee.length) {
-			revert("Transaction failed for some reason");
+			revert MismatchedConstructArgs();
 		}
 		for (uint256 i = 0; i < _URIs.length; i++) {
 			URIS.push(Data(i, _URIs[i], _mintFee[i]));
@@ -95,7 +98,7 @@ contract SimpleCollectible is ERC721 {
 		uint256 tokenID = _tokenIds.current();
 		_safeMint(recipient, tokenID);
 		if (_createTokenURI(tokenID, _uriIndex) != true) {
-			revert("Transaction failed for some reason");
+			revert TokenUriCouldNotBeCreatedForSomeReason();
 		}
 
 		TokenMappings[msg.sender].push(tokenID);
@@ -124,7 +127,7 @@ contract SimpleCollectible is ERC721 {
 	function redeem(uint256 _tokenId, uint256 uriIndex) external {
 		address caller = ownerOf(_tokenId);
 		if (caller != msg.sender) {
-			revert("You are not the token Owner");
+			revert NotOwnerOfAsset();
 		}
 		escrow[msg.sender].push(
 			Escrowed(uriIndex, _tokenId, int(allEscrows.length))
