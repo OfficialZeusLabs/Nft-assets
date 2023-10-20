@@ -63,13 +63,13 @@ class AccountService {
     }
 
     static async fetchAccountProfile(req, res) {
-        const { wallet_address } = req.params;
-        const badRequestError = Preconditions.checkNotNull({ wallet_address });
+        const { address } = req.params;
+        const badRequestError = Preconditions.checkNotNull({ address });
         if (badRequestError) {
             return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, badRequestError);
         }
         try {
-            const userProfile = await AccountRepository.findWalletAddress(wallet_address);
+            const userProfile = await AccountRepository.findWalletAddress(address);
             if (!userProfile) {
                 return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_GATEWAY, "Profile not found");
             } else {

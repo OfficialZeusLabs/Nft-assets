@@ -4,7 +4,7 @@ const AccountRoutes = (apiVersion, servicePath = 'account') => {
             return `${apiVersion}/${servicePath}/register`
         },
         get FETCH_PROFILE() {
-            return `${apiVersion}/${servicePath}/profile`
+            return `${apiVersion}/${servicePath}/profile/:address`
         },
         get CREATE_PROFILE() {
             return `${apiVersion}/${servicePath}/profile/create`
