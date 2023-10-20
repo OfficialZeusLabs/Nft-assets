@@ -4,7 +4,8 @@ const ProfileSchema = new mongoose.Schema({
     address: String,
     username: String,
     discord: String,
-    twitter: String
+    twitter: String,
+    profile_url: String
 }, { timestamps: true });
 
 const ProfileModel = mongoose.model("Profile", ProfileSchema);

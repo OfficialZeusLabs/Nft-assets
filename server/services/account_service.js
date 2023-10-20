@@ -5,7 +5,7 @@ import ProfileModel from "../models/profile_model.js";
 import AccountRepository from "../repository/account_repo.js";
 import Preconditions from "../utils/preconditions.js";
 import ResponseHandler from "../utils/response_handler.js";
-import { generateRandomUsername } from "../utils/strings.js";
+import { generateRandomCharacter } from "../utils/strings.js";
 class AccountService {
     static async register(req, res) {
         const {
@@ -48,7 +48,7 @@ class AccountService {
             if (badRequestError) {
                 return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, badRequestError);
             }
-            const randomUsername = generateRandomUsername();
+            const randomUsername = generateRandomCharacter();
             const newProfile = await ProfileModel.create({
                 username: randomUsername,
                 address: wallet_address
