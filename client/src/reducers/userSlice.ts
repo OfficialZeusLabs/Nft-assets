@@ -12,6 +12,7 @@ const initialState: LaunchPadInterface = {
   team: {},
   sales: {},
   social: {},
+  address: null,
 };
 export const usersSlice = createSlice({
   name: "userss",
@@ -32,6 +33,9 @@ export const usersSlice = createSlice({
     setSocial: (state, action) => {
       state.social = action.payload;
     },
+    setWalletAddress: (state, action) => {
+      state.address = action.payload;
+    },
   },
 });
 
@@ -40,7 +44,14 @@ export const getSales = (state: RootState) => state.users.sales;
 export const getArtworks = (state: RootState) => state.users.artworks;
 export const getTeam = (state: RootState) => state.users.team;
 export const getSocial = (state: RootState) => state.users.social;
+export const getWalletAddress = (state: RootState) => state.users.address;
 
-export const { setProject, setTeam, setArtworks, setSales, setSocial } =
-  usersSlice.actions;
+export const {
+  setProject,
+  setTeam,
+  setArtworks,
+  setSales,
+  setSocial,
+  setWalletAddress,
+} = usersSlice.actions;
 export default usersSlice.reducer;

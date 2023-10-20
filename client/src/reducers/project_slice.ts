@@ -1,4 +1,3 @@
-import { setProject } from "@/reducers/userSlice";
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
