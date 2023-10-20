@@ -7,6 +7,7 @@ import { WagmiConfig } from "wagmi";
 import { poppins } from "../fonts/fonts";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import AppLayout from "@/layout";
 
 export default function RootLayout({
   children,
@@ -15,10 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <WagmiConfig config={wagmiConfig}>
-      <html lang="en">
+       <html lang="en">
         <Providers />
         <Provider store={store}>
-          <body className={`${poppins.className}`}>{children}</body>
+          <AppLayout children={children} />
         </Provider>
         <ToastContainer />
       </html>
