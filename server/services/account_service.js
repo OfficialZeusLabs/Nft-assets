@@ -88,6 +88,10 @@ class AccountService {
         try {
             let walletExists = await AccountRepository.findWalletAddress(wallet);
             if (walletExists) {
+                let usernameExists = await AccountRepository.findByUsername(username);
+                if (!usernameExists) {
+                    return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, "Username already exists");
+                }
                 let updateProfile = await AccountModel.findOneAndUpdate({ wallet: wallet }, {
                     username
                 });

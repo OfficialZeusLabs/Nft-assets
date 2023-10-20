@@ -10,6 +10,10 @@ class AccountRepository extends BaseRepository {
         return super.findByEmail(AccountModel, id);
     }
 
+    static async findByUsername(username) {
+        return await ProfileModel.findOne({ username });
+    }
+
     static async findWalletAddress(address) {
         return await ProfileModel.findOne({ address });
     }
