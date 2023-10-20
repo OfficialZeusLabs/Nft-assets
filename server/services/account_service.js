@@ -1,7 +1,10 @@
-import Preconditions from "../utils/preconditions.js";
-import ResponseHandler from "../utils/response_handler.js"
 import { StatusCodes } from 'http-status-codes';
 import Strings from "../lang/strings.js";
+import AccountModel from "../models/account_model.js";
+import ProfileModel from "../models/profile_model.js";
+import AccountRepository from "../repository/account_repo.js";
+import Preconditions from "../utils/preconditions.js";
+import ResponseHandler from "../utils/response_handler.js";
 import { generateRandomUsername } from "../utils/strings.js";
 class AccountService {
     static async register(req, res) {
@@ -80,35 +83,34 @@ class AccountService {
     }
 
     static async upsertProfile(req, res) {
-        const { wallet, username } = req.body;
+        const { wallet, ...rest } = req.body;
         const badRequestError = Preconditions.checkNotNull({ wallet });
-        if (!badRequestError) {
+        if (badRequestError) {
             return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, badRequestError);
         }
         try {
+            let { username } = { ...rest };
             let walletExists = await AccountRepository.findWalletAddress(wallet);
             if (walletExists) {
                 let usernameExists = await AccountRepository.findByUsername(username);
-                if (!usernameExists) {
+                if (usernameExists) {
                     return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, "Username already exists");
-                }
-                let updateProfile = await AccountModel.findOneAndUpdate({ wallet: wallet }, {
-                    username
-                });
+                };
+                let updateProfile = await ProfileModel.findOneAndUpdate({ address: wallet }, { ...rest });
                 if (!updateProfile) {
                     return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, "Error updating profile");
                 }
                 return ResponseHandler.sendResponseWithoutData(res, StatusCodes.OK, "Profile updated successfully");
+            } else {
+                return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, "Wallet address not found");
             }
-            return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, "Wallet address not found");
         }
         catch (error) {
+            console.error(error);
             return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, "Something went wrong");
         }
     }
 }
 
 export default AccountService;
-import AccountModel from "../models/account_model.js";
-import AccountRepository from "../repository/account_repo.js";
-import ProfileModel from "../models/profile_model.js";
+
