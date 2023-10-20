@@ -1,4 +1,4 @@
-export const generateRandomUsername = () => {
+export const generateRandomCharacter = () => {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     const numbers = '0123456789';
     let username = '';
