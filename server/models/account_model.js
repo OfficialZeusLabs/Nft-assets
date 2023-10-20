@@ -8,7 +8,9 @@ const AccountSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
-    }
+    },
+    username: String,
+    address: String
 }, { timestamps: true });
 
 const AccountModel = mongoose.model("Account", AccountSchema);
