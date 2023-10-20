@@ -39,16 +39,16 @@ class AccountService {
     }
 
     static async createProfile(req, res) {
-        const { wallet } = req.body;
+        const { wallet_address } = req.body;
         try {
-            const badRequestError = Preconditions.checkNotNull({ wallet });
+            const badRequestError = Preconditions.checkNotNull({ wallet_address });
             if (badRequestError) {
                 return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, badRequestError);
             }
             const randomUsername = generateRandomUsername();
-            const newProfile = await AccountModel.create({
+            const newProfile = await ProfileModel.create({
                 username: randomUsername,
-                address
+                address: wallet_address
             });
             await newProfile.save();
             return ResponseHandler.sendResponseWithoutData(res, StatusCodes.CREATED, "Profile created successfully");
@@ -60,9 +60,13 @@ class AccountService {
     }
 
     static async fetchAccountProfile(req, res) {
-        const { address } = req.body;
+        const { wallet_address } = req.params;
+        const badRequestError = Preconditions.checkNotNull({ wallet_address });
+        if (badRequestError) {
+            return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, badRequestError);
+        }
         try {
-            const userProfile = await AccountRepository.fetchAccountProfile(address);
+            const userProfile = await AccountRepository.findWalletAddress(wallet_address);
             if (!userProfile) {
                 return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_GATEWAY, "Profile not found");
             } else {
@@ -103,3 +107,4 @@ class AccountService {
 export default AccountService;
 import AccountModel from "../models/account_model.js";
 import AccountRepository from "../repository/account_repo.js";
+import ProfileModel from "../models/profile_model.js";
