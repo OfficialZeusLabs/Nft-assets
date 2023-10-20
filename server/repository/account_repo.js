@@ -8,6 +8,10 @@ class AccountRepository extends BaseRepository {
     static async findById(id) {
         return super.findByEmail(AccountModel, id);
     }
+
+    static async findWalletAddress(address) {
+        return await AccountModel.findOne({ address });
+    }
 }
 
 export default AccountRepository;
