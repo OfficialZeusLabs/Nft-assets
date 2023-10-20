@@ -10,7 +10,7 @@ const AccountRoutes = (apiVersion, servicePath = 'account') => {
             return `${apiVersion}/${servicePath}/profile/create`
         },
         get UPSERT_PROFILE() {
-            return `${apiVersion}/${servicePath}/profile/update`
+            return `${apiVersion}/${servicePath}/profile/upsert`
         }
     }
 }
