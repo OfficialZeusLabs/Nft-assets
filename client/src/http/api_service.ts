@@ -36,4 +36,38 @@ export default class APIService {
         cb(null, HttpErrorHandler.getErrorResponseData(error));
       });
   }
+
+  static async createProfile(requestBody: any, cb: any) {
+    axios
+      .post(Endpoints.CREATE_PROFILE)
+      .then((response) => {
+        cb(HttpSuccessDataHandler.getSuccessResponseData(response), null);
+      })
+      .catch((error) => {
+        cb(null, HttpErrorHandler.getErrorResponseData(error));
+      });
+  }
+
+  static async upsertProfile(requestBody: any, cb: any) {
+    axios
+      .put(Endpoints.UPSERT_PROFILE)
+      .then((response) => {
+        cb(HttpSuccessDataHandler.getSuccessResponseData(response), null);
+      })
+      .catch((error) => {
+        cb(null, HttpErrorHandler.getErrorResponseData(error));
+      });
+  }
+
+  static async fetchProfile(cb: any) {
+    axios
+      .get(Endpoints.FETCH_PROFILE)
+      .then((response) => {
+        cb(HttpSuccessDataHandler.getSuccessResponseData(response), null);
+      })
+      .catch((error) => {
+        cb(null, HttpErrorHandler.getErrorResponseData(error));
+      });
+  }
+  static async updateProfile(requestBody: object, cb: any) {}
 }
