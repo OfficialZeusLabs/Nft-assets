@@ -5,7 +5,8 @@ const ProfileSchema = new mongoose.Schema({
     username: String,
     discord: String,
     twitter: String,
-    profile_url: String
+    profile_url: String,
+    bio: String,
 }, { timestamps: true });
 
 const ProfileModel = mongoose.model("Profile", ProfileSchema);
