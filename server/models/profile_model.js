@@ -7,6 +7,7 @@ const ProfileSchema = new mongoose.Schema({
     twitter: String,
     profile_url: String,
     bio: String,
+    connected: Boolean
 }, { timestamps: true });
 
 const ProfileModel = mongoose.model("Profile", ProfileSchema);

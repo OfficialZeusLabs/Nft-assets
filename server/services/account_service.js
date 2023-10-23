@@ -42,7 +42,7 @@ class AccountService {
     }
 
     static async createProfile(req, res) {
-        const { wallet_address } = req.body;
+        const { wallet_address, connected } = req.body;
         try {
             const badRequestError = Preconditions.checkNotNull({ wallet_address });
             if (badRequestError) {
@@ -53,7 +53,8 @@ class AccountService {
                 const randomUsername = generateRandomCharacter();
                 const newProfile = await ProfileModel.create({
                     username: randomUsername,
-                    address: wallet_address
+                    address: wallet_address,
+                    connected: true
                 });
                 await newProfile.save();
                 return ResponseHandler.sendResponseWithoutData(res, StatusCodes.CREATED, "Profile created successfully");
