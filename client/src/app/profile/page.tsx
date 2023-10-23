@@ -14,6 +14,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useAccount } from "wagmi";
+import Link from "next/link";
 
 const Profile: React.FC = () => {
   const { address, isConnected } = useAccount();
@@ -30,10 +31,10 @@ const Profile: React.FC = () => {
   };
 
   useEffect(() => {
-    let wallet = "0xe0a9462AFFf9E7cB8ABAC3CBb56F87337344433b";
-    // if(connected){
-      if(wallet){
-        APIService.fetchProfile(wallet, (response: any, error: any) => { 
+    // let wallet = "0xe0a9462AFFf9E7cB8ABAC3CBb56F87337344433b";
+    if(connected){
+      if(walletAddress){
+        APIService.fetchProfile(walletAddress, (response: any, error: any) => { 
           if(error){
             console.log(error); 
             return;
@@ -42,7 +43,7 @@ const Profile: React.FC = () => {
           setProfile({...responseData});
         })
       }
-    // }
+    }
   }, [connected]);
   
 
@@ -139,7 +140,11 @@ const Profile: React.FC = () => {
                     height={20}
                     width={20}
                   />
-                  <span className="text-primary">Edit Profile</span>
+                  <Link href="/profile/edit">
+                  <span className="text-primary">
+                    Edit Profile
+                    </span>
+                  </Link>
                 </div>
               </div>
               <div className="flex gap-4 mt-5">

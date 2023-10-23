@@ -1,13 +1,12 @@
 "use client";
+import AppLayout from "@/layout";
 import Providers, { wagmiConfig } from "@/providers/walletconnect";
 import store from "@/store";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import { WagmiConfig } from "wagmi";
-import { poppins } from "../fonts/fonts";
-import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import AppLayout from "@/layout";
+import { WagmiConfig } from "wagmi";
+import "./globals.css";
 
 export default function RootLayout({
   children,
