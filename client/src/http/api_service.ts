@@ -39,7 +39,7 @@ export default class APIService {
 
   static async createProfile(requestBody: any, cb: any) {
     axios
-      .post(Endpoints.CREATE_PROFILE)
+      .post(Endpoints.CREATE_PROFILE, requestBody)
       .then((response) => {
         cb(HttpSuccessDataHandler.getSuccessResponseData(response), null);
       })
@@ -50,7 +50,7 @@ export default class APIService {
 
   static async upsertProfile(requestBody: any, cb: any) {
     axios
-      .put(Endpoints.UPSERT_PROFILE)
+      .put(Endpoints.UPSERT_PROFILE, requestBody)
       .then((response) => {
         cb(HttpSuccessDataHandler.getSuccessResponseData(response), null);
       })
@@ -59,9 +59,9 @@ export default class APIService {
       });
   }
 
-  static async fetchProfile(cb: any) {
+  static async fetchProfile(address: string, cb: any) {
     axios
-      .get(Endpoints.FETCH_PROFILE)
+      .get(Endpoints.FETCH_PROFILE.replace(":address", address))
       .then((response) => {
         cb(HttpSuccessDataHandler.getSuccessResponseData(response), null);
       })

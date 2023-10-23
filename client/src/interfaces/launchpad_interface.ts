@@ -8,4 +8,6 @@ export interface LaunchPadInterface {
   } | null;
   sales: object | null;
   social: object | null;
+  address: string;
+  connected: boolean;
 }

@@ -6,6 +6,9 @@ import { useWeb3Modal } from "@web3modal/react";
 import { getAccount } from "@wagmi/core";
 import { orbitron } from "@/fonts/fonts";
 import { poppins } from "@/fonts/fonts";
+import { useDispatch } from "react-redux";
+import { setWalletAddress, setWalletConnected } from "@/reducers/userSlice";
+import APIService from "@/http/api_service";
 
 interface NavToolsProps {
   title?: string;
@@ -13,6 +16,7 @@ interface NavToolsProps {
 }
 
 const NavTools: React.FC<NavToolsProps> = (props) => {
+  const dispatch = useDispatch(); 
   const [buttonText, setButtonText] = useState("Connect Wallet");
   const { open } = useWeb3Modal();
   const { title, isMenu = false } = props;
@@ -20,9 +24,20 @@ const NavTools: React.FC<NavToolsProps> = (props) => {
 
   useEffect(() => {
     if (isConnected) {
+      const requestBody = { 
+        wallet_address: address, 
+      };
+      APIService.createProfile(requestBody, (response: any, error: any) => {
+        if(error){
+          console.log(error, "#error"); 
+        }
+        console.log(response, "#response-data");
+      })
       // @ts-ignore
       const short = `${address.slice(0, 5)}...${address.slice(-4)}`;
       setButtonText(short);
+      dispatch(setWalletAddress(address));
+      dispatch(setWalletConnected(true));
     } else {
       setButtonText("Connect Wallet");
     }

@@ -12,7 +12,8 @@ const initialState: LaunchPadInterface = {
   team: {},
   sales: {},
   social: {},
-  address: null,
+  address: "",
+  connected: false,
 };
 export const usersSlice = createSlice({
   name: "userss",
@@ -36,6 +37,9 @@ export const usersSlice = createSlice({
     setWalletAddress: (state, action) => {
       state.address = action.payload;
     },
+    setWalletConnected: (state, action) => {
+      state.connected = action.payload;
+    },
   },
 });
 
@@ -45,6 +49,7 @@ export const getArtworks = (state: RootState) => state.users.artworks;
 export const getTeam = (state: RootState) => state.users.team;
 export const getSocial = (state: RootState) => state.users.social;
 export const getWalletAddress = (state: RootState) => state.users.address;
+export const getWalletConnected = (state: RootState) => state.users.connected;
 
 export const {
   setProject,
@@ -53,5 +58,6 @@ export const {
   setSales,
   setSocial,
   setWalletAddress,
+  setWalletConnected,
 } = usersSlice.actions;
 export default usersSlice.reducer;
