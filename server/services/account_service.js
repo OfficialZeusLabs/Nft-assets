@@ -48,13 +48,18 @@ class AccountService {
             if (badRequestError) {
                 return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, badRequestError);
             }
-            const randomUsername = generateRandomCharacter();
-            const newProfile = await ProfileModel.create({
-                username: randomUsername,
-                address: wallet_address
-            });
-            await newProfile.save();
-            return ResponseHandler.sendResponseWithoutData(res, StatusCodes.CREATED, "Profile created successfully");
+            const addressExists = await AccountRepository.findWalletAddress(wallet_address);
+            if (!addressExists) {
+                const randomUsername = generateRandomCharacter();
+                const newProfile = await ProfileModel.create({
+                    username: randomUsername,
+                    address: wallet_address
+                });
+                await newProfile.save();
+                return ResponseHandler.sendResponseWithoutData(res, StatusCodes.CREATED, "Profile created successfully");
+            } else {
+                return;
+            }
         }
         catch (error) {
             console.log(error);
