@@ -36,7 +36,7 @@ NFT Factory is a groundbreaking project by Zeus Labs aimed at democratizing acce
 > ## Core Features Implemented
 
 `Deployment on Gnosis chain`
-- Deployment on Gnosis chain for the purpose of this hackhathon.
+- Deployment on Gnosis chain.
 
 
 - data base for storage purpose
